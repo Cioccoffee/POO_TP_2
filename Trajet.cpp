@@ -28,7 +28,7 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-virtual void Trajet:: Afficher () const
+void Trajet:: Afficher () const
 // Algorithme :
 {
 } //----- Fin de Méthode
