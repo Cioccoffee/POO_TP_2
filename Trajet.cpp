@@ -33,7 +33,19 @@ void Trajet:: Afficher () const
 {
 } //----- Fin de Méthode
 
+const char * Trajet::Depart() const
+ // Algorithme :
+ //
+ {
 
+  } //----- Fin de Méthode
+
+const char * Trajet::Arrivee() const
+// Algorithme :
+//
+{
+
+} //----- Fin de Méthode
 
 //------------------------------------------------- Surcharge d'opérateurs
 //Xxx & Xxx::operator = ( const Xxx & unXxx )

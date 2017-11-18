@@ -11,6 +11,7 @@
 #define ListeTrajets_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include "Trajet.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -54,6 +55,10 @@ public:
 	//
 	//
 	void Ajouter(Trajet * val);
+
+	CelluleTrajet * Tete();
+
+	CelluleTrajet * Queue();
 
 	unsigned int Taille();
 

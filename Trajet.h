@@ -50,6 +50,20 @@ public:
 	//
 	//
 
+	const char * Depart() const;
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+	//
+
+	const char * Arrivee() const;
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+	//
+
 	virtual ~Trajet();
 	// Mode d'emploi :
 	//

@@ -46,9 +46,9 @@ public:
 
 	virtual void Afficher() const;
 
-	char * VilleDepart();
+	const char * Depart() const;
 
-	char * VilleArrivee();
+	const char * Arrivee() const;
 
 	virtual ~TrajetSimple();
 	// Mode d'emploi :
@@ -64,10 +64,10 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 
-	char * villeDepart;
-	char * villeArrivee;
+	const char * villeDepart;
+	const char * villeArrivee;
 	//a revoir
-	char * moyenTransport; //enum ???
+	const char * moyenTransport; //enum ???
 
 
 };

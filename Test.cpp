@@ -58,7 +58,7 @@ static void testListe()
 // Algorithme :
 //
 {
-//	 int a = 1, b = 2;
+//	int a = 1, b = 2;
 //	int *pt = &a;
 //	int *pt2 =&b;
 //

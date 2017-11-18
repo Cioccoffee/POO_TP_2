@@ -28,21 +28,21 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-virtual void TrajetSimple:: Afficher () const
+void TrajetSimple:: Afficher () const
 // Algorithme :
 {
 } //----- Fin de Méthode
 
-char * TrajetSimple:: VilleDepart()
+const char * TrajetSimple:: Depart() const
 // Algorithme :
 {
-	return 0;
+	return villeDepart;
 } //----- Fin de Méthode
 
-char * TrajetSimple:: VilleArrivee()
+const char * TrajetSimple:: Arrivee() const
 // Algorithme :
 {
-	return 0;
+	return villeArrivee;
 } //----- Fin de Méthode
 
 

@@ -12,6 +12,7 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Trajet.h"
+#include "ListeTrajets.h" 
 
 //------------------------------------------------------------- Constantes
 
@@ -44,9 +45,36 @@ public:
 	// Contrat :
 	//
 
+	TrajetCompose(ListeTrajets * lt);
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+
 	virtual void Afficher() const;
 
 	void Ajouter(const Trajet * t);
+
+	const char * Depart() const;
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+	//
+
+	const char * Arrivee() const;
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+	//
+
+	ListeTrajets * TrajetCompose::Trajets() const;
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+	//
 
 	virtual ~TrajetCompose();
 	// Mode d'emploi :
