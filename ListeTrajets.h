@@ -53,7 +53,7 @@ public:
 	// Contrat :
 	//
 	//
-	void Ajouter(const Trajet * val);
+	void Ajouter(Trajet * val);
 
 	unsigned int Taille();
 
@@ -73,6 +73,7 @@ protected:
 
 	unsigned int taille;
 	CelluleTrajet *tete;
+	CelluleTrajet * dernierElement; //pointeur vers le dernier element de la liste
 
 };
 

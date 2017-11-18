@@ -2,13 +2,13 @@
 
 #regle explicite pour la reliure de l'executable
 
-executable : Ensemble.o Test.o
-	g++ -o executable Ensemble.o Test.o -lm
+executable : ListeTrajets.o Test.o
+	g++ -o executable ListeTrajets.o Test.o -lm
 
 #regle explicite pour la reliure de la classe
 
-Ensemble.o : Ensemble.h Ensemble.cpp
-	g++ -c -DMAP Ensemble.cpp
+ListeTrajets.o : ListeTrajets.h ListeTrajets.cpp
+	g++ -c -DMAP ListeTrajets.cpp
 
 #regle explicite pour la reliure de le module de test
 

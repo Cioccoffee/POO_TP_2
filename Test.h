@@ -18,6 +18,8 @@
 
 /////////////////////////////////////////////////////////////////  INCLUDE
 //--------------------------------------------------- Interfaces utilisées
+#include "ListeTrajets.h"
+#include "Trajet.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -36,11 +38,12 @@ static void testConstructeur();
 // Contrat :
 //
 
-static void test1();
+static void test();
 // Mode d'emploi :
 //
 // Contrat :
 //
+static void testListe();
 
 int main();
 // Mode d'emploi :

@@ -31,16 +31,50 @@ using namespace std;
 void ListeTrajets:: Afficher () const
 // Algorithme :
 {
+	if(taille ==0) {
+		cout << "Liste vide"<<endl;
+	}
+	else {
+		cout << tete->valeur <<endl;
+
+		CelluleTrajet * elCourant = tete;
+		while (elCourant->suivant != NULL) {
+			cout << elCourant->valeur <<endl;
+		}
+
+		//Dernier element dont le suivant est null
+		cout << elCourant->valeur <<endl;
+	}
+
 } //----- Fin de Méthode
 
-void ListeTrajets:: Ajouter (const Trajet *val)
+void ListeTrajets:: Ajouter (Trajet *val)
 // Algorithme :
 {
+	if (taille == 0)
+	{
+		tete->valeur = val;
+		tete->suivant = NULL;
+		dernierElement = tete;
+
+	}else
+	{
+		CelluleTrajet *nouvelElement;
+		nouvelElement->valeur = val;
+		nouvelElement->suivant = NULL;
+
+		dernierElement->suivant = nouvelElement;
+		dernierElement = nouvelElement;
+	}
+
+	taille++;
+
 } //----- Fin de Méthode
 
 unsigned int ListeTrajets:: Taille ()
 // Algorithme :
 {
+	return taille;
 } //----- Fin de Méthode
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -59,6 +93,10 @@ ListeTrajets::ListeTrajets()
 	//cout << "Appel au constructeur de <ListeTrajets>" << endl;
 #endif
 
+	// pb d'intialisation
+	tete = NULL;
+	dernierElement = NULL;
+	taille = 0;
 
 } //----- Fin de ListeTrajets
 

@@ -50,11 +50,32 @@ static void test()
 }
 
 
+static void testListe()
+// Mode d'emploi :
+//
+// Contrat :
+//
+// Algorithme :
+//
+{
+//	 int a = 1, b = 2;
+//	int *pt = &a;
+//	int *pt2 =&b;
+//
+//	ListeTrajets lt;
+//	lt.Afficher();
+//
+//	lt.Ajouter(pt);
+//	lt.Ajouter(pt2);
+//	lt.Afficher();
+
+}
+
 int main ()
 // Algorithme :
 {
 
-
+	testListe();
 
 	return 0;
 }
