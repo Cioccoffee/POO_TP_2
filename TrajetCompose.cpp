@@ -32,12 +32,25 @@ using namespace std;
 void TrajetCompose::Afficher() const
 // Algorithme :
 {
+	int i;
+	CelluleTrajet * actuelle;
+	actuelle = trajets->Tete;
+	Trajet * actuel;
+	cout << "Trajet "
+	for (i = 0; i < trajets->Taille; i++)
+	{
+		actuel = actuelle->valeur;
+		actuel.Afficher;
+		//cout<< "de " << actuel->Depart << " à " << actuel->Arrivee << actuel
+		actuelle = actuelle->suivant;
+	}
 } //----- Fin de Méthode
 
 const char * TrajetCompose::Depart() const
 // Algorithme :
 //
 {
+
 	return trajets->Tete;
 } //----- Fin de Méthode
 

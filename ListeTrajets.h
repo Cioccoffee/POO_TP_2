@@ -56,6 +56,8 @@ public:
 	//
 	void Ajouter(Trajet * val);
 
+	//Trajet * Valeur(CelluleTrajet * cell);
+
 	CelluleTrajet * Tete();
 
 	CelluleTrajet * Queue();

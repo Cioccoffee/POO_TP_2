@@ -35,15 +35,15 @@ void ListeTrajets:: Afficher () const
 		cout << "Liste vide"<<endl;
 	}
 	else {
-		cout << tete->valeur <<endl;
+		cout << tete->valeur->Afficher <<endl;
 
 		CelluleTrajet * elCourant = tete;
 		while (elCourant->suivant != NULL) {
-			cout << elCourant->valeur <<endl;
+			cout << elCourant->valeur->Afficher <<endl;
 		}
 
 		//Dernier element dont le suivant est null
-		cout << elCourant->valeur <<endl;
+		cout << elCourant->valeur->Afficher <<endl;
 	}
 
 } //----- Fin de Méthode
@@ -77,6 +77,23 @@ unsigned int ListeTrajets:: Taille ()
 	return taille;
 } //----- Fin de Méthode
 
+/*Trajet * ListeTrajets::Valeur(CelluleTrajet * cell)
+// Algorithme :
+{
+	return cell->valeur;
+} //----- Fin de Méthode*/
+
+CelluleTrajet * ListeTrajets::Tete()
+// Algorithme :
+{
+	return tete;
+} //----- Fin de Méthode
+
+CelluleTrajet * ListeTrajets::Queue()
+// Algorithme :
+{
+	return dernierElement;
+} //----- Fin de Méthode
 //------------------------------------------------- Surcharge d'opérateurs
 //Xxx & Xxx::operator = ( const Xxx & unXxx )
 // Algorithme :
