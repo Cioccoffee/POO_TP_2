@@ -1,9 +1,36 @@
 #makefile pour compilation et reliure
 
+#variables
+RM = rm
+COMP = g++
+EDL = g++
+
+INT = ListeTrajets.h Trajet.h TrajetSimple.h TrajetCompose.h Test.h
+
+REAL =$(INT : .h  = .cpp)
+OBJ = $(REAL : .cpp  = .o)
+
+RMFLAGS = -f
+COMPFLAGS = -ansi -pedantic -Wall -std=c++11
+EDLFLAGS = 
+
+#
+$(REAL) : $(INT)
+
+
+#patterns
+%.o : %.cpp %.h
+	$(COMP) $(COMPFLAGS) -c $< -o $@
+
+
+
+$(CLEAN):
+$(RM) $(RMFLAGS) $(EXE) $(OBJ) core
+
 #regle explicite pour la reliure de l'executable
 
 executable : ListeTrajets.o Test.o Trajet.o TrajetSimple.o TrajetCompose.o
-	g++ -ansi -pedantic -Wall -std=c++11 -o executable ListeTrajets.o Test.o Trajet.o TrajetSimple.o TrajetCompose.o -lm
+	g++ -o executable ListeTrajets.o Test.o Trajet.o TrajetSimple.o TrajetCompose.o
 
 #regle explicite pour la reliure de la classe
 
@@ -30,4 +57,4 @@ TrajetCompose.o : TrajetCompose.h TrajetCompose.cpp
 Test.o : Test.h Test.cpp
 	g++ -c -DMAP Test.cpp
 
-
+-ansi -pedantic -Wall -std=c++11

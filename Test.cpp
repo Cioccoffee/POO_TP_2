@@ -119,7 +119,8 @@ int main ()
 // Algorithme :
 {
 
-	testListe();
+	//testListe();
+	testTS();
 
 	return 0;
 }

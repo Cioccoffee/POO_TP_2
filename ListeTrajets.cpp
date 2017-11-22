@@ -38,15 +38,15 @@ void ListeTrajets:: Afficher () const
 		//cout << *tete->valeur <<endl;
 
 		CelluleTrajet * elCourant = new CelluleTrajet;
-		elCourant->valeur = new int;
+		elCourant->valeur = new Trajet;
 		elCourant = tete;
 		while (elCourant->suivant != NULL) {
-			cout << *elCourant->valeur <<endl;
+			(elCourant->valeur)->Afficher();
 			elCourant = elCourant->suivant;
 		}
 
 		//Dernier element dont le suivant est null
-		cout << *elCourant->valeur <<endl;
+		(elCourant->valeur)->Afficher();
 
 		delete elCourant;
 	}
@@ -65,10 +65,10 @@ void ListeTrajets:: Ajouter (Trajet *val)
 	}else
 	{
 		CelluleTrajet *nouvelElement = new CelluleTrajet;
-		nouvelElement->valeur = new int;
+		nouvelElement->valeur = new Trajet;
 
 		nouvelElement->valeur = val;
-		nouvelElement->suivant = NULL;
+		//nouvelElement->suivant = new CelluleTrajet;
 
 		dernierElement->suivant = nouvelElement;
 		dernierElement = nouvelElement;
@@ -78,6 +78,20 @@ void ListeTrajets:: Ajouter (Trajet *val)
 	taille++;
 
 } //----- Fin de Méthode
+
+CelluleTrajet * ListeTrajets::Tete() const
+// Algorithme :
+//
+{
+	return tete;
+} //----- Fin de Tete
+
+CelluleTrajet * ListeTrajets::Queue() const
+// Algorithme :
+//
+{
+	return dernierElement;
+} //----- Fin de Element
 
 unsigned int ListeTrajets:: Taille ()
 // Algorithme :
@@ -102,8 +116,8 @@ ListeTrajets::ListeTrajets()
 #endif
 
 	tete = new CelluleTrajet;
-	tete->valeur = new int;
-
+	tete->valeur = new Trajet;
+	//tete>suivant = new CelluleTrajet;
 
 	dernierElement = new CelluleTrajet;
 	dernierElement = tete;
