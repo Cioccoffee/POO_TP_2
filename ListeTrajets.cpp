@@ -35,15 +35,20 @@ void ListeTrajets:: Afficher () const
 		cout << "Liste vide"<<endl;
 	}
 	else {
-		cout << /*tete->valeur->Afficher*/ 2 <<endl;
+		//cout << *tete->valeur <<endl;
 
-		CelluleTrajet * elCourant = tete;
+		CelluleTrajet * elCourant = new CelluleTrajet;
+		elCourant->valeur = new int;
+		elCourant = tete;
 		while (elCourant->suivant != NULL) {
-			//cout << elCourant->valeur->Afficher <<endl;
+			cout << *elCourant->valeur <<endl;
+			elCourant = elCourant->suivant;
 		}
 
 		//Dernier element dont le suivant est null
-		//cout << elCourant->valeur->Afficher <<endl;
+		cout << *elCourant->valeur <<endl;
+
+		delete elCourant;
 	}
 
 } //----- Fin de Méthode
@@ -59,12 +64,15 @@ void ListeTrajets:: Ajouter (Trajet *val)
 
 	}else
 	{
-		CelluleTrajet *nouvelElement;
+		CelluleTrajet *nouvelElement = new CelluleTrajet;
+		nouvelElement->valeur = new int;
+
 		nouvelElement->valeur = val;
 		nouvelElement->suivant = NULL;
 
 		dernierElement->suivant = nouvelElement;
 		dernierElement = nouvelElement;
+
 	}
 
 	taille++;
@@ -77,23 +85,6 @@ unsigned int ListeTrajets:: Taille ()
 	return taille;
 } //----- Fin de Méthode
 
-/*Trajet * ListeTrajets::Valeur(CelluleTrajet * cell)
-// Algorithme :
-{
-	return cell->valeur;
-} //----- Fin de Méthode*/
-
-CelluleTrajet * ListeTrajets::Tete()
-// Algorithme :
-{
-	return tete;
-} //----- Fin de Méthode
-
-CelluleTrajet * ListeTrajets::Queue()
-// Algorithme :
-{
-	return dernierElement;
-} //----- Fin de Méthode
 //------------------------------------------------- Surcharge d'opérateurs
 //Xxx & Xxx::operator = ( const Xxx & unXxx )
 // Algorithme :
@@ -110,14 +101,13 @@ ListeTrajets::ListeTrajets()
 	//cout << "Appel au constructeur de <ListeTrajets>" << endl;
 #endif
 
-	// pb d'intialisation
 	tete = new CelluleTrajet;
-	tete->valeur = new Trajet;
-	tete->suivant = new CelluleTrajet;
+	tete->valeur = new int;
+
 
 	dernierElement = new CelluleTrajet;
-	dernierElement->valeur = new Trajet;
-	dernierElement->suivant = new CelluleTrajet;
+	dernierElement = tete;
+	//	dernierElement->valeur = new int;
 
 	taille = 0;
 
@@ -131,6 +121,23 @@ ListeTrajets::~ListeTrajets()
 #ifdef MAP
 	//cout << "Appel au destructeur de <ListeTrajets>" << endl;
 #endif
+
+	CelluleTrajet *elSupprime = new CelluleTrajet;
+	CelluleTrajet *elSupprimeSuiv = new CelluleTrajet;
+	elSupprime = tete;
+	while (elSupprime->suivant != dernierElement)  {
+
+		elSupprimeSuiv = elSupprime->suivant;
+		delete elSupprime->valeur;
+		delete elSupprime;
+		CelluleTrajet *elSupprime = new CelluleTrajet;
+		elSupprime = elSupprimeSuiv;
+
+	}
+	delete elSupprime;
+	delete elSupprimeSuiv;
+	delete dernierElement;
+
 
 } //----- Fin de ~ListeTrajets
 
