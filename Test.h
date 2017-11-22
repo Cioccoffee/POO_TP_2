@@ -20,6 +20,8 @@
 //--------------------------------------------------- Interfaces utilisées
 #include "ListeTrajets.h"
 #include "Trajet.h"
+#include "TrajetSimpe.h"
+#include "TrajetCompose.h"
 
 //------------------------------------------------------------- Constantes
 
