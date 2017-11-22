@@ -69,7 +69,7 @@ public:
 	//
 	//
 
-	ListeTrajets * TrajetCompose::Trajets() const;
+	ListeTrajets * Trajets() const;
 	// Mode d'emploi :
 	//
 	// Contrat :

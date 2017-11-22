@@ -35,15 +35,15 @@ void ListeTrajets:: Afficher () const
 		cout << "Liste vide"<<endl;
 	}
 	else {
-		cout << tete->valeur->Afficher <<endl;
+		cout << /*tete->valeur->Afficher*/ 2 <<endl;
 
 		CelluleTrajet * elCourant = tete;
 		while (elCourant->suivant != NULL) {
-			cout << elCourant->valeur->Afficher <<endl;
+			//cout << elCourant->valeur->Afficher <<endl;
 		}
 
 		//Dernier element dont le suivant est null
-		cout << elCourant->valeur->Afficher <<endl;
+		//cout << elCourant->valeur->Afficher <<endl;
 	}
 
 } //----- Fin de Méthode
@@ -111,8 +111,14 @@ ListeTrajets::ListeTrajets()
 #endif
 
 	// pb d'intialisation
-	tete = NULL;
-	dernierElement = NULL;
+	tete = new CelluleTrajet;
+	tete->valeur = new Trajet;
+	tete->suivant = new CelluleTrajet;
+
+	dernierElement = new CelluleTrajet;
+	dernierElement->valeur = new Trajet;
+	dernierElement->suivant = new CelluleTrajet;
+
 	taille = 0;
 
 } //----- Fin de ListeTrajets

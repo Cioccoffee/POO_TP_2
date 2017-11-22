@@ -1,14 +1,14 @@
 /*************************************************************************
 Trajet  -  description
 -------------------
-début                : $DATE$
+dï¿½but                : $DATE$
 copyright            : (C) $YEAR$ par $AUTHOR$
 e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Trajet> (fichier Trajet.cpp) ------------
+//---------- Rï¿½alisation de la classe <Trajet> (fichier Trajet.cpp) ------------
 //---------------------------------------------------------------- INCLUDE
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systï¿½me
 using namespace std;
 #include <iostream>
 
@@ -20,55 +20,66 @@ using namespace std;
 
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- Méthodes publiques
+//----------------------------------------------------- Mï¿½thodes publiques
 //
 
-// Trajet::Méthode ( )
+// Trajet::Mï¿½thode ( )
 // Algorithme :
 //
 //{
-//} //----- Fin de Méthode
+//} //----- Fin de Mï¿½thode
 
 void TrajetCompose::Afficher() const
 // Algorithme :
 {
 	int i;
 	CelluleTrajet * actuelle;
-	actuelle = trajets->Tete;
+	actuelle = trajets->Tete();
 	Trajet * actuel;
-	cout << "Trajet "
-	for (i = 0; i < trajets->Taille; i++)
+	cout << "Trajet ";
+	for (i = 0; i < trajets->Taille(); i++)
 	{
 		actuel = actuelle->valeur;
-		actuel.Afficher;
-		//cout<< "de " << actuel->Depart << " à " << actuel->Arrivee << actuel
+		actuel->Afficher();
+		//cout<< "de " << actuel->Depart() << " ï¿½ " << actuel->Arrivee << actuel
 		actuelle = actuelle->suivant;
 	}
-} //----- Fin de Méthode
+} //----- Fin de Mï¿½thode
+
+void TrajetCompose::Ajouter(const Trajet * t)
+// Algorithme :
+//
+{
+
+} //----- Fin de Ajouter
 
 const char * TrajetCompose::Depart() const
 // Algorithme :
 //
 {
-
-	return trajets->Tete;
-} //----- Fin de Méthode
+	CelluleTrajet * teteTrajets = trajets->Tete();
+	Trajet * trajetEnTete = teteTrajets->valeur;
+	return trajetEnTete->Depart();
+} //----- Fin de Mï¿½thode
 
 const char * TrajetCompose::Arrivee() const
 // Algorithme :
 //
 {
-	return trajets->Queue;
-} //----- Fin de Méthode
+	CelluleTrajet * queueTrajets = trajets->Queue();
+	Trajet * trajetEnQueue = queueTrajets->valeur;
+	return trajetEnQueue->Depart(); //choisi la mÃ©thode adaptÃ©e au type (TS ou TC)
+
+} //----- Fin de Mï¿½thode
 
 ListeTrajets * TrajetCompose::Trajets()  const
 // Algorithme :
 //
 {
 	return trajets;
-} //----- Fin de Méthode
+} //----- Fin de Mï¿½thode
 
-  //------------------------------------------------- Surcharge d'opérateurs
+  //------------------------------------------------- Surcharge d'opï¿½rateurs
   //Xxx & Xxx::operator = ( const Xxx & unXxx )
   // Algorithme :
   //
@@ -88,7 +99,7 @@ TrajetCompose::TrajetCompose()
 
 } //----- Fin de Trajet
 
-TrajetCompose::TrajetCompose()
+/*TrajetCompose::TrajetCompose()
 // Algorithme :
 {
 #ifdef MAP
@@ -97,7 +108,7 @@ TrajetCompose::TrajetCompose()
 
 
 
-} //----- Fin de Trajet
+} //----- Fin de Trajet*/
 
 TrajetCompose::TrajetCompose(ListeTrajets * lt)
 // Algorithme :
@@ -121,6 +132,6 @@ TrajetCompose::~TrajetCompose()
 
   //------------------------------------------------------------------ PRIVE
 
-  //----------------------------------------------------- Méthodes protégées
+  //----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
 
