@@ -50,6 +50,7 @@ const char * TrajetSimple::Transport() const
 // Algorithme :
 //
 {
+	return moyenTransport;
 } //----- Fin de M�thode
 
 
