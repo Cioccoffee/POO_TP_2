@@ -3,7 +3,7 @@
 #regle explicite pour la reliure de l'executable
 
 executable : ListeTrajets.o Test.o Trajet.o TrajetSimple.o TrajetCompose.o
-	g++ -o executable ListeTrajets.o Test.o Trajet.o TrajetSimple.o TrajetCompose.o -lm
+	g++ -ansi -pedantic -Wall -std=c++11 -o executable ListeTrajets.o Test.o Trajet.o TrajetSimple.o TrajetCompose.o -lm
 
 #regle explicite pour la reliure de la classe
 

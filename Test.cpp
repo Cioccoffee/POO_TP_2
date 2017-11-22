@@ -70,7 +70,7 @@ static void testTC()
 	TrajetSimple * ts1 = new TrajetSimple("A","B","MT");
 	Trajet * ts2 = new TrajetSimple("A","C","MT2");
 
-	ListeTrajets lt1 = new ListeTrajets();
+	ListeTrajets * lt1 = new ListeTrajets();
 	lt1->Ajouter(ts1);
 	lt1->Ajouter(ts2);
 
@@ -79,7 +79,7 @@ static void testTC()
 	tc1->Afficher();
 	cout << tc1->Depart();
 	cout << tc1->Arrivee();
-	ListeTrajets * trajetsTC1 = tc1.Trajets();
+	ListeTrajets * trajetsTC1 = tc1->Trajets();
 	trajetsTC1->Afficher();
 }
 
