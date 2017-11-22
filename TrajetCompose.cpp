@@ -41,7 +41,8 @@ void TrajetCompose::Afficher() const
 	{
 		actuel = actuelle->valeur;
 		actuel->Afficher();
-		//cout<< "de " << actuel->Depart() << " � " << actuel->Arrivee << actuel
+		if(i!=0) cout < " - ";
+		cout<< "de " << actuel->Depart() << " a " << actuel->Arrivee() << " en " << actuel->Transport();
 		actuelle = actuelle->suivant;
 	}
 } //----- Fin de M�thode
@@ -70,6 +71,12 @@ const char * TrajetCompose::Arrivee() const
 	Trajet * trajetEnQueue = queueTrajets->valeur;
 	return trajetEnQueue->Depart(); //choisi la méthode adaptée au type (TS ou TC)
 
+} //----- Fin de M�thode
+
+const char * TrajetCompose::Transport() const
+// Algorithme :
+//
+{
 } //----- Fin de M�thode
 
 ListeTrajets * TrajetCompose::Trajets()  const

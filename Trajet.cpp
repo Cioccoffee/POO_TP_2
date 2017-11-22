@@ -47,6 +47,12 @@ const char * Trajet::Arrivee() const
 
 } //----- Fin de Méthode
 
+const char * Trajet::Transport() const
+// Algorithme :
+//
+{
+} //----- Fin de M�thode
+
 //------------------------------------------------- Surcharge d'opérateurs
 //Xxx & Xxx::operator = ( const Xxx & unXxx )
 // Algorithme :

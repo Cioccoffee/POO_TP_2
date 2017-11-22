@@ -31,7 +31,7 @@ using namespace std;
 void TrajetSimple:: Afficher () const
 // Algorithme :
 {
-	//cout << "de " << villeDepart << " à " << villeArrivee << " en " << moyenTransport << endl;
+	cout << "de " << villeDepart << " à " << villeArrivee << " en " << moyenTransport << endl;
 } //----- Fin de Méthode
 
 const char * TrajetSimple:: Depart() const
@@ -45,6 +45,12 @@ const char * TrajetSimple:: Arrivee() const
 {
 	return villeArrivee;
 } //----- Fin de Méthode
+
+const char * TrajetSimple::Transport() const
+// Algorithme :
+//
+{
+} //----- Fin de M�thode
 
 
 //------------------------------------------------- Surcharge d'opérateurs

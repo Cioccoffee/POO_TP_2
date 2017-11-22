@@ -45,10 +45,31 @@ public:
 	//
 
 	virtual void Afficher() const;
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
 
 	const char * Depart() const;
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+	//
 
 	const char * Arrivee() const;
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+	//
+
+	const char * Transport() const;
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+	//
 
 	virtual ~TrajetSimple();
 	// Mode d'emploi :
