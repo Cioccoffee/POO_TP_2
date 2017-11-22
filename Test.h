@@ -46,6 +46,22 @@ static void test();
 // Contrat :
 //
 static void testListe();
+// Mode d'emploi :
+//
+// Contrat :
+//
+
+static void testTS();
+// Mode d'emploi :
+//
+// Contrat :
+//
+
+static void testTC();
+// Mode d'emploi :
+//
+// Contrat :
+//
 
 int main();
 // Mode d'emploi :
