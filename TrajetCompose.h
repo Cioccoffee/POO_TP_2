@@ -69,12 +69,6 @@ public:
 	//
 	//
 
-	const char * Transport() const;
-	// Mode d'emploi :
-	//
-	// Contrat :
-	//
-	//
 
 	ListeTrajets * Trajets() const;
 	// Mode d'emploi :
