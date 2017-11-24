@@ -24,7 +24,7 @@ EDLFLAGS =
 EXE : $(OBJ)
 	$(COMP) -o EXE $(OBJ)
 
-#patterns
+#pattern pour la reliure
 %.o : %.cpp
 	$(COMP) $(COMPFLAGS) -c $<
 
@@ -37,27 +37,27 @@ $(RM) $(RMFLAGS) $(EXE) $(OBJ) core
 executable : ListeTrajets.o Test.o Trajet.o TrajetSimple.o TrajetCompose.o
 	g++ -o EXE ListeTrajets.o Test.o Trajet.o TrajetSimple.o TrajetCompose.o
 
-#regle explicite pour la reliure de la classe
+#regle explicite de dépendance
 
 ListeTrajets.o : ListeTrajets.h ListeTrajets.cpp Trajet.h
 	
 
-#regle explicite pour la reliure de la classe Trajet
+#regle explicite de dépendance de la classe Trajet
 
 Trajet.o : Trajet.h Trajet.cpp
 	
 
-#regle explicite pour la reliure de la classe TrajetSimple
+#regle explicite de dépendance de la classe TrajetSimple
 
 TrajetSimple.o : TrajetSimple.h TrajetSimple.cpp Trajet.h
 	
 
-#regle explicite pour la reliure de la classe TrajetCompose
+#regle explicite de dépendance de la classe TrajetCompose
 
 TrajetCompose.o : TrajetCompose.h TrajetCompose.cpp Trajet.h ListeTrajets.h
 	
 
-#regle explicite pour la reliure de le module de test
+#regle explicite de dépendance pour le module de test
 
 Test.o : Test.h Test.cpp Trajet.h ListeTrajets.h TrajetSimple.h TrajetCompose.h
 	
