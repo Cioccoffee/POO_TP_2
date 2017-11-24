@@ -16,17 +16,17 @@ RMFLAGS = -f
 COMPFLAGS = -ansi -pedantic -Wall -std=c++11
 EDLFLAGS = 
 
-#
-$(REAL) : $(INT)
-$(OBJ) : $(REAL)
+#useless
+#$(REAL) : $(INT)
+#$(OBJ) : $(REAL)
 
 #realisation de l'executable
 EXE : $(OBJ)
 	$(COMP) -o EXE $(OBJ)
 
 #patterns
-%.o : %.h %.cpp
-	$(COMP) $(COMPFLAGS) -c %.o
+%.o : %.cpp
+	$(COMP) $(COMPFLAGS) -c $<
 
 
 $(CLEAN):
@@ -35,31 +35,31 @@ $(RM) $(RMFLAGS) $(EXE) $(OBJ) core
 #regle explicite pour la reliure de l'executable
 
 executable : ListeTrajets.o Test.o Trajet.o TrajetSimple.o TrajetCompose.o
-	g++ -o executable ListeTrajets.o Test.o Trajet.o TrajetSimple.o TrajetCompose.o
+	g++ -o EXE ListeTrajets.o Test.o Trajet.o TrajetSimple.o TrajetCompose.o
 
 #regle explicite pour la reliure de la classe
 
-ListeTrajets.o : ListeTrajets.h ListeTrajets.cpp
-	g++ -c -DMAP ListeTrajets.cpp
+ListeTrajets.o : ListeTrajets.h ListeTrajets.cpp Trajet.h
+	
 
 #regle explicite pour la reliure de la classe Trajet
 
 Trajet.o : Trajet.h Trajet.cpp
-	g++ -c -DMAP Trajet.cpp
+	
 
 #regle explicite pour la reliure de la classe TrajetSimple
 
-TrajetSimple.o : TrajetSimple.h TrajetSimple.cpp
-	g++ -c -DMAP TrajetSimple.cpp
+TrajetSimple.o : TrajetSimple.h TrajetSimple.cpp Trajet.h
+	
 
 #regle explicite pour la reliure de la classe TrajetCompose
 
-TrajetCompose.o : TrajetCompose.h TrajetCompose.cpp
-	g++ -c -DMAP TrajetCompose.cpp
+TrajetCompose.o : TrajetCompose.h TrajetCompose.cpp Trajet.h ListeTrajets.h
+	
 
 #regle explicite pour la reliure de le module de test
 
-Test.o : Test.h Test.cpp
-	g++ -c -DMAP Test.cpp
+Test.o : Test.h Test.cpp Trajet.h ListeTrajets.h TrajetSimple.h TrajetCompose.h
+	
 
--ansi -pedantic -Wall -std=c++11
+
