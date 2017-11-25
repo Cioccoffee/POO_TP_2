@@ -35,11 +35,7 @@ void ListeTrajets:: Afficher () const
 		cout << "Liste vide"<<endl;
 	}
 	else {
-		//cout << *tete->valeur <<endl;
-
-		CelluleTrajet * elCourant = new CelluleTrajet;
-		elCourant->valeur = new int;
-		elCourant = tete;
+		CelluleTrajet *elCourant = tete;
 		while (elCourant->suivant != NULL) {
 			cout << *elCourant->valeur <<endl;
 			elCourant = elCourant->suivant;
@@ -48,7 +44,6 @@ void ListeTrajets:: Afficher () const
 		//Dernier element dont le suivant est null
 		cout << *elCourant->valeur <<endl;
 
-		delete elCourant;
 	}
 
 } //----- Fin de Méthode
@@ -65,8 +60,6 @@ void ListeTrajets:: Ajouter (Trajet *val)
 	}else
 	{
 		CelluleTrajet *nouvelElement = new CelluleTrajet;
-		nouvelElement->valeur = new int;
-
 		nouvelElement->valeur = val;
 		nouvelElement->suivant = NULL;
 
@@ -102,12 +95,8 @@ ListeTrajets::ListeTrajets()
 #endif
 
 	tete = new CelluleTrajet;
-	tete->valeur = new int;
-
-
-	dernierElement = new CelluleTrajet;
 	dernierElement = tete;
-	//	dernierElement->valeur = new int;
+	tete->suivant = dernierElement;
 
 	taille = 0;
 
@@ -122,22 +111,17 @@ ListeTrajets::~ListeTrajets()
 	//cout << "Appel au destructeur de <ListeTrajets>" << endl;
 #endif
 
-	CelluleTrajet *elSupprime = new CelluleTrajet;
-	CelluleTrajet *elSupprimeSuiv = new CelluleTrajet;
-	elSupprime = tete;
+	CelluleTrajet *elSupprime = tete;
+	CelluleTrajet *elSupprimeSuiv;
+
 	while (elSupprime->suivant != dernierElement)  {
-
 		elSupprimeSuiv = elSupprime->suivant;
-		delete elSupprime->valeur;
 		delete elSupprime;
-		CelluleTrajet *elSupprime = new CelluleTrajet;
-		elSupprime = elSupprimeSuiv;
-
+		CelluleTrajet *elSupprime = elSupprimeSuiv;
 	}
-	delete elSupprime;
-	delete elSupprimeSuiv;
-	delete dernierElement;
 
+	delete elSupprime;
+	delete dernierElement;
 
 } //----- Fin de ~ListeTrajets
 
