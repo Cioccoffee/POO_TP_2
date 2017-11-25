@@ -1,33 +1,65 @@
 #makefile pour compilation et reliure
 
+#variables
+RM = rm
+COMP = g++
+EDL = g++
+
+INT = ListeTrajets.h Trajet.h TrajetSimple.h TrajetCompose.h Test.h
+
+REAL =$(INT : .h  = .cpp)
+OBJ = $(REAL : .cpp  = .o)
+
+EXE = executable
+
+RMFLAGS = -f
+COMPFLAGS = -ansi -pedantic -Wall -std=c++11
+EDLFLAGS = 
+
+#useless
+#$(REAL) : $(INT)
+#$(OBJ) : $(REAL)
+
+#realisation de l'executable
+EXE : $(OBJ)
+	$(COMP) -o EXE $(OBJ)
+
+#pattern pour la reliure
+%.o : %.cpp
+	$(COMP) $(COMPFLAGS) -c $<
+
+
+$(CLEAN):
+$(RM) $(RMFLAGS) $(EXE) $(OBJ) core
+
 #regle explicite pour la reliure de l'executable
 
 executable : ListeTrajets.o Test.o Trajet.o TrajetSimple.o TrajetCompose.o
-	g++ -ansi -pedantic -Wall -std=c++11 -o executable ListeTrajets.o Test.o Trajet.o TrajetSimple.o TrajetCompose.o -lm
+	g++ -o EXE ListeTrajets.o Test.o Trajet.o TrajetSimple.o TrajetCompose.o
 
-#regle explicite pour la reliure de la classe
+#regle explicite de dépendance
 
-ListeTrajets.o : ListeTrajets.h ListeTrajets.cpp
-	g++ -c -DMAP ListeTrajets.cpp
+ListeTrajets.o : ListeTrajets.h ListeTrajets.cpp Trajet.h
+	
 
-#regle explicite pour la reliure de la classe Trajet
+#regle explicite de dépendance de la classe Trajet
 
 Trajet.o : Trajet.h Trajet.cpp
-	g++ -c -DMAP Trajet.cpp
+	
 
-#regle explicite pour la reliure de la classe TrajetSimple
+#regle explicite de dépendance de la classe TrajetSimple
 
-TrajetSimple.o : TrajetSimple.h TrajetSimple.cpp
-	g++ -c -DMAP TrajetSimple.cpp
+TrajetSimple.o : TrajetSimple.h TrajetSimple.cpp Trajet.h
+	
 
-#regle explicite pour la reliure de la classe TrajetCompose
+#regle explicite de dépendance de la classe TrajetCompose
 
-TrajetCompose.o : TrajetCompose.h TrajetCompose.cpp
-	g++ -c -DMAP TrajetCompose.cpp
+TrajetCompose.o : TrajetCompose.h TrajetCompose.cpp Trajet.h ListeTrajets.h
+	
 
-#regle explicite pour la reliure de le module de test
+#regle explicite de dépendance pour le module de test
 
-Test.o : Test.h Test.cpp
-	g++ -c -DMAP Test.cpp
+Test.o : Test.h Test.cpp Trajet.h ListeTrajets.h TrajetSimple.h TrajetCompose.h
+	
 
 

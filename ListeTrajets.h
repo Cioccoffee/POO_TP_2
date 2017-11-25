@@ -9,6 +9,8 @@
 //---------- Interface de la classe <ListeTrajets> (fichier Xxx.h) ----------------
 #if ! defined ( ListeTrajets_H )
 #define ListeTrajets_H
+#include "Trajet.h"
+
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -54,6 +56,20 @@ public:
 	//
 	//
 	void Ajouter(Trajet * val);
+
+	CelluleTrajet * Tete() const;
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+	//
+
+	CelluleTrajet * Queue() const;
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+	//
 
 	unsigned int Taille();
 

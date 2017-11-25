@@ -37,12 +37,12 @@ void ListeTrajets:: Afficher () const
 	else {
 		CelluleTrajet *elCourant = tete;
 		while (elCourant->suivant != NULL) {
-			cout << *elCourant->valeur <<endl;
+			(elCourant->valeur)->Afficher();
 			elCourant = elCourant->suivant;
 		}
 
 		//Dernier element dont le suivant est null
-		cout << *elCourant->valeur <<endl;
+		(elCourant->valeur)->Afficher();
 
 	}
 
@@ -71,6 +71,20 @@ void ListeTrajets:: Ajouter (Trajet *val)
 	taille++;
 
 } //----- Fin de Méthode
+
+CelluleTrajet * ListeTrajets::Tete() const
+// Algorithme :
+//
+{
+	return tete;
+} //----- Fin de Tete
+
+CelluleTrajet * ListeTrajets::Queue() const
+// Algorithme :
+//
+{
+	return dernierElement;
+} //----- Fin de Element
 
 unsigned int ListeTrajets:: Taille ()
 // Algorithme :
