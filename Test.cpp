@@ -50,13 +50,13 @@ static void testTS()
 	Trajet * ts2 = new TrajetSimple("A","C","MT2");
 
 	ts1->Afficher();
-	cout << ts1->Depart();
-	cout << ts1->Arrivee();
-	cout << ts1->Transport();
+	//cout << ts1->Depart();
+	//cout << ts1->Arrivee();
+	//cout << ts1->Transport();
 	ts2->Afficher();
-	cout << ts2->Depart();
-	cout << ts2->Arrivee();
-	cout << ts2->Transport();
+//	cout << ts2->Depart();
+//	cout << ts2->Arrivee();
+//	cout << ts2->Transport();
 }
 
 static void testTC()
@@ -67,7 +67,7 @@ static void testTC()
 // Algorithme :
 //
 {
-	TrajetSimple * ts1 = new TrajetSimple("A","B","MT");
+	TrajetSimple *ts1 = new TrajetSimple("A","B","MT");
 	Trajet * ts2 = new TrajetSimple("A","C","MT2");
 
 	ListeTrajets * lt1 = new ListeTrajets();
@@ -77,10 +77,10 @@ static void testTC()
 	TrajetCompose * tc1 = new TrajetCompose(lt1);
 
 	tc1->Afficher();
-	cout << tc1->Depart();
-	cout << tc1->Arrivee();
+	//cout << tc1->Depart();
+	//cout << tc1->Arrivee();
 	ListeTrajets * trajetsTC1 = tc1->Trajets();
-	trajetsTC1->Afficher();
+	//trajetsTC1->Afficher();
 }
 
 static void test()

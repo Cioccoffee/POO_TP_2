@@ -37,6 +37,7 @@ const char * Trajet::Depart() const
  // Algorithme :
  //
  {
+	return ((char *)('0'));
 
   } //----- Fin de Méthode
 
@@ -44,6 +45,7 @@ const char * Trajet::Arrivee() const
 // Algorithme :
 //
 {
+	return ((char *)('0'));
 
 } //----- Fin de Méthode
 
@@ -51,6 +53,7 @@ const char * Trajet::Transport() const
 // Algorithme :
 //
 {
+	return ((char *)('0'));
 } //----- Fin de M�thode
 
 //------------------------------------------------- Surcharge d'opérateurs

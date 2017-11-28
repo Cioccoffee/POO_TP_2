@@ -32,7 +32,7 @@ using namespace std;
 void TrajetCompose::Afficher() const
 // Algorithme :
 {
-	int i;
+	unsigned int i;
 	CelluleTrajet * actuelle;
 	actuelle = trajets->Tete();
 	Trajet * actuel;
@@ -41,7 +41,7 @@ void TrajetCompose::Afficher() const
 	{
 		actuel = actuelle->valeur;
 		actuel->Afficher();
-		if(i!=0) cout < " - ";
+		if(i!=0) cout << " - ";
 		cout<< "de " << actuel->Depart() << " a " << actuel->Arrivee() << " en " << actuel->Transport();
 		actuelle = actuelle->suivant;
 	}
