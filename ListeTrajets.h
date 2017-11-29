@@ -49,6 +49,8 @@ public:
 	// Contrat :
 	//
 
+	ListeTrajets(const ListeTrajets &uneListe);
+
 	void Afficher() const;
 	// Mode d'emploi :
 	//

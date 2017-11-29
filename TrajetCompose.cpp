@@ -33,16 +33,15 @@ void TrajetCompose::Afficher() const
 // Algorithme :
 {
 	unsigned int i;
-	CelluleTrajet * actuelle;
-	actuelle = trajets->Tete();
-	Trajet * actuel;
+	CelluleTrajet * actuelle = trajets->Tete();
+	//Trajet * actuel = actuelle->valeur;
 	cout << "Trajet ";
 	for (i = 0; i < trajets->Taille(); i++)
 	{
-		actuel = actuelle->valeur;
-		actuel->Afficher();
+		Trajet * actuel = actuelle->valeur;
+		//actuel->Afficher();
 		if(i!=0) cout << " - ";
-		cout<< "de " << actuel->Depart() << " a " << actuel->Arrivee() << " en " << actuel->Transport();
+		cout<< "de " << actuel->Depart() << " a " << actuel->Arrivee() << " en " << actuel->Transport()<<endl;
 		actuelle = actuelle->suivant;
 	}
 } //----- Fin de M�thode
@@ -115,17 +114,19 @@ TrajetCompose::TrajetCompose()
 TrajetCompose::TrajetCompose(ListeTrajets * lt)
 // Algorithme :
 {
+	trajets = lt;
+
 #ifdef MAP
 	//cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
 
-	trajets = lt;
 
 } //----- Fin de Trajet
 
 TrajetCompose::~TrajetCompose()
 // Algorithme :
 {
+
 #ifdef MAP
 	//cout << "Appel au destructeur de <Trajet>" << endl;
 #endif

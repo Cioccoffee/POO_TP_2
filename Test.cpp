@@ -57,6 +57,9 @@ static void testTS()
 //	cout << ts2->Depart();
 //	cout << ts2->Arrivee();
 //	cout << ts2->Transport();
+
+	delete ts1;
+	delete ts2;
 }
 
 static void testTC()
@@ -70,17 +73,25 @@ static void testTC()
 	TrajetSimple *ts1 = new TrajetSimple("A","B","MT");
 	Trajet * ts2 = new TrajetSimple("A","C","MT2");
 
-	ListeTrajets * lt1 = new ListeTrajets();
+	ListeTrajets * lt1 = new ListeTrajets;
 	lt1->Ajouter(ts1);
 	lt1->Ajouter(ts2);
 
-	TrajetCompose * tc1 = new TrajetCompose(lt1);
 
+	TrajetCompose * tc1 = new TrajetCompose(lt1);
 	tc1->Afficher();
+
 	//cout << tc1->Depart();
 	//cout << tc1->Arrivee();
+
 	ListeTrajets * trajetsTC1 = tc1->Trajets();
-	//trajetsTC1->Afficher();
+	trajetsTC1->Afficher();
+
+	delete lt1;
+	delete ts1;
+	delete ts2;
+	delete tc1;
+
 }
 
 static void test()
@@ -120,7 +131,8 @@ int main ()
 {
 
 	//testListe();
-	testTS();
+	testTC();
+
 
 	return 0;
 }

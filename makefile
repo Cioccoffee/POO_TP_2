@@ -26,19 +26,17 @@ $(EXE) : $(OBJ)
 	$(EDL) -o $(EXE) $(OBJ)
 
 #pattern pour la reliure
-%.o:%.cpp%.h
-	$(COMP) $(COMPFLAGS) -c $<
+%.o:%.cpp
+	$(COMP) -g $(COMPFLAGS) -c $<
 
 
 $(CLEAN):
 	$(RM) $(RMFLAGS) $(EXE) $(OBJ) core
 
+
 #regle explicite pour la reliure de l'executable
 
-#$(EXE) : ListeTrajets.o Test.o Trajet.o TrajetSimple.o TrajetCompose.o
-#	g++ -o $(EXE) ListeTrajets.o Test.o Trajet.o TrajetSimple.o TrajetCompose.o
 
 
 	
-
 
