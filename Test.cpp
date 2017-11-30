@@ -151,23 +151,84 @@ int main ()
 // Algorithme :
 {
 
-	ListeTrajets * catalogue = new ListeTrajets;
+	/*ListeTrajets * catalogue = new ListeTrajets;
 
 	TrajetSimple *ts1 = new TrajetSimple("A","B","MT");
 	Trajet * ts2 = new TrajetSimple("A","C","MT2");
 	ListeTrajets * lt1 = new ListeTrajets;
 	lt1->Ajouter(ts1);
-	lt1->Ajouter(ts2);
+	lt1->Ajouter(ts2);*/
 
 	Catalogue *c = new Catalogue;
-	c->Ajouter(ts1);
-	c->Ajouter(ts2);
+	//c->Ajouter(ts1);
+	//c->Ajouter(ts2);
 	//c->Afficher();
 
 	//catalogue = tete;
 	//testListe();
 	testTC();
 
+	Menu();
+
+	int action;
+	scanf("%d",&action);
+	switch(action)
+	{
+		//TS
+		case 1 :
+			const char * depart;
+			const char * arrivee;
+			const char * transport;
+			cout << "Ville de départ ?";
+			scanf("%d", &depart);
+			cout << "Ville d'arivée ?";
+			scanf("%d", &arrivee);
+			cout << "Moyen de transport ?";
+			scanf("%d", &transport);
+
+			c->Ajouter(new * TrajetSimple(depart, arrivee, transport));
+			break;
+
+		//TC
+		case 2 :
+			TrajetCompose * tc;
+			cout << "De combien de trajets est composé ce trajet composé ?"
+			int i = 0;
+			int n;
+			scanf("%d", &n);
+			while(i<n){
+				cout << "Saisie du trajet n°"<< i+1;
+				const char * depart;
+				const char * arrivee;
+				const char * transport;
+				cout << "Ville de départ ?";
+				scanf("%d", &depart);
+				cout << "Ville d'arivée ?";
+				scanf("%d", &arrivee);
+				cout << "Moyen de transport ?";
+				scanf("%d", &transport);
+				tc->Ajouter(new * TrajetSimple(depart,arrivee,transport));
+				i++;
+			}
+			break;
+
+		//catalogue
+		case 3 :
+			c->Afficher();
+			break;
+
+		//search
+		case 4 :
+			//appel méthode de recherche
+			break;
+
+		//exit
+		case 5 :
+			//fermer la fenêtre ?
+			break;
+
+
+	}
 
 
 	return 0;
