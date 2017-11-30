@@ -190,6 +190,7 @@ int main ()
 			break;
 
 		//TC
+
 		case 2 :
 			TrajetCompose * tc;
 			cout << "De combien de trajets est composé ce trajet composé ?"
