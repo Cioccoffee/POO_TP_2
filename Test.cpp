@@ -71,7 +71,7 @@ static void testTC()
 //
 {
 	TrajetSimple *ts1 = new TrajetSimple("A","B","MT");
-	Trajet * ts2 = new TrajetSimple("A","C","MT2");
+	Trajet * ts2 = new TrajetSimple("B","C","MT2");
 
 	ListeTrajets * lt1 = new ListeTrajets;
 	lt1->Ajouter(ts1);
@@ -85,7 +85,7 @@ static void testTC()
 	//cout << tc1->Arrivee();
 
 	ListeTrajets * trajetsTC1 = tc1->Trajets();
-	trajetsTC1->Afficher();
+	//trajetsTC1->Afficher();
 
 
 
@@ -132,6 +132,21 @@ static void testListe()
 //	ListeTrajets *catalogue;
 //	catalogue->Afficher();
 //}
+
+
+static void Menu()
+{
+	cout<<"Choisissez l'option: "<<endl;
+	cout<<"1. Ajouter Trajet Simple "<<endl;
+	cout<<"2. Ajouter Trajet Compose "<<endl;
+	cout<<"3. Afficher le catalogue des trajets "<<endl;
+	cout<<"4. Rechercher un parcours "<<endl;
+	cout<<"5. Sortir"<<endl;
+
+	//finir le menu
+
+}
+
 int main ()
 // Algorithme :
 {
@@ -147,11 +162,11 @@ int main ()
 	Catalogue *c = new Catalogue;
 	c->Ajouter(ts1);
 	c->Ajouter(ts2);
-	c->Afficher();
+	//c->Afficher();
 
 	//catalogue = tete;
 	//testListe();
-	//testTC();
+	testTC();
 
 
 

@@ -11,6 +11,7 @@ e-mail               : $EMAIL$
 //-------------------------------------------------------- Include syst�me
 using namespace std;
 #include <iostream>
+#include <cstring>
 
 //------------------------------------------------------ Include personnel
 #include "TrajetCompose.h"
@@ -34,15 +35,33 @@ void TrajetCompose::Afficher() const
 {
 	unsigned int i;
 	CelluleTrajet * actuelle = trajets->Tete();
-	//Trajet * actuel = actuelle->valeur;
 	cout << "Trajet ";
 	for (i = 0; i < trajets->Taille(); i++)
 	{
+
 		Trajet * actuel = actuelle->valeur;
-		//actuel->Afficher();
+		Trajet * precedent;
+
+		//verification contrainte de ville : precedent.arrivee = actuel.depart?
+		if(i>0)
+		{
+
+			if (strcmp(precedent->Arrivee(),actuel->Depart()) != 0)
+			{
+				cout<<"non valide "<<endl;
+				break;
+			}
+
+		}
+
+		//Afichage trajet
 		if(i!=0) cout << " - ";
 		cout<< "de " << actuel->Depart() << " a " << actuel->Arrivee() << " en " << actuel->Transport()<<endl;
+
+
+		precedent = actuel;
 		actuelle = actuelle->suivant;
+
 	}
 } //----- Fin de M�thode
 

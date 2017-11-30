@@ -22,6 +22,7 @@
 #include "Trajet.h"
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
+#include "Catalogue.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -63,7 +64,7 @@ static void testTC();
 // Contrat :
 //
 
-static void Catalogue();
+static void Menu();
 
 int main();
 // Mode d'emploi :

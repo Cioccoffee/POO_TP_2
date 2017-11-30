@@ -75,7 +75,6 @@ public:
 
 	unsigned int Taille();
 
-	ListeTrajets * ListeActuelle();
 
 	virtual ~ListeTrajets();
 	// Mode d'emploi :

@@ -5,7 +5,7 @@ RM = rm
 COMP = g++
 EDL = g++
 
-INT = ListeTrajets.h Trajet.h TrajetSimple.h TrajetCompose.h Test.h
+INT = ListeTrajets.h Trajet.h TrajetSimple.h TrajetCompose.h Test.h Catalogue.h
 
 REAL=$(INT:.h=.cpp)
 OBJ=$(REAL:.cpp=.o)
