@@ -67,7 +67,9 @@ const char * Trajet::Transport() const
 
 Trajet::Trajet()
 // Algorithme :
-		{
+{
+
+
 #ifdef MAP
 	//cout << "Appel au constructeur de <Trajet>" << endl;
 #endif

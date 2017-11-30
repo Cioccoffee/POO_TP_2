@@ -92,6 +92,11 @@ unsigned int ListeTrajets:: Taille ()
 	return taille;
 } //----- Fin de Méthode
 
+ListeTrajets * ListeTrajets:: ListeActuelle()
+{
+	return this;
+}
+
 //------------------------------------------------- Surcharge d'opérateurs
 //Xxx & Xxx::operator = ( const Xxx & unXxx )
 // Algorithme :

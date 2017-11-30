@@ -63,6 +63,8 @@ static void testTC();
 // Contrat :
 //
 
+static void Catalogue();
+
 int main();
 // Mode d'emploi :
 //

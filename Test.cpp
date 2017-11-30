@@ -87,6 +87,8 @@ static void testTC()
 	ListeTrajets * trajetsTC1 = tc1->Trajets();
 	trajetsTC1->Afficher();
 
+
+
 	delete lt1;
 	delete ts1;
 	delete ts2;
@@ -126,12 +128,31 @@ static void testListe()
 
 }
 
+//static void Catalogue() {
+//	ListeTrajets *catalogue;
+//	catalogue->Afficher();
+//}
 int main ()
 // Algorithme :
 {
 
+	ListeTrajets * catalogue = new ListeTrajets;
+
+	TrajetSimple *ts1 = new TrajetSimple("A","B","MT");
+	Trajet * ts2 = new TrajetSimple("A","C","MT2");
+	ListeTrajets * lt1 = new ListeTrajets;
+	lt1->Ajouter(ts1);
+	lt1->Ajouter(ts2);
+
+	Catalogue *c = new Catalogue;
+	c->Ajouter(ts1);
+	c->Ajouter(ts2);
+	c->Afficher();
+
+	//catalogue = tete;
 	//testListe();
-	testTC();
+	//testTC();
+
 
 
 	return 0;

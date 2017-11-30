@@ -51,13 +51,13 @@ public:
 
 	ListeTrajets(const ListeTrajets &uneListe);
 
-	void Afficher() const;
+	virtual void Afficher() const;
 	// Mode d'emploi :
 	//
 	// Contrat :
 	//
 	//
-	void Ajouter(Trajet * val);
+	virtual void Ajouter(Trajet * val);
 
 	CelluleTrajet * Tete() const;
 	// Mode d'emploi :
@@ -74,6 +74,8 @@ public:
 	//
 
 	unsigned int Taille();
+
+	ListeTrajets * ListeActuelle();
 
 	virtual ~ListeTrajets();
 	// Mode d'emploi :
