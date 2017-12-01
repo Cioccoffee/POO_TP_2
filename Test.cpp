@@ -171,7 +171,7 @@ int main ()
 	Menu();
 
 	int action;
-	scanf("%d",&action);
+	cin >> action;
 	switch(action)
 	{
 		//TS
@@ -180,11 +180,11 @@ int main ()
 			const char * arrivee;
 			const char * transport;
 			cout << "Ville de départ ?";
-			scanf("%d", &depart);
+			cin >> depart;
 			cout << "Ville d'arivée ?";
-			scanf("%d", &arrivee);
+			cin >> arrivee;
 			cout << "Moyen de transport ?";
-			scanf("%d", &transport);
+			cin >> transport;
 
 			c->Ajouter(new * TrajetSimple(depart, arrivee, transport));
 			break;
@@ -196,18 +196,18 @@ int main ()
 			cout << "De combien de trajets est composé ce trajet composé ?"
 			int i = 0;
 			int n;
-			scanf("%d", &n);
+			cin >> n;
 			while(i<n){
 				cout << "Saisie du trajet n°"<< i+1;
 				const char * depart;
 				const char * arrivee;
 				const char * transport;
 				cout << "Ville de départ ?";
-				scanf("%d", &depart);
+				cin >> depart;
 				cout << "Ville d'arivée ?";
-				scanf("%d", &arrivee);
+				cin >> arrivee;
 				cout << "Moyen de transport ?";
-				scanf("%d", &transport);
+				cin >> transport;
 				tc->Ajouter(new * TrajetSimple(depart,arrivee,transport));
 				i++;
 			}
