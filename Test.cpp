@@ -15,6 +15,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Test.h"
+#include <cstring>
 
 
 ///////////////////////////////////////////////////////////////////  PRIVE
@@ -147,7 +148,8 @@ static void Menu()
 
 }
 
-ListeTrajets * rechercheAvancee(char  * dep, char * arrivee, ListeTrajets * catalogue)
+ListeTrajets rechercheAvancee(char  * dep, char * arrivee, ListeTrajets * catalogue) //retour par valeur pour éviter perte de résultat
+																					// /!\ constructeur de copie
 {
 	/*char * depart;
 	strcpy(depart,dep);
@@ -155,7 +157,7 @@ ListeTrajets * rechercheAvancee(char  * dep, char * arrivee, ListeTrajets * cata
 	strcpy(arrivee,arr);*/
 
 	ListeTrajets * intermede = new ListeTrajets;
-	ListeTrajets * result = new ListeTrajets;
+	ListeTrajets result = new ListeTrajets;
 
 	//ajout des trajets qui partent du bon endroit
 	for(int i = 0; i < catalogue->Taille(); i++)
@@ -169,14 +171,48 @@ ListeTrajets * rechercheAvancee(char  * dep, char * arrivee, ListeTrajets * cata
 	//recherche des matchs et des resultats valides
 	while(intermede->Taille > 0)
 	{
-		for(int i = 0; i < catalogue->Taille(); i++)
+		for(int i = 0; i < intermede->Taille(); i++)
 			{
 
 			//regarder si arrivee matche demande si oui => result
+			if(arr.compare( (intermede->getTrajet(i))->Arrivee() ) == 0)
+			{
+				result.Ajouter(intermede->getTrajet(i));
+			}
 
 			//sinon regarder si arrivee matche qqch
+			//et créer liste de tout ce qui matche pour ce trajet
+			//=> ajouter à sa place tous ceux qui le contiennent augmenté
+			else
+			{
+				ListeTrajets * correspondent = new ListeTrajets;
+				for(int j = 0; j < catalogue->Taille(); j++)
+				{
+					if( ( (catalogue.getTrajet(j))->Depart() ).compare( (intermede->getTrajet(i))->Arrivee() ) == 0)
+					{
+						correspondent->Ajouter(catalogue.getTrajet(j));
+					}
+				}
 
+				if(correspondent->Taille()==0){
+					//intermede->Retirer(i);
+				}
+				else
+				{
+					ListeTrajets aAjouter = new ListeTrajets;
+					aAjouter->Ajouter(intermede.getTrajet(i));
+					for(int j = 0; j < correspondent->Taille(); j++)
+					{
+						aAjouter->Ajouter(correspondent->getTrajet(j));
+						intermede->Ajouter(new TrajetCompose(aAjouter));
+						//aAjouter->Retirer(correspondent->getTrajet(j));
+
+					}
+					//intermede->Retirer(i);
+				}
+			}
 			//sinon poubelle
+
 			}
 	}
 
