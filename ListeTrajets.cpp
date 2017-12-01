@@ -92,6 +92,18 @@ unsigned int ListeTrajets:: Taille ()
 	return taille;
 } //----- Fin de Méthode
 
+Trajet ListeTrajets::getTrajet(int i)
+{
+	CelluleTrajet * courant = new CelluleTrajet;
+	courant = tete;
+	for(int j = 0; j < i && j < taille; j++)
+	{
+		courant = courant->suivant;
+	}
+	return Trajet resultat /*= new */ Trajet(courant->valeur);
+
+}
+
 
 //------------------------------------------------- Surcharge d'opérateurs
 //Xxx & Xxx::operator = ( const Xxx & unXxx )

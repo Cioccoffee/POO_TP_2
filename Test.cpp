@@ -147,6 +147,41 @@ static void Menu()
 
 }
 
+ListeTrajets * rechercheAvancee(char  * dep, char * arrivee, ListeTrajets * catalogue)
+{
+	/*char * depart;
+	strcpy(depart,dep);
+	char * arrivee;
+	strcpy(arrivee,arr);*/
+
+	ListeTrajets * intermede = new ListeTrajets;
+	ListeTrajets * result = new ListeTrajets;
+
+	//ajout des trajets qui partent du bon endroit
+	for(int i = 0; i < catalogue->Taille(); i++)
+	{
+		if(strcpr(catalogue->getTrajet(i), dep){
+			intermede->Ajouter(new Trajet(catalogue->getTrajet(i)));
+		}
+
+	}
+
+	//recherche des matchs et des resultats valides
+	while(intermede->Taille > 0)
+	{
+		for(int i = 0; i < catalogue->Taille(); i++)
+			{
+
+			//regarder si arrivee matche demande si oui => result
+
+			//sinon regarder si arrivee matche qqch
+
+			//sinon poubelle
+			}
+	}
+
+}
+
 int main ()
 // Algorithme :
 {
@@ -186,18 +221,19 @@ int main ()
 			cout << "Moyen de transport ?";
 			cin >> transport;
 
-			catalogue->Ajouter(new * TrajetSimple(depart, arrivee, transport));
+			catalogue->Ajouter(new  TrajetSimple(depart, arrivee, transport));
 			break;
 
 		//TC
 
 		case 2 :
-			TrajetCompose * tc; //est-ce qu'il faut qu'il soit dynamique ?????
+			TrajetCompose * tc = new TrajetCompose; //est-ce qu'il faut qu'il soit dynamique ?????
 			cout << "De combien de trajets est composé ce trajet composé ?"
 			int i = 0;
 			int n;
 			cin >> n;
 			while(i<n){
+				//while(arrivee d'avant != depart de maintenant) => sinon on peut le remplir pour lui
 				cout << "Saisie du trajet n°"<< i+1;
 				const char * depart;
 				const char * arrivee;
@@ -208,7 +244,7 @@ int main ()
 				cin >> arrivee;
 				cout << "Moyen de transport ?";
 				cin >> transport;
-				tc->Ajouter(new * TrajetSimple(depart,arrivee,transport));
+				tc->Ajouter(new  TrajetSimple(depart,arrivee,transport));
 				i++;
 			}
 			catalogue->Ajouter(tc);
@@ -222,6 +258,15 @@ int main ()
 		//search
 		case 4 :
 			//appel méthode de recherche
+			char * depart;
+			char * arrivee;
+			cout << "Quelle est votre ville de départ ?" << endl;
+			cin >> depart;
+			cout << "Quelle est votre destination ?" << endl;
+			cin >> arrivee;
+
+			//recherche(depart,arrivee,catalogue); doit renvoyer liste
+
 			break;
 
 		//exit
