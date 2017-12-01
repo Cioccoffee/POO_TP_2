@@ -250,11 +250,11 @@ int main ()
 			const char * depart;
 			const char * arrivee;
 			const char * transport;
-			cout << "Ville de départ ?";
+			cout << "Ville de départ ?"<<endl;
 			cin >> depart;
-			cout << "Ville d'arivée ?";
+			cout << "Ville d'arivée ?"<<endl;
 			cin >> arrivee;
-			cout << "Moyen de transport ?";
+			cout << "Moyen de transport ?"<<endl;
 			cin >> transport;
 
 			catalogue->Ajouter(new  TrajetSimple(depart, arrivee, transport));
@@ -264,7 +264,7 @@ int main ()
 
 		case 2 :
 			TrajetCompose * tc = new TrajetCompose; //est-ce qu'il faut qu'il soit dynamique ?????
-			cout << "De combien de trajets est composé ce trajet composé ?"
+			cout << "De combien de trajets est composé ce trajet composé ?"<<endl;
 			int i = 0;
 			int n;
 			cin >> n;
@@ -274,11 +274,11 @@ int main ()
 				const char * depart;
 				const char * arrivee;
 				const char * transport;
-				cout << "Ville de départ ?";
+				cout << "Ville de départ ?"<<endl;
 				cin >> depart;
-				cout << "Ville d'arivée ?";
+				cout << "Ville d'arivée ?"<<endl;
 				cin >> arrivee;
-				cout << "Moyen de transport ?";
+				cout << "Moyen de transport ?"<<endl;
 				cin >> transport;
 				tc->Ajouter(new  TrajetSimple(depart,arrivee,transport));
 				i++;
@@ -301,7 +301,7 @@ int main ()
 			cout << "Quelle est votre destination ?" << endl;
 			cin >> arrivee;
 
-			//recherche(depart,arrivee,catalogue); doit renvoyer liste
+			//recherche(depart,arrivee,catalogue); doit renvoyer liste => valeur
 
 			break;
 
