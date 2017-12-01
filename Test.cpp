@@ -151,7 +151,7 @@ int main ()
 // Algorithme :
 {
 
-	/*ListeTrajets * catalogue = new ListeTrajets;
+	ListeTrajets * catalogue = new ListeTrajets;
 
 	TrajetSimple *ts1 = new TrajetSimple("A","B","MT");
 	Trajet * ts2 = new TrajetSimple("A","C","MT2");
@@ -159,7 +159,7 @@ int main ()
 	lt1->Ajouter(ts1);
 	lt1->Ajouter(ts2);*/
 
-	Catalogue *c = new Catalogue;
+	//Catalogue *c = new Catalogue;
 	//c->Ajouter(ts1);
 	//c->Ajouter(ts2);
 	//c->Afficher();
@@ -186,13 +186,13 @@ int main ()
 			cout << "Moyen de transport ?";
 			cin >> transport;
 
-			c->Ajouter(new * TrajetSimple(depart, arrivee, transport));
+			catalogue->Ajouter(new * TrajetSimple(depart, arrivee, transport));
 			break;
 
 		//TC
 
 		case 2 :
-			TrajetCompose * tc;
+			TrajetCompose * tc; //est-ce qu'il faut qu'il soit dynamique ?????
 			cout << "De combien de trajets est composé ce trajet composé ?"
 			int i = 0;
 			int n;
@@ -211,6 +211,7 @@ int main ()
 				tc->Ajouter(new * TrajetSimple(depart,arrivee,transport));
 				i++;
 			}
+			catalogue->Ajouter(tc);
 			break;
 
 		//catalogue
