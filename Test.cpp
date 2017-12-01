@@ -206,6 +206,7 @@ ListeTrajets rechercheAvancee(char  * dep, char * arrivee, ListeTrajets * catalo
 						aAjouter->Ajouter(correspondent->getTrajet(j));
 						intermede->Ajouter(new TrajetCompose(aAjouter));
 						//aAjouter->Retirer(correspondent->getTrajet(j));
+						//rather => aAjouter->Retirer(0); car insertion en tête et codable at least
 
 					}
 					//intermede->Retirer(i);

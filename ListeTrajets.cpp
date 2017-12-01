@@ -130,6 +130,7 @@ int ListeTrajets::Retirer(int i)
 int ListeTrajets::Retirer(Trajet t)
 // Algorithme :
 {
+
 	return 0;
 } //----- Fin de Méthode
 
