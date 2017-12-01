@@ -104,6 +104,17 @@ Trajet ListeTrajets::getTrajet(int i)
 
 }
 
+int ListeTrajets::Retirer(int i)
+// Algorithme :
+{
+	return 0;
+} //----- Fin de Méthode
+
+int ListeTrajets::Retirer(Trajet t)
+// Algorithme :
+{
+	return 0;
+} //----- Fin de Méthode
 
 //------------------------------------------------- Surcharge d'opérateurs
 //Xxx & Xxx::operator = ( const Xxx & unXxx )

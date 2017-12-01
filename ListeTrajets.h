@@ -74,7 +74,32 @@ public:
 	//
 
 	unsigned int Taille();
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+	//
 
+	Trajet getTrajet(int i):
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+	//
+
+	int Retirer(int i);
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+	//
+
+	int Retirer(Trajet t);
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+	//
 
 	virtual ~ListeTrajets();
 	// Mode d'emploi :
