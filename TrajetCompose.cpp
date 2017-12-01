@@ -119,16 +119,17 @@ TrajetCompose::TrajetCompose()
 
 } //----- Fin de Trajet
 
-/*TrajetCompose::TrajetCompose()
+TrajetCompose::TrajetCompose(TrajetCompose * t)
 // Algorithme :
 {
 #ifdef MAP
 	//cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
 
+this.trajets = t->trajets;
 
 
-} //----- Fin de Trajet*/
+} //----- Fin de Trajet
 
 TrajetCompose::TrajetCompose(ListeTrajets * lt)
 // Algorithme :

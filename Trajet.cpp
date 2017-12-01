@@ -77,7 +77,17 @@ Trajet::Trajet()
 
 } //----- Fin de Trajet
 
+Trajet::Trajet(Trajet * t)
+// Algorithme :
+{
 
+
+#ifdef MAP
+	//cout << "Appel au constructeur de <Trajet>" << endl;
+#endif
+
+
+} //----- Fin de Trajet
 
 Trajet::~Trajet()
 // Algorithme :

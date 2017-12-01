@@ -65,7 +65,7 @@ const char * TrajetSimple::Transport() const
 
 TrajetSimple::TrajetSimple(const char * depart, const char * arrivee, const char * transport)
 // Algorithme :
-		{
+{
 #ifdef MAP
 	//cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
@@ -73,6 +73,19 @@ TrajetSimple::TrajetSimple(const char * depart, const char * arrivee, const char
 	villeDepart = depart;
 	villeArrivee = arrivee;
 	moyenTransport = transport;
+
+} //----- Fin de TrajetSimple
+
+TrajetSimple::TrajetSimple(TrajeSimple * t)
+// Algorithme :
+{
+#ifdef MAP
+	//cout << "Appel au constructeur de <TrajetSimple>" << endl;
+#endif
+
+	this.villeDepart = t->villeDepart ;
+	this.villeArrivee = t->villeArrivee;
+	this.moyenTransport = t->moyenTransport;
 
 } //----- Fin de TrajetSimple
 

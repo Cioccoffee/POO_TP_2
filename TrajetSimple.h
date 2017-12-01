@@ -44,6 +44,12 @@ public:
 	// Contrat :
 	//
 
+	TrajetSimple(TrajetSimple * t);
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+
 	virtual void Afficher() const;
 	// Mode d'emploi :
 	//
