@@ -107,6 +107,23 @@ Trajet ListeTrajets::getTrajet(int i)
 int ListeTrajets::Retirer(int i)
 // Algorithme :
 {
+	if(i ==0)
+	{
+		tete = tete->suivant;
+	}
+	else
+	{
+		CelluleTrajet * precedent = new CelluleTrajet;
+		precedent = tete;
+		for(int j = 0; j < i-1; j++)
+		{
+			precedent = precedent->suivant;
+		}
+		CelluleTrajet * aRetirer = precedent->suivant;
+		//on remplace aRetirer par son suivant dans la liste
+		precedent->suivant = aRetirer->suivant;
+		if(i == taille) dernierElement = precedent->suivant; //nouvelle queue
+	}
 	return 0;
 } //----- Fin de Méthode
 
