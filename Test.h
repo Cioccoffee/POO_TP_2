@@ -66,6 +66,8 @@ static void testTC();
 
 static void Menu();
 
+static void RechercheSimple(ListeTrajets & catalogue, char * dep,char * arr);
+
 int main();
 // Mode d'emploi :
 //
