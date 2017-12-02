@@ -160,25 +160,32 @@ ListeTrajets::ListeTrajets()
 
 
 
-///ListeTrajets::ListeTrajets(const ListeTrajets &uneListe)
-//{
-//	if(uneListe.taille > 0) {
-//		tete = new CelluleTrajet;
-//		tete = uneListe.tete;
-//
-//
-//		CelluleTrajet * courant = uneListe.tete;
-//
-//		while(courant->suivant != uneListe.dernierElement) {
-//			CelluleTrajet * element = new CelluleTrajet;
-//			element = courant->suivant;
-//			courant = courant->suivant;
-//		}
-//
-//		dernierElement = new CelluleTrajet;
-//		dernierElement = uneListe.dernierElement;
-//	}
-//}
+ListeTrajets::ListeTrajets(const ListeTrajets &uneListe)
+{
+	ListeTrajets resultat = new ListeTrajets;
+
+	if(uneListe.taille > 0) {
+
+
+		resultat.tete = uneListe->Tete();
+
+		CelluleTrajet * courant = resultat.tete;
+		CelluleTrajet * courantACopier = uneListe->tete;
+
+		while(courantACopier != uneListe->dernierElement) {
+
+			courant->valeur = courantACopier->valeur ;
+			courant->suivant = courantACopier->suivant;
+
+			courant = courant->suivant;
+			courantACopier = courantACopier->suivant;
+
+		}
+
+		dernierElement = new CelluleTrajet;
+		resultat.dernierElement = uneListe->Queue();
+	}
+}
 
 ListeTrajets::~ListeTrajets()
 // Algorithme :
