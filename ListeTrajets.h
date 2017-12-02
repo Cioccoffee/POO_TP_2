@@ -80,14 +80,14 @@ public:
 	//
 	//
 
-	Trajet getTrajet(int i):
+	Trajet getTrajet(unsigned int i);
 	// Mode d'emploi :
 	//
 	// Contrat :
 	//
 	//
 
-	int Retirer(int i);
+	int Retirer(unsigned int i);
 	// Mode d'emploi :
 	//
 	// Contrat :

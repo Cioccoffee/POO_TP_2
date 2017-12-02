@@ -135,7 +135,7 @@ static void testListe()
 //}
 
 
-static void Menu()
+static void Menu(ListeTrajets & catalogue)
 {
 	cout<<"Choisissez l'option: "<<endl;
 	cout<<"1. Ajouter Trajet Simple "<<endl;
@@ -144,78 +144,174 @@ static void Menu()
 	cout<<"4. Rechercher un parcours "<<endl;
 	cout<<"5. Sortir"<<endl;
 
-	//finir le menu
+
+	//Catalogue *c = new Catalogue;
+
+	int action;
+	cin >> action;
+
+	while( action!=5 )
+	{
+		switch(action)
+		{
+			//TS
+			case 1 :
+			{
+				char * depart = new char[20];
+				char * arrivee = new char[20];
+				char * transport = new char[20];;
+				cout << "Ville de dï¿½part ?"<<endl;
+				cin >> depart;
+				cout << "Ville d'arivï¿½e ?"<<endl;
+				cin >> arrivee;
+				cout << "Moyen de transport ?"<<endl;
+				cin >> transport;
+				catalogue.Ajouter(new  TrajetSimple(depart, arrivee, transport));
+			break;
+			}
+
+			//TC
+
+
+			case 2 :
+			{
+				//TrajetCompose * tc = new TrajetCompose; //est-ce qu'il faut qu'il soit dynamique ?????
+
+				ListeTrajets * lt = new ListeTrajets;
+
+				cout << "De combien de trajets est composï¿½ ce trajet composï¿½ ?"<<endl;
+				int i = 0;
+				int n;
+				cin >> n;
+				while(i<n){
+					//while(arrivee d'avant != depart de maintenant) => sinon on peut le remplir pour lui
+					cout << "Saisie du trajet nï¿½"<< i+1;
+					char * depart = new char[20];;
+					char * arrivee= new char[20];
+					char * transport= new char[20];
+					cout << "Ville de dï¿½part ?"<<endl;
+					cin >> depart;
+					cout << "Ville d'arivï¿½e ?"<<endl;
+					cin >> arrivee;
+					cout << "Moyen de transport ?"<<endl;
+					cin >> transport;
+					lt->Ajouter(new  TrajetSimple(depart,arrivee,transport));
+
+					i++;
+				}
+				TrajetCompose * tc = new TrajetCompose(lt);
+				catalogue.Ajouter(tc);
+				break;
+			}
+
+			//catalogue
+			case 3 :
+			{
+				catalogue.Afficher();
+				break;
+			}
+
+			//search
+			case 4 :
+			{
+				//appel mï¿½thode de recherche
+				char * depart;
+				char * arrivee;
+				cout << "Quelle est votre ville de dï¿½part ?" << endl;
+				cin >> depart;
+				cout << "Quelle est votre destination ?" << endl;
+				cin >> arrivee;
+
+				//recherche(depart,arrivee,catalogue); doit renvoyer liste => valeur
+
+				break;
+			}
+			//exit
+			case 5 :
+				//fermer la fenï¿½tre ?
+				break;
+		}
+
+		cout<<"Choisissez l'option: "<<endl;
+			cout<<"1. Ajouter Trajet Simple "<<endl;
+			cout<<"2. Ajouter Trajet Compose "<<endl;
+			cout<<"3. Afficher le catalogue des trajets "<<endl;
+			cout<<"4. Rechercher un parcours "<<endl;
+			cout<<"5. Sortir"<<endl;
+			cin >> action;
+	}
+
 
 }
 
-ListeTrajets rechercheAvancee(char  * dep, char * arrivee, ListeTrajets * catalogue) //retour par valeur pour éviter perte de résultat
+ListeTrajets rechercheAvancee(char  * dep, char * arrivee, ListeTrajets * catalogue) //retour par valeur pour ï¿½viter perte de rï¿½sultat
 																					// /!\ constructeur de copie
 {
-	/*char * depart;
-	strcpy(depart,dep);
-	char * arrivee;
-	strcpy(arrivee,arr);*/
-
-	ListeTrajets * intermede = new ListeTrajets;
-	ListeTrajets result = new ListeTrajets;
-
-	//ajout des trajets qui partent du bon endroit
-	for(int i = 0; i < catalogue->Taille(); i++)
-	{
-		if(strcpr(catalogue->getTrajet(i), dep){
-			intermede->Ajouter(new Trajet(catalogue->getTrajet(i)));
-		}
-
-	}
-
-	//recherche des matchs et des resultats valides
-	while(intermede->Taille > 0)
-	{
-		for(int i = 0; i < intermede->Taille(); i++)
-			{
-
-			//regarder si arrivee matche demande si oui => result
-			if(arr.compare( (intermede->getTrajet(i))->Arrivee() ) == 0)
-			{
-				result.Ajouter(intermede->getTrajet(i));
-			}
-
-			//sinon regarder si arrivee matche qqch
-			//et créer liste de tout ce qui matche pour ce trajet
-			//=> ajouter à sa place tous ceux qui le contiennent augmenté
-			else
-			{
-				ListeTrajets * correspondent = new ListeTrajets;
-				for(int j = 0; j < catalogue->Taille(); j++)
-				{
-					if( ( (catalogue.getTrajet(j))->Depart() ).compare( (intermede->getTrajet(i))->Arrivee() ) == 0)
-					{
-						correspondent->Ajouter(catalogue.getTrajet(j));
-					}
-				}
-
-				if(correspondent->Taille()==0){
-					//intermede->Retirer(i);
-				}
-				else
-				{
-					ListeTrajets aAjouter = new ListeTrajets;
-					aAjouter->Ajouter(intermede.getTrajet(i));
-					for(int j = 0; j < correspondent->Taille(); j++)
-					{
-						aAjouter->Ajouter(correspondent->getTrajet(j));
-						intermede->Ajouter(new TrajetCompose(aAjouter));
-						//aAjouter->Retirer(correspondent->getTrajet(j));
-						//rather => aAjouter->Retirer(0); car insertion en tête et codable at least
-
-					}
-					//intermede->Retirer(i);
-				}
-			}
-			//sinon poubelle
-
-			}
-	}
+//	/*char * depart;
+//	strcpy(depart,dep);
+//	char * arrivee;
+//	strcpy(arrivee,arr);*/
+//
+//	ListeTrajets * intermede = new ListeTrajets;
+//	ListeTrajets result = new ListeTrajets;
+//
+//	//ajout des trajets qui partent du bon endroit
+//	for(int i = 0; i < catalogue->Taille(); i++)
+//	{
+//		if(strcpr(catalogue->getTrajet(i), dep){
+//			intermede->Ajouter(new Trajet(catalogue->getTrajet(i)));
+//		}
+//
+//	}
+//
+//	//recherche des matchs et des resultats valides
+//	while(intermede->Taille > 0)
+//	{
+//		for(int i = 0; i < intermede->Taille(); i++)
+//			{
+//
+//			//regarder si arrivee matche demande si oui => result
+//			if(arr.compare( (intermede->getTrajet(i))->Arrivee() ) == 0)
+//			{
+//				result.Ajouter(intermede->getTrajet(i));
+//			}
+//
+//			//sinon regarder si arrivee matche qqch
+//			//et crï¿½er liste de tout ce qui matche pour ce trajet
+//			//=> ajouter ï¿½ sa place tous ceux qui le contiennent augmentï¿½
+//			else
+//			{
+//				ListeTrajets * correspondent = new ListeTrajets;
+//				for(int j = 0; j < catalogue->Taille(); j++)
+//				{
+//					if( ( (catalogue.getTrajet(j))->Depart() ).compare( (intermede->getTrajet(i))->Arrivee() ) == 0)
+//					{
+//						correspondent->Ajouter(catalogue.getTrajet(j));
+//					}
+//				}
+//
+//				if(correspondent->Taille()==0){
+//					//intermede->Retirer(i);
+//				}
+//				else
+//				{
+//					ListeTrajets aAjouter = new ListeTrajets;
+//					aAjouter->Ajouter(intermede.getTrajet(i));
+//					for(int j = 0; j < correspondent->Taille(); j++)
+//					{
+//						aAjouter->Ajouter(correspondent->getTrajet(j));
+//						intermede->Ajouter(new TrajetCompose(aAjouter));
+//						//aAjouter->Retirer(correspondent->getTrajet(j));
+//						//rather => aAjouter->Retirer(0); car insertion en tï¿½te et codable at least
+//
+//					}
+//					//intermede->Retirer(i);
+//				}
+//			}
+//			//sinon poubelle
+//
+//			}
+//	}
 
 }
 
@@ -225,95 +321,10 @@ int main ()
 
 	ListeTrajets * catalogue = new ListeTrajets;
 
-	TrajetSimple *ts1 = new TrajetSimple("A","B","MT");
-	Trajet * ts2 = new TrajetSimple("A","C","MT2");
-	ListeTrajets * lt1 = new ListeTrajets;
-	lt1->Ajouter(ts1);
-	lt1->Ajouter(ts2);*/
-
-	//Catalogue *c = new Catalogue;
-	//c->Ajouter(ts1);
-	//c->Ajouter(ts2);
-	//c->Afficher();
-
-	//catalogue = tete;
 	//testListe();
-	testTC();
+	//testTC();
 
-	Menu();
-
-	int action;
-	cin >> action;
-	switch(action)
-	{
-		//TS
-		case 1 :
-			const char * depart;
-			const char * arrivee;
-			const char * transport;
-			cout << "Ville de départ ?"<<endl;
-			cin >> depart;
-			cout << "Ville d'arivée ?"<<endl;
-			cin >> arrivee;
-			cout << "Moyen de transport ?"<<endl;
-			cin >> transport;
-
-			catalogue->Ajouter(new  TrajetSimple(depart, arrivee, transport));
-			break;
-
-		//TC
-
-		case 2 :
-			TrajetCompose * tc = new TrajetCompose; //est-ce qu'il faut qu'il soit dynamique ?????
-			cout << "De combien de trajets est composé ce trajet composé ?"<<endl;
-			int i = 0;
-			int n;
-			cin >> n;
-			while(i<n){
-				//while(arrivee d'avant != depart de maintenant) => sinon on peut le remplir pour lui
-				cout << "Saisie du trajet n°"<< i+1;
-				const char * depart;
-				const char * arrivee;
-				const char * transport;
-				cout << "Ville de départ ?"<<endl;
-				cin >> depart;
-				cout << "Ville d'arivée ?"<<endl;
-				cin >> arrivee;
-				cout << "Moyen de transport ?"<<endl;
-				cin >> transport;
-				tc->Ajouter(new  TrajetSimple(depart,arrivee,transport));
-				i++;
-			}
-			catalogue->Ajouter(tc);
-			break;
-
-		//catalogue
-		case 3 :
-			c->Afficher();
-			break;
-
-		//search
-		case 4 :
-			//appel méthode de recherche
-			char * depart;
-			char * arrivee;
-			cout << "Quelle est votre ville de départ ?" << endl;
-			cin >> depart;
-			cout << "Quelle est votre destination ?" << endl;
-			cin >> arrivee;
-
-			//recherche(depart,arrivee,catalogue); doit renvoyer liste => valeur
-
-			break;
-
-		//exit
-		case 5 :
-			//fermer la fenêtre ?
-			break;
-
-
-	}
-
+	Menu(*catalogue);
 
 	return 0;
 }

@@ -92,19 +92,20 @@ unsigned int ListeTrajets:: Taille ()
 	return taille;
 } //----- Fin de Méthode
 
-Trajet ListeTrajets::getTrajet(int i)
+Trajet ListeTrajets::getTrajet(unsigned int i)
 {
 	CelluleTrajet * courant = new CelluleTrajet;
 	courant = tete;
-	for(int j = 0; j < i && j < taille; j++)
+	for(unsigned int j = 0; j < i && j < taille; j++)
 	{
 		courant = courant->suivant;
 	}
-	return Trajet resultat /*= new */ Trajet(courant->valeur);
+	//return Trajet resultat /*= new */ Trajet(courant->valeur);
 
+	return courant->valeur;
 }
 
-int ListeTrajets::Retirer(int i)
+int ListeTrajets::Retirer(unsigned int i)
 // Algorithme :
 {
 	if(i ==0)
@@ -115,7 +116,7 @@ int ListeTrajets::Retirer(int i)
 	{
 		CelluleTrajet * precedent = new CelluleTrajet;
 		precedent = tete;
-		for(int j = 0; j < i-1; j++)
+		for(unsigned int j = 0; j < i-1; j++)
 		{
 			precedent = precedent->suivant;
 		}
@@ -162,29 +163,29 @@ ListeTrajets::ListeTrajets()
 
 ListeTrajets::ListeTrajets(const ListeTrajets &uneListe)
 {
-	ListeTrajets resultat = new ListeTrajets;
-
-	if(uneListe.taille > 0) {
-
-
-		resultat.tete = uneListe->Tete();
-
-		CelluleTrajet * courant = resultat.tete;
-		CelluleTrajet * courantACopier = uneListe->tete;
-
-		while(courantACopier != uneListe->dernierElement) {
-
-			courant->valeur = courantACopier->valeur ;
-			courant->suivant = courantACopier->suivant;
-
-			courant = courant->suivant;
-			courantACopier = courantACopier->suivant;
-
-		}
-
-		dernierElement = new CelluleTrajet;
-		resultat.dernierElement = uneListe->Queue();
-	}
+//	ListeTrajets resultat = new ListeTrajets;
+//
+//	if(uneListe.taille > 0) {
+//
+//
+//		resultat.tete = uneListe->Tete();
+//
+//		CelluleTrajet * courant = resultat.tete;
+//		CelluleTrajet * courantACopier = uneListe->tete;
+//
+//		while(courantACopier != uneListe->dernierElement) {
+//
+//			courant->valeur = courantACopier->valeur ;
+//			courant->suivant = courantACopier->suivant;
+//
+//			courant = courant->suivant;
+//			courantACopier = courantACopier->suivant;
+//
+//		}
+//
+//		dernierElement = new CelluleTrajet;
+//		resultat.dernierElement = uneListe->Queue();
+//	}
 }
 
 ListeTrajets::~ListeTrajets()

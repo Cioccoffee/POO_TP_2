@@ -44,7 +44,7 @@ public:
 	// Contrat :
 	//
 
-	TrajetSimple(TrajetSimple * t);
+	TrajetSimple(const TrajetSimple & t);
 	// Mode d'emploi :
 	//
 	// Contrat :

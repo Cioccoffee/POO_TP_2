@@ -76,16 +76,16 @@ TrajetSimple::TrajetSimple(const char * depart, const char * arrivee, const char
 
 } //----- Fin de TrajetSimple
 
-TrajetSimple::TrajetSimple(TrajeSimple * t)
+TrajetSimple::TrajetSimple(const TrajetSimple & t)
 // Algorithme :
 {
 #ifdef MAP
 	//cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
 
-	this.villeDepart = t->villeDepart ;
-	this.villeArrivee = t->villeArrivee;
-	this.moyenTransport = t->moyenTransport;
+	villeDepart = t.villeDepart ;
+	villeArrivee = t.villeArrivee;
+	moyenTransport = t.moyenTransport;
 
 } //----- Fin de TrajetSimple
 

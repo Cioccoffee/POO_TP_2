@@ -45,7 +45,7 @@ public:
 	// Contrat :
 	//
 
-	TrajetCompose(TrajetCompose * t);
+	TrajetCompose(const TrajetCompose & t);
 	// Mode d'emploi :
 	//
 	// Contrat :
