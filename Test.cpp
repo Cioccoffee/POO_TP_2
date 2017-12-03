@@ -267,7 +267,7 @@ static void Menu(ListeTrajets & catalogue) {
 
 			break;
 		}
-			//exit
+
 		case 5:
 			//fermer la fen�tre ?
 			break;
