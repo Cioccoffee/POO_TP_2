@@ -176,6 +176,7 @@ static void Menu(ListeTrajets & catalogue) {
 			cin >> arrivee;
 			cout << "Moyen de transport ?" << endl;
 			cin >> transport;
+
 			catalogue.Ajouter(new TrajetSimple(depart, arrivee, transport));
 			break;
 		}
@@ -187,23 +188,36 @@ static void Menu(ListeTrajets & catalogue) {
 
 			ListeTrajets * lt = new ListeTrajets;
 
-			cout << "De combien de trajets est composï¿½ ce trajet composï¿½ ?"
-					<< endl;
+			cout << "De combien de trajets est composï¿½ ce trajet composï¿½ ?"<< endl;
 			int i = 0;
 			int n;
 			cin >> n;
+			char * departPrecedent = new char[20];
+			strcpy(departPrecedent,"no dest");
+
 			while (i < n) {
 				//while(arrivee d'avant != depart de maintenant) => sinon on peut le remplir pour lui
 				cout << "Saisie du trajet nï¿½" << i + 1;
 				char * depart = new char[20];
 				char * arrivee = new char[20];
 				char * transport = new char[20];
+
 				cout << "Ville de dï¿½part ?" << endl;
 				cin >> depart;
 				cout << "Ville d'arivï¿½e ?" << endl;
 				cin >> arrivee;
+				while(arrivee.compare(departPrecedent!=0))
+				{
+					cout << "Veuillez ressaisir les villes de départ et d'arrivée de votre trajet" <<endl;
+					cout << "Ville de dï¿½part ?" << endl;
+					cin >> depart;
+					cout << "Ville d'arivï¿½e ?" << endl;
+					cin >> arrivee;
+				}
 				cout << "Moyen de transport ?" << endl;
 				cin >> transport;
+
+				strcpy(departPrecedent,depart);
 				lt->Ajouter(new TrajetSimple(depart, arrivee, transport));
 
 				i++;
