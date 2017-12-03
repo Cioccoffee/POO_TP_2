@@ -161,7 +161,7 @@ static void testListe()
 }
 
 static void Menu(ListeTrajets & catalogue) {
-	cout << "Choisissez l'option: " << endl;
+	cout << "Veuillez choisir une option: " << endl;
 	cout << "1. Ajouter Trajet Simple " << endl;
 	cout << "2. Ajouter Trajet Compose " << endl;
 	cout << "3. Afficher le catalogue des trajets " << endl;
