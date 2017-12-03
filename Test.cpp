@@ -229,7 +229,7 @@ static void Menu(ListeTrajets & catalogue) {
 
 			//catalogue
 		case 3: {
-			catalogue.Afficher();
+			catalogue->Afficher();
 			break;
 		}
 
