@@ -91,10 +91,9 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 
-	const char * villeDepart;
-	const char * villeArrivee;
-	//a revoir
-	const char * moyenTransport; //enum ???
+//	const char * villeDepart;
+//	const char * villeArrivee;
+//	const char * moyenTransport;
 
 
 };

@@ -54,6 +54,12 @@ void ListeTrajets:: Ajouter (Trajet *val)
 	if (taille == 0)
 	{
 		tete->valeur = val;
+
+		////////
+		tete->depart = val->Depart();
+		tete->arrivee = val->Arrivee();
+		////////
+
 		tete->suivant = NULL;
 		dernierElement = tete;
 
@@ -61,8 +67,15 @@ void ListeTrajets:: Ajouter (Trajet *val)
 	{
 		CelluleTrajet *nouvelElement = new CelluleTrajet;
 		nouvelElement->valeur = val;
-		nouvelElement->suivant = NULL;
 
+
+		/////////
+		nouvelElement->depart = val->Depart();
+		nouvelElement->arrivee = val->Arrivee();
+
+		///////
+
+		nouvelElement->suivant = NULL;
 		dernierElement->suivant = nouvelElement;
 		dernierElement = nouvelElement;
 
@@ -94,15 +107,37 @@ unsigned int ListeTrajets:: Taille ()
 
 Trajet ListeTrajets::getTrajet(unsigned int i)
 {
-	CelluleTrajet * courant = new CelluleTrajet;
-	courant = tete;
+	CelluleTrajet * courant = tete;
 	for(unsigned int j = 0; j < i && j < taille; j++)
 	{
 		courant = courant->suivant;
 	}
-	//return Trajet resultat /*= new */ Trajet(courant->valeur);
 
 	return courant->valeur;
+}
+
+const char * ListeTrajets::DepartTrajet(unsigned int i)
+{
+	CelluleTrajet * courant = tete;
+		for(unsigned int j = 0; j < i && j < taille; j++)
+		{
+			courant = courant->suivant;
+		}
+
+
+		return courant->depart;
+}
+
+const char * ListeTrajets::ArriveeTrajet(unsigned int i)
+{
+	CelluleTrajet * courant = tete;
+		for(unsigned int j = 0; j < i && j < taille; j++)
+		{
+			courant = courant->suivant;
+		}
+
+
+		return courant->arrivee;
 }
 
 int ListeTrajets::Retirer(unsigned int i)
@@ -135,14 +170,6 @@ int ListeTrajets::Retirer(Trajet t)
 	return 0;
 } //----- Fin de Méthode
 
-//------------------------------------------------- Surcharge d'opérateurs
-//Xxx & Xxx::operator = ( const Xxx & unXxx )
-// Algorithme :
-//
-//{
-//} //----- Fin de operator =
-
-//-------------------------------------------- Constructeurs - destructeur
 
 ListeTrajets::ListeTrajets()
 // Algorithme :

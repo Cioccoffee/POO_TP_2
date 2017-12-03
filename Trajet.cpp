@@ -1,380 +1,106 @@
 /*************************************************************************
- Test  -  description
+ Trajet  -  description
  -------------------
- dÃ©but                : $DATE$
+ début                : $DATE$
  copyright            : (C) $YEAR$ par $AUTHOR$
  e-mail               : $EMAIL$
  *************************************************************************/
 
-//---------- RÃ©alisation du module <Test> (fichier Test.cpp) ---------------
-/////////////////////////////////////////////////////////////////  INCLUDE
-//-------------------------------------------------------- Include systÃšme
+//---------- Réalisation de la classe <Trajet> (fichier Trajet.cpp) ------------
+//---------------------------------------------------------------- INCLUDE
+//-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
 
 //------------------------------------------------------ Include personnel
-#include "Test.h"
-#include <cstring>
+#include "Trajet.h"
 
-///////////////////////////////////////////////////////////////////  PRIVE
 //------------------------------------------------------------- Constantes
 
-//------------------------------------------------------------------ Types
+//----------------------------------------------------------------- PUBLIC
 
-//---------------------------------------------------- Variables statiques
-
-//------------------------------------------------------ Fonctions privÃ©es
-
-static void testConstructeur()
-// Mode d'emploi :
+//----------------------------------------------------- Méthodes publiques
 //
-// Contrat :
-//
+
+
+void Trajet:: Afficher () const
+// Algorithme :
+{
+	cout<<"afficher mere"<<endl;
+} //----- Fin de Méthode
+
+const char * Trajet::Depart() const
+ // Algorithme :
+ //
+ {
+	cout <<"je suis ds mere"<<endl;
+	return villeDepart;
+
+  } //----- Fin de Méthode
+
+const char * Trajet::Arrivee() const
 // Algorithme :
 //
 {
+	return villeArrivee;
 
-} //----- fin de testConstructeur
+} //----- Fin de Méthode
 
-static void testTS()
-// Mode d'emploi :
-//
-// Contrat :
-//
+const char * Trajet::Transport() const
 // Algorithme :
 //
 {
-	TrajetSimple * ts1 = new TrajetSimple("A", "B", "MT"); //il faut que ts1 soit un pointeur
-	Trajet * ts2 = new TrajetSimple("A", "C", "MT2");
+	return moyenTransport;
+} //----- Fin de M�thode
 
-	ts1->Afficher();
-	//cout << ts1->Depart();
-	//cout << ts1->Arrivee();
-	//cout << ts1->Transport();
-	ts2->Afficher();
-//	cout << ts2->Depart();
-//	cout << ts2->Arrivee();
-//	cout << ts2->Transport();
-
-	delete ts1;
-	delete ts2;
-}
-
-static void testTC()
-// Mode d'emploi :
-//
-// Contrat :
-//
+//------------------------------------------------- Surcharge d'opérateurs
+//Xxx & Xxx::operator = ( const Xxx & unXxx )
 // Algorithme :
 //
-{
-	TrajetSimple *ts1 = new TrajetSimple("A", "B", "MT");
-	Trajet * ts2 = new TrajetSimple("B", "C", "MT2");
+//{
+//} //----- Fin de operator =
 
-	ListeTrajets * lt1 = new ListeTrajets;
-	lt1->Ajouter(ts1);
-	lt1->Ajouter(ts2);
+//-------------------------------------------- Constructeurs - destructeur
 
-	TrajetCompose * tc1 = new TrajetCompose(lt1);
-	tc1->Afficher();
-
-	//cout << tc1->Depart();
-	//cout << tc1->Arrivee();
-
-	ListeTrajets * trajetsTC1 = tc1->Trajets();
-	//trajetsTC1->Afficher();
-
-	delete lt1;
-	delete ts1;
-	delete ts2;
-	delete tc1;
-
-}
-
-static void test()
-// Mode d'emploi :
-//
-// Contrat :
-//
-// Algorithme :
-//
-{
-}
-
-static void testListe()
-// Mode d'emploi :
-//
-// Contrat :
-//
-// Algorithme :
-//
-{
-//	int a = 1, b = 2;
-//	int *pt = &a;
-//	int *pt2 =&b;
-//
-//	ListeTrajets lt;
-//	lt.Afficher();
-//
-//	lt.Ajouter(pt);
-//	lt.Ajouter(pt2);
-//	lt.Afficher();
-
-	TrajetSimple *ts1 = new TrajetSimple("A", "B", "MT");
-	Trajet * ts2 = new TrajetSimple("B", "C", "MT2");
-
-	ListeTrajets * lt1 = new ListeTrajets;
-	lt1->Ajouter(ts1);
-	lt1->Ajouter(ts2);
-
-	cout<<lt1->getTrajet(0).Depart();
-
-}
-
-//static void Catalogue() {
-//	ListeTrajets *catalogue;
-//	catalogue->Afficher();
-//}
-
-//A FINIR
-static void RechercheSimple(ListeTrajets & catalogue, const char * dep, const char * arr) 
-{
-
-	for (unsigned int i = 0; i < catalogue.Taille(); i++) {
-		char * depart = new char[20];
-
-	//depart = catalogue.getTrajet(i).Depart();
-
-//		char * arrivee = new char[20];
-//		strcpy(arrivee,catalogue.getTrajet(i).Arrivee());
-//		//char * arrivee = catalogue.getTrajet(i).Arrivee();
-//
-//		if(strcmp(depart,dep) == 0) {
-//			cout<<"MATA"<<endl;
-//		}else
-//		{
-//			cout<<"muie";
-//		}
-//		cout << *depart << endl;
-//		cout << *arrivee << endl;
-}
-
-}
-
-static void Menu(ListeTrajets & catalogue) 
-{
-cout << "Veuillez choisir une option " << endl;
-cout << "1. Ajouter Trajet Simple " << endl;
-cout << "2. Ajouter Trajet Compose " << endl;
-cout << "3. Afficher le catalogue des trajets " << endl;
-cout << "4. Rechercher un parcours " << endl;
-cout << "5. Sortir" << endl;
-
-
-
-int action;
-cin >> action;
-
-while (action != 5 && (action == 1 || action == 2 || action == 3 || action == 4)) {
-
-	switch (action) {
-	//TS
-	case 1: {
-		char * depart = new char[20];
-		char * arrivee = new char[20];
-		char * transport = new char[20];
-		;
-		cout << "Ville de dï¿œpart ?" << endl;
-		cin >> depart;
-		cout << "Ville d'arivï¿œe ?" << endl;
-		cin >> arrivee;
-		cout << "Moyen de transport ?" << endl;
-		cin >> transport;
-
-		catalogue.Ajouter(new TrajetSimple(depart, arrivee, transport));
-		break;
-	}
-
-		//TC
-
-	case 2: {
-		//TrajetCompose * tc = new TrajetCompose; //est-ce qu'il faut qu'il soit dynamique ?????
-
-		ListeTrajets * lt = new ListeTrajets;
-
-		cout << "De combien de trajets est compose ce trajet compose ?" << endl;
-		int i = 0;
-		int n;
-		cin >> n;
-
-		char * arriveePrecedent = new char[20];
-		strcpy(arriveePrecedent, "no dest");
-
-		while (i < n) {
-			//while(arrivee d'avant != depart de maintenant) => sinon on peut le remplir pour lui
-			cout << "Saisie du trajet num " << i + 1 << endl;
-			char * depart = new char[20];
-			char * arrivee = new char[20];
-			char * transport = new char[20];
-
-			cout << "Ville de depart ?" << endl;
-			cin >> depart;
-			cout << "Ville d'arivee ?" << endl;
-			cin >> arrivee;
-
-			while ((strcmp(depart, arriveePrecedent) != 0) && (i != 0)) {
-				cout << "Veuillez ressaisir les villes de depart et d'arrivee de votre trajet"<< endl;
-				cout << "Ville de depart ?" << endl;
-				cin >> depart;
-				cout << "Ville d'arivee ?" << endl;
-				cin >> arrivee;
-			}
-			cout << "Moyen de transport ?" << endl;
-			cin >> transport;
-
-			strcpy(arriveePrecedent, arrivee);
-			lt->Ajouter(new TrajetSimple(depart, arrivee, transport));
-
-			i++;
-		}
-		TrajetCompose * tc = new TrajetCompose(lt);
-		catalogue.Ajouter(tc);
-		break;
-	}
-
-		//catalogue
-	case 3: {
-		catalogue.Afficher();
-		break;
-	}
-
-		//search
-	case 4: {
-		//appel mï¿œthode de recherche
-		char * depart = new char[20];
-		char * arrivee = new char[20];
-		cout << "Quelle est votre ville de dï¿œpart ?" << endl;
-		cin >> depart;
-		cout << "Quelle est votre destination ?" << endl;
-		cin >> arrivee;
-
-//			const char *dep = new char[20];
-//			strcpy(dep,depart);
-//
-//			const char *arr = new char[20];
-//						strcpy(arr,arrivee);
-		RechercheSimple(catalogue, depart, arrivee);
-
-		//recherche(depart,arrivee,catalogue); doit renvoyer liste => valeur
-
-		break;
-	}
-		//exit
-	case 5:{
-		//fermer la fenï¿œtre ?
-		break;
-	}
-	}
-	cout << "Choisissez l'option: " << endl;
-	cout << "1. Ajouter Trajet Simple " << endl;
-	cout << "2. Ajouter Trajet Compose " << endl;
-	cout << "3. Afficher le catalogue des trajets " << endl;
-	cout << "4. Rechercher un parcours " << endl;
-	cout << "5. Sortir" << endl;
-	cin >> action;
-}
-
-}
-
-
-
-ListeTrajets rechercheAvancee(char * dep, char * arrivee,
-	ListeTrajets * catalogue) //retour par valeur pour ï¿œviter perte de rï¿œsultat
-							  // /!\ constructeur de copie
-	{
-//	/*char * depart;
-//	strcpy(depart,dep);
-//	char * arrivee;
-//	strcpy(arrivee,arr);*/
-//
-//	ListeTrajets * intermede = new ListeTrajets;
-//	ListeTrajets result = new ListeTrajets;
-//
-//	//ajout des trajets qui partent du bon endroit
-//	for(int i = 0; i < catalogue->Taille(); i++)
-//	{
-//		if(strcmp(catalogue->getTrajet(i)->Depart(), dep){
-//			intermede->Ajouter(new Trajet(catalogue->getTrajet(i)));
-//		}
-//
-//	}
-//
-//	//recherche des matchs et des resultats valides
-//	while(intermede->Taille() > 0)
-//	{
-//		for(int i = 0; i < intermede->Taille(); i++)
-//			{
-//
-//			//regarder si arrivee matche demande si oui => result
-//			if( strcmp(arr, (intermede->getTrajet(i))->Arrivee() ) == 0)
-//			{
-//				result.Ajouter(intermede->getTrajet(i));
-//				intermede->Retirer(i);
-//			}
-//
-//			//sinon regarder si arrivee matche qqch
-//			//et crï¿œer liste de tout ce qui matche pour ce trajet
-//			//=> ajouter ï¿œ sa place tous ceux qui le contiennent augmentï¿œ
-//			else
-//			{
-//				ListeTrajets * correspondent = new ListeTrajets;
-//				for(int j = 0; j < catalogue->Taille(); j++)
-//				{
-//					if( strcmp( (catalogue.getTrajet(j))->Depart() , (intermede->getTrajet(i))->Arrivee() ) == 0)
-//					{
-//						correspondent->Ajouter(catalogue.getTrajet(j));
-//					}
-//				}
-//
-//				if(correspondent->Taille()==0){
-//					intermede->Retirer(i);
-//				}
-//				else
-//				{
-//					ListeTrajets aAjouter = new ListeTrajets;
-//					aAjouter->Ajouter(intermede.getTrajet(i));
-//					for(int j = 0; j < correspondent->Taille(); j++)
-//					{
-//						aAjouter->Ajouter(correspondent->getTrajet(j));
-//						intermede->Ajouter(new TrajetCompose(aAjouter));
-//						//aAjouter->Retirer(correspondent->getTrajet(j));
-//						aAjouter->Retirer(1);
-//
-//					}
-//					intermede->Retirer(i);
-//				}
-//			}
-//			//sinon poubelle
-//
-//			}
-	//2options here :
-	//result.Afficher();
-	//return result;
-//	}
-
-}
-
-int main()
+Trajet::Trajet()
 // Algorithme :
 {
 
-ListeTrajets * catalogue = new ListeTrajets;
 
-//testListe();
-//testTC();
+#ifdef MAP
+	//cout << "Appel au constructeur de <Trajet>" << endl;
+#endif
 
-Menu(*catalogue);
-//testListe();
 
-return 0;
-}
+//	villeDepart = "dgs";
+//	villeArrivee ="fsseds";
+//	moyenTransport ="fseds";
+
+} //----- Fin de Trajet
+
+Trajet::Trajet(Trajet * t)
+// Algorithme :
+{
+
+
+#ifdef MAP
+	//cout << "Appel au constructeur de <Trajet>" << endl;
+#endif
+
+
+} //----- Fin de Trajet
+
+Trajet::~Trajet()
+// Algorithme :
+{
+#ifdef MAP
+	//cout << "Appel au destructeur de <Trajet>" << endl;
+#endif
+
+} //----- Fin de ~Trajet
+
+//------------------------------------------------------------------ PRIVE
+
+//----------------------------------------------------- Méthodes protégées
+
+

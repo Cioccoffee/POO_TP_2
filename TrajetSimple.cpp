@@ -73,6 +73,9 @@ TrajetSimple::TrajetSimple(const char * depart, const char * arrivee, const char
 	villeDepart = depart;
 	villeArrivee = arrivee;
 	moyenTransport = transport;
+//	departMere = depart;
+//	arriveeMere = arrivee;
+//	transportMere = transport;
 
 } //----- Fin de TrajetSimple
 

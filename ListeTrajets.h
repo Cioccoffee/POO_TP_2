@@ -19,7 +19,9 @@
 //------------------------------------------------------------------ Types
 
 struct CelluleTrajet {
-	Trajet *valeur;
+	Trajet * valeur;
+	const char * depart;
+	const char * arrivee;
 	CelluleTrajet *suivant;
 };
 
@@ -63,14 +65,14 @@ public:
 	// Mode d'emploi :
 	//
 	// Contrat :
-	//retourne le premier élément de la liste
+	//retourne le premier ï¿½lï¿½ment de la liste
 	//
 
 	CelluleTrajet * Queue() const;
 	// Mode d'emploi :
 	//
 	// Contrat :
-	//retourne le dernier élément de la liste
+	//retourne le dernier ï¿½lï¿½ment de la liste
 	//
 
 	unsigned int Taille();
@@ -86,6 +88,10 @@ public:
 	// Contrat :
 	//
 	//
+
+	const char * DepartTrajet(unsigned int i);
+
+	const char * ArriveeTrajet(unsigned int i);
 
 	int Retirer(unsigned int i);
 	// Mode d'emploi :

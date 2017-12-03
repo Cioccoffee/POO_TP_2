@@ -36,11 +36,14 @@ void TrajetCompose::Afficher() const
 	unsigned int i;
 	CelluleTrajet * actuelle = trajets->Tete();
 	cout << "Trajet ";
+
+	Trajet * actuel = actuelle->valeur;
+	Trajet * precedent =actuel;
+
 	for (i = 0; i < trajets->Taille(); i++)
 	{
 
-		Trajet * actuel = actuelle->valeur;
-		Trajet * precedent;
+		actuel = actuelle->valeur;
 
 		//verification contrainte de ville : precedent.arrivee = actuel.depart?
 		if(i>0)
@@ -87,7 +90,7 @@ const char * TrajetCompose::Arrivee() const
 {
 	CelluleTrajet * queueTrajets = trajets->Queue();
 	Trajet * trajetEnQueue = queueTrajets->valeur;
-	return trajetEnQueue->Depart(); //choisi la méthode adaptée au type (TS ou TC)
+	return trajetEnQueue->Arrivee(); //choisi la méthode adaptée au type (TS ou TC)
 
 } //----- Fin de M�thode
 
