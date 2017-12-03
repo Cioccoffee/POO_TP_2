@@ -244,7 +244,7 @@ static void Menu(ListeTrajets & catalogue) {
 			cin >> arrivee;
 
 			RechercheSimple(catalogue, depart, arrivee);
-			//recherche(depart,arrivee,catalogue); doit renvoyer liste => valeur
+			//rechercheAvancee(depart,arrivee,catalogue); doit renvoyer liste => valeur
 
 			break;
 		}
@@ -280,22 +280,23 @@ ListeTrajets rechercheAvancee(char * dep, char * arrivee,
 //	//ajout des trajets qui partent du bon endroit
 //	for(int i = 0; i < catalogue->Taille(); i++)
 //	{
-//		if(strcpr(catalogue->getTrajet(i), dep){
+//		if(strcmp(catalogue->getTrajet(i), dep){
 //			intermede->Ajouter(new Trajet(catalogue->getTrajet(i)));
 //		}
 //
 //	}
 //
 //	//recherche des matchs et des resultats valides
-//	while(intermede->Taille > 0)
+//	while(intermede->Taille() > 0)
 //	{
 //		for(int i = 0; i < intermede->Taille(); i++)
 //			{
 //
 //			//regarder si arrivee matche demande si oui => result
-//			if(arr.compare( (intermede->getTrajet(i))->Arrivee() ) == 0)
+//			if( strcmp(arr, (intermede->getTrajet(i))->Arrivee() ) == 0)
 //			{
 //				result.Ajouter(intermede->getTrajet(i));
+//				intermede->Retirer(i);
 //			}
 //
 //			//sinon regarder si arrivee matche qqch
@@ -306,14 +307,14 @@ ListeTrajets rechercheAvancee(char * dep, char * arrivee,
 //				ListeTrajets * correspondent = new ListeTrajets;
 //				for(int j = 0; j < catalogue->Taille(); j++)
 //				{
-//					if( ( (catalogue.getTrajet(j))->Depart() ).compare( (intermede->getTrajet(i))->Arrivee() ) == 0)
+//					if( strcmp( (catalogue.getTrajet(j))->Depart() , (intermede->getTrajet(i))->Arrivee() ) == 0)
 //					{
 //						correspondent->Ajouter(catalogue.getTrajet(j));
 //					}
 //				}
 //
 //				if(correspondent->Taille()==0){
-//					//intermede->Retirer(i);
+//					intermede->Retirer(i);
 //				}
 //				else
 //				{
@@ -324,15 +325,18 @@ ListeTrajets rechercheAvancee(char * dep, char * arrivee,
 //						aAjouter->Ajouter(correspondent->getTrajet(j));
 //						intermede->Ajouter(new TrajetCompose(aAjouter));
 //						//aAjouter->Retirer(correspondent->getTrajet(j));
-//						//rather => aAjouter->Retirer(0); car insertion en t�te et codable at least
+//						aAjouter->Retirer(1);
 //
 //					}
-//					//intermede->Retirer(i);
+//					intermede->Retirer(i);
 //				}
 //			}
 //			//sinon poubelle
 //
 //			}
+	//2options here :
+	//result.Afficher();
+	//return result;
 //	}
 
 }
