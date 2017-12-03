@@ -120,6 +120,15 @@ static void testListe()
 //	lt.Ajouter(pt2);
 //	lt.Afficher();
 
+	TrajetSimple *ts1 = new TrajetSimple("A", "B", "MT");
+	Trajet * ts2 = new TrajetSimple("B", "C", "MT2");
+
+	ListeTrajets * lt1 = new ListeTrajets;
+	lt1->Ajouter(ts1);
+	lt1->Ajouter(ts2);
+
+	cout<<lt1->getTrajet(0).Depart();
+
 }
 
 //static void Catalogue() {
@@ -127,15 +136,19 @@ static void testListe()
 //	catalogue->Afficher();
 //}
 
-
 //A FINIR
-static void RechercheSimple(ListeTrajets & catalogue, char * dep, char * arr) {
+static void RechercheSimple(ListeTrajets & catalogue, const char * dep,
+		const char * arr) {
 
 	for (unsigned int i = 0; i < catalogue.Taille(); i++) {
-		const char * depart;
-		depart = catalogue.getTrajet(i).Depart();
-		const char * arrivee = catalogue.getTrajet(i).Arrivee();
+		char * depart = new char[20];
 
+	//depart = catalogue.getTrajet(i).Depart();
+
+//		char * arrivee = new char[20];
+//		strcpy(arrivee,catalogue.getTrajet(i).Arrivee());
+//		//char * arrivee = catalogue.getTrajet(i).Arrivee();
+//
 //		if(strcmp(depart,dep) == 0) {
 //			cout<<"MATA"<<endl;
 //		}else
@@ -144,22 +157,134 @@ static void RechercheSimple(ListeTrajets & catalogue, char * dep, char * arr) {
 //		}
 //		cout << *depart << endl;
 //		cout << *arrivee << endl;
-	}
+}
 
 }
 
 static void Menu(ListeTrajets & catalogue) {
+cout << "Choisissez l'option: " << endl;
+cout << "1. Ajouter Trajet Simple " << endl;
+cout << "2. Ajouter Trajet Compose " << endl;
+cout << "3. Afficher le catalogue des trajets " << endl;
+cout << "4. Rechercher un parcours " << endl;
+cout << "5. Sortir" << endl;
+
+//Catalogue *c = new Catalogue;
+
+int action;
+cin >> action;
+
+while (action != 5 && (action == 1 || action == 2 || action == 3 || action == 4)) {
+	switch (action) {
+	//TS
+	case 1: {
+		char * depart = new char[20];
+		char * arrivee = new char[20];
+		char * transport = new char[20];
+		;
+		cout << "Ville de d�part ?" << endl;
+		cin >> depart;
+		cout << "Ville d'ariv�e ?" << endl;
+		cin >> arrivee;
+		cout << "Moyen de transport ?" << endl;
+		cin >> transport;
+
+		catalogue.Ajouter(new TrajetSimple(depart, arrivee, transport));
+		break;
+	}
+
+		//TC
+
+	case 2: {
+		//TrajetCompose * tc = new TrajetCompose; //est-ce qu'il faut qu'il soit dynamique ?????
+
+		ListeTrajets * lt = new ListeTrajets;
+
+		cout << "De combien de trajets est compose ce trajet compose ?" << endl;
+		int i = 0;
+		int n;
+		cin >> n;
+
+		char * arriveePrecedent = new char[20];
+		strcpy(arriveePrecedent, "no dest");
+
+		while (i < n) {
+			//while(arrivee d'avant != depart de maintenant) => sinon on peut le remplir pour lui
+			cout << "Saisie du trajet num " << i + 1 << endl;
+			char * depart = new char[20];
+			char * arrivee = new char[20];
+			char * transport = new char[20];
+
+			cout << "Ville de depart ?" << endl;
+			cin >> depart;
+			cout << "Ville d'arivee ?" << endl;
+			cin >> arrivee;
+
+			while ((strcmp(depart, arriveePrecedent) != 0) && (i != 0)) {
+				cout
+						<< "Veuillez ressaisir les villes de depart et d'arrivee de votre trajet"
+						<< endl;
+				cout << "Ville de depart ?" << endl;
+				cin >> depart;
+				cout << "Ville d'arivee ?" << endl;
+				cin >> arrivee;
+			}
+			cout << "Moyen de transport ?" << endl;
+			cin >> transport;
+
+			strcpy(arriveePrecedent, arrivee);
+			lt->Ajouter(new TrajetSimple(depart, arrivee, transport));
+
+			i++;
+		}
+		TrajetCompose * tc = new TrajetCompose(lt);
+		catalogue.Ajouter(tc);
+		break;
+	}
+
+		//catalogue
+	case 3: {
+		catalogue.Afficher();
+		break;
+	}
+
+		//search
+	case 4: {
+		//appel m�thode de recherche
+		char * depart = new char[20];
+		char * arrivee = new char[20];
+		cout << "Quelle est votre ville de d�part ?" << endl;
+		cin >> depart;
+		cout << "Quelle est votre destination ?" << endl;
+		cin >> arrivee;
+
+//			const char *dep = new char[20];
+//			strcpy(dep,depart);
+//
+//			const char *arr = new char[20];
+//						strcpy(arr,arrivee);
+		RechercheSimple(catalogue, depart, arrivee);
+
+		//recherche(depart,arrivee,catalogue); doit renvoyer liste => valeur
+
+		break;
+	}
+		//exit
+	case 5:
+		//fermer la fen�tre ?
+		break;
+	}
+
 	cout << "Choisissez l'option: " << endl;
 	cout << "1. Ajouter Trajet Simple " << endl;
 	cout << "2. Ajouter Trajet Compose " << endl;
 	cout << "3. Afficher le catalogue des trajets " << endl;
 	cout << "4. Rechercher un parcours " << endl;
 	cout << "5. Sortir" << endl;
-
-	//Catalogue *c = new Catalogue;
-
-	int action;
 	cin >> action;
+<<<<<<< HEAD
+}
+=======
 
 	while (action != 5
 			&& (action == 1 || action == 2 || action == 3 || action == 4)) {
@@ -262,13 +387,14 @@ static void Menu(ListeTrajets & catalogue) {
 		cout << "5. Sortir" << endl;
 		cin >> action;
 	}
+>>>>>>> refs/remotes/origin/master
 
 }
 
 ListeTrajets rechercheAvancee(char * dep, char * arrivee,
-		ListeTrajets * catalogue) //retour par valeur pour �viter perte de r�sultat
-								  // /!\ constructeur de copie
-		{
+	ListeTrajets * catalogue) //retour par valeur pour �viter perte de r�sultat
+							  // /!\ constructeur de copie
+	{
 //	/*char * depart;
 //	strcpy(depart,dep);
 //	char * arrivee;
@@ -345,12 +471,13 @@ int main()
 // Algorithme :
 {
 
-	ListeTrajets * catalogue = new ListeTrajets;
+ListeTrajets * catalogue = new ListeTrajets;
 
-	//testListe();
-	//testTC();
+//testListe();
+//testTC();
 
-	Menu(*catalogue);
+//Menu(*catalogue);
+//testListe();
 
-	return 0;
+return 0;
 }
