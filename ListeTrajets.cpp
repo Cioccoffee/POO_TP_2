@@ -140,6 +140,18 @@ const char * ListeTrajets::ArriveeTrajet(unsigned int i)
 		return courant->arrivee;
 }
 
+char * ListeTrajets::NomTrajet(unsigned int i)
+{
+	CelluleTrajet * courant = tete;
+		for(unsigned int j = 0; j < i && j < taille; j++)
+		{
+			courant = courant->suivant;
+		}
+
+
+		return courant->nomTrajet;
+}
+
 int ListeTrajets::Retirer(unsigned int i)
 // Algorithme :
 {
@@ -163,12 +175,6 @@ int ListeTrajets::Retirer(unsigned int i)
 	return 0;
 } //----- Fin de Méthode
 
-int ListeTrajets::Retirer(Trajet t)
-// Algorithme :
-{
-
-	return 0;
-} //----- Fin de Méthode
 
 
 ListeTrajets::ListeTrajets()
@@ -177,6 +183,7 @@ ListeTrajets::ListeTrajets()
 #ifdef MAP
 	//cout << "Appel au constructeur de <ListeTrajets>" << endl;
 #endif
+
 
 	tete = new CelluleTrajet;
 	dernierElement = tete;
