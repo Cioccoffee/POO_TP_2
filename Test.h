@@ -64,9 +64,9 @@ static void testTC();
 // Contrat :
 //
 
-static void Menu();
+static void Menu(ListeTrajets & catalogue);
 
-static void RechercheSimple(ListeTrajets & catalogue, char * dep,char * arr);
+static void RechercheSimple(ListeTrajets & catalogue, const char * dep,const char * arr);
 
 int main();
 // Mode d'emploi :
