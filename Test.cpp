@@ -263,6 +263,7 @@ static void Menu(ListeTrajets & catalogue) {
 			cin >> arrivee;
 
 			RechercheSimple(catalogue, depart, arrivee);
+			//rechercheAvancee(catalogue, depart, arrivee);
 			//recherche(depart,arrivee,catalogue); doit renvoyer liste => valeur
 
 			break;
@@ -273,7 +274,7 @@ static void Menu(ListeTrajets & catalogue) {
 			break;
 		}
 
-		cout << "Choisissez l'option: " << endl;
+		cout << "Veuillez choisir une option: " << endl;
 		cout << "1. Ajouter Trajet Simple " << endl;
 		cout << "2. Ajouter Trajet Compose " << endl;
 		cout << "3. Afficher le catalogue des trajets " << endl;
@@ -284,8 +285,7 @@ static void Menu(ListeTrajets & catalogue) {
 
 }
 
-ListeTrajets rechercheAvancee(char * dep, char * arrivee,
-	ListeTrajets * catalogue) //retour par valeur pour �viter perte de r�sultat
+ListeTrajets rechercheAvancee(ListeTrajets * catalogue, char * dep, char * arrivee) //retour par valeur pour �viter perte de r�sultat
 							  // /!\ constructeur de copie
 	{
 //	/*char * depart;
