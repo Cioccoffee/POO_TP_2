@@ -280,7 +280,7 @@ ListeTrajets rechercheAvancee(char * dep, char * arrivee,
 //	//ajout des trajets qui partent du bon endroit
 //	for(int i = 0; i < catalogue->Taille(); i++)
 //	{
-//		if(strcmp(catalogue->getTrajet(i), dep){
+//		if(strcmp(catalogue->getTrajet(i)->Depart(), dep){
 //			intermede->Ajouter(new Trajet(catalogue->getTrajet(i)));
 //		}
 //

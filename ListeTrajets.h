@@ -63,14 +63,14 @@ public:
 	// Mode d'emploi :
 	//
 	// Contrat :
-	//
+	//retourne le premier élément de la liste
 	//
 
 	CelluleTrajet * Queue() const;
 	// Mode d'emploi :
 	//
 	// Contrat :
-	//
+	//retourne le dernier élément de la liste
 	//
 
 	unsigned int Taille();
