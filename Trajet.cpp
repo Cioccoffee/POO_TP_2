@@ -101,7 +101,7 @@ Trajet::Trajet(const Trajet t)
 
 
 } //----- Fin de Trajet
-}
+
 
 Trajet::~Trajet()
 // Algorithme :
