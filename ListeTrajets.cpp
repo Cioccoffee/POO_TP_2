@@ -24,9 +24,7 @@ using namespace std;
 
 // ListeTrajets::Méthode ( )
 // Algorithme :
-//
-//{
-//} //----- Fin de Méthode
+// parcours de chaque élément de la liste et son affichage
 
 void ListeTrajets:: Afficher () const
 // Algorithme :
@@ -54,12 +52,6 @@ void ListeTrajets:: Ajouter (Trajet *val)
 	if (taille == 0)
 	{
 		tete->valeur = val;
-
-		////////
-		tete->depart = val->Depart();
-		tete->arrivee = val->Arrivee();
-		////////
-
 		tete->suivant = NULL;
 		dernierElement = tete;
 
@@ -67,18 +59,10 @@ void ListeTrajets:: Ajouter (Trajet *val)
 	{
 		CelluleTrajet *nouvelElement = new CelluleTrajet;
 		nouvelElement->valeur = val;
-
-
-		/////////
-		nouvelElement->depart = val->Depart();
-		nouvelElement->arrivee = val->Arrivee();
-
-		///////
-
 		nouvelElement->suivant = NULL;
+
 		dernierElement->suivant = nouvelElement;
 		dernierElement = nouvelElement;
-
 	}
 
 	taille++;
@@ -105,52 +89,63 @@ unsigned int ListeTrajets:: Taille ()
 	return taille;
 } //----- Fin de Méthode
 
-Trajet ListeTrajets::getTrajet(unsigned int i)
+const Trajet * ListeTrajets::getTrajet(unsigned int i)
 {
-	CelluleTrajet * courant = tete;
-	for(unsigned int j = 0; j < i && j < taille; j++)
-	{
-		courant = courant->suivant;
-	}
 
-	return courant->valeur;
-}
+	unsigned int j = 0;
 
-const char * ListeTrajets::DepartTrajet(unsigned int i)
-{
-	CelluleTrajet * courant = tete;
-		for(unsigned int j = 0; j < i && j < taille; j++)
-		{
-			courant = courant->suivant;
+	if(taille ==0 || i>taille) {
+			return NULL;
 		}
+		else {
+			CelluleTrajet *elCourant = tete;
+			while ((elCourant->suivant != NULL) && (j<i)) {
+				//(elCourant->valeur)->Afficher();
+				elCourant = elCourant->suivant;
+				j++;
+			}
 
-
-		return courant->depart;
-}
-
-const char * ListeTrajets::ArriveeTrajet(unsigned int i)
-{
-	CelluleTrajet * courant = tete;
-		for(unsigned int j = 0; j < i && j < taille; j++)
-		{
-			courant = courant->suivant;
+			//Dernier element dont le suivant est null
+			//(elCourant->valeur)->Afficher();
+			return elCourant->valeur;
 		}
-
-
-		return courant->arrivee;
 }
 
-char * ListeTrajets::NomTrajet(unsigned int i)
-{
-	CelluleTrajet * courant = tete;
-		for(unsigned int j = 0; j < i && j < taille; j++)
-		{
-			courant = courant->suivant;
-		}
-
-
-		return courant->nomTrajet;
-}
+//const char * ListeTrajets::DepartTrajet(unsigned int i)
+//{
+//	CelluleTrajet * courant = tete;
+//		for(unsigned int j = 0; j < i && j < taille; j++)
+//		{
+//			courant = courant->suivant;
+//		}
+//
+//
+//		return courant->depart;
+//}
+//
+//const char * ListeTrajets::ArriveeTrajet(unsigned int i)
+//{
+//	CelluleTrajet * courant = tete;
+//		for(unsigned int j = 0; j < i && j < taille; j++)
+//		{
+//			courant = courant->suivant;
+//		}
+//
+//
+//		return courant->arrivee;
+//}
+//
+//char * ListeTrajets::NomTrajet(unsigned int i)
+//{
+//	CelluleTrajet * courant = tete;
+//		for(unsigned int j = 0; j < i && j < taille; j++)
+//		{
+//			courant = courant->suivant;
+//		}
+//
+//
+//		return courant->nomTrajet;
+//}
 
 int ListeTrajets::Retirer(unsigned int i)
 // Algorithme :

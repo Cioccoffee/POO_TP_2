@@ -33,7 +33,9 @@ using namespace std;
 void TrajetCompose::Afficher() const
 // Algorithme :
 {
-	unsigned int i;
+
+	cout<<"afficher TC"<<endl;
+	unsigned int i = 0;
 	CelluleTrajet * actuelle = trajets->Tete();
 	cout << "Trajet ";
 
@@ -42,28 +44,14 @@ void TrajetCompose::Afficher() const
 
 	for (i = 0; i < trajets->Taille(); i++)
 	{
-
 		actuel = actuelle->valeur;
-
-		//verification contrainte de ville : precedent.arrivee = actuel.depart?
-		if(i>0)
-		{
-
-			if (strcmp(precedent->Arrivee(),actuel->Depart()) != 0)
-			{
-				cout<<"non valide "<<endl;
-				break;
-			}
-
-		}
 
 		//Afichage trajet
 		if(i!=0) cout << " - ";
 		cout<< "de " << actuel->Depart() << " a " << actuel->Arrivee() << " en " << actuel->Transport()<<endl;
 
-
 		precedent = actuel;
-		actuelle = actuelle->suivant;
+		if (actuelle->suivant != NULL) actuelle = actuelle->suivant;
 
 	}
 } //----- Fin de M�thode
@@ -123,18 +111,6 @@ TrajetCompose::TrajetCompose()
 } //----- Fin de Trajet
 
 TrajetCompose::TrajetCompose(const TrajetCompose & t)
-// Algorithme :
-{
-#ifdef MAP
-	//cout << "Appel au constructeur de <Trajet>" << endl;
-#endif
-
-trajets = t->trajets;
-
-
-} //----- Fin de Trajet
-
-TrajetCompose::TrajetCompose(const TrajetCompose t)
 // Algorithme :
 {
 #ifdef MAP

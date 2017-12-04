@@ -25,7 +25,6 @@ using namespace std;
 
 //------------------------------------------------------ Fonctions privées
 
-
 static void testTS()
 // Mode d'emploi :
 //
@@ -96,8 +95,8 @@ static void test()
 //	catalogue->Afficher();
 //}
 
-
-static void RechercheSimple(ListeTrajets & catalogue, const char * dep, const char * arr) {
+static void RechercheSimple(ListeTrajets & catalogue, const char * dep,
+		const char * arr) {
 // Algorithme :
 // cherche dans le catalogue les trajets qui ont la ville de départ = param2 et ville d'arrivée = param3
 
@@ -105,13 +104,12 @@ static void RechercheSimple(ListeTrajets & catalogue, const char * dep, const ch
 
 	for (unsigned int i = 0; i < catalogue.Taille(); i++) {
 
-		const char * depart = catalogue.DepartTrajet(i);
-		const char * arrivee = catalogue.ArriveeTrajet(i);
+		const char * depart = catalogue.getTrajet(i)->Depart();
+		const char * arrivee = catalogue.getTrajet(i)->Arrivee();
 
 		if (strcmp(depart, dep) == 0 && strcmp(arrivee, arr) == 0) {
 			trouve = true;
-			cout << "Trajet " << i << endl;
-			catalogue.getTrajet(i).Afficher();
+			catalogue.getTrajet(i)->Afficher();
 		}
 	}
 
@@ -154,7 +152,6 @@ static void testListe()
 	delete lt1;
 	delete lt2;
 
-
 }
 
 static void Menu(ListeTrajets & catalogue) {
@@ -176,9 +173,9 @@ static void Menu(ListeTrajets & catalogue) {
 			char * depart = new char[20];
 			char * arrivee = new char[20];
 			char * transport = new char[20];
-			cout << "Ville de depart ?" << endl;
+			cout << "Ville de d�part ?" << endl;
 			cin >> depart;
-			cout << "Ville d'arivee ?" << endl;
+			cout << "Ville d'ariv�e ?" << endl;
 			cin >> arrivee;
 			cout << "Moyen de transport ?" << endl;
 			cin >> transport;
@@ -230,7 +227,6 @@ static void Menu(ListeTrajets & catalogue) {
 				strcpy(arriveePrecedent, arrivee);
 				lt->Ajouter(new TrajetSimple(depart, arrivee, transport));
 
-
 				i++;
 			}
 			TrajetCompose * tc = new TrajetCompose(lt);
@@ -252,7 +248,7 @@ static void Menu(ListeTrajets & catalogue) {
 			//appel m�thode de recherche
 			char * depart = new char[20];
 			char * arrivee = new char[20];
-			cout << "Quelle est votre ville de depart ?" << endl;
+			cout << "Quelle est votre ville de d�part ?" << endl;
 			cin >> depart;
 			cout << "Quelle est votre destination ?" << endl;
 			cin >> arrivee;
@@ -279,81 +275,81 @@ static void Menu(ListeTrajets & catalogue) {
 
 }
 
-/*ListeTrajets*/ void rechercheAvancee(ListeTrajets * catalogue,char * dep, char * arrivee) //retour par valeur pour eviter perte de resultat
-							  // /!\ constructeur de copie
-	{
-	/*char * depart;
-	strcpy(depart,dep);
-	char * arrivee;
-	strcpy(arrivee,arr);*/
-
-	ListeTrajets * intermede = new ListeTrajets;
-	ListeTrajets * result = new ListeTrajets;
-
-	//ajout des trajets qui partent du bon endroit
-	for(int i = 0; i < catalogue->Taille(); i++)
-	{
-		if(strcmp((catalogue->getTrajet(i)).Depart(), dep)){
-			intermede->Ajouter(new Trajet(catalogue->getTrajet(i)));
-		}
-
-	}
-
-	//recherche des matchs et des resultats valides
-	while(intermede->Taille() > 0)
-	{
-		for(int i = 0; i < intermede->Taille(); i++)
-			{
-
-			//regarder si arrivee matche demande si oui => result
-			if( strcmp(arr, (intermede->getTrajet(i)).Arrivee() ) == 0)
-			{
-				result->Ajouter(intermede->getTrajet(i));
-				intermede->Retirer(i);
-			}
-
-			//sinon regarder si arrivee matche qqch
-			//et creer liste de tout ce qui matche pour ce trajet
-			//=> ajouter a sa place tous ceux qui le contiennent augmenté
-			else
-			{
-				ListeTrajets * correspondent = new ListeTrajets;
-				for(int j = 0; j < catalogue->Taille(); j++)
-				{
-					if( strcmp( (catalogue->getTrajet(j)).Depart() , (intermede->getTrajet(i)).Arrivee() ) == 0)
-					{
-						correspondent->Ajouter(catalogue->getTrajet(j));
-					}
-				}
-
-				if(correspondent->Taille()==0){
-					intermede->Retirer(i);
-				}
-				else
-				{
-					ListeTrajets * aAjouter = new ListeTrajets;
-					aAjouter->Ajouter(intermede->getTrajet(i));
-					for(int j = 0; j < correspondent->Taille(); j++)
-					{
-						aAjouter->Ajouter(correspondent->getTrajet(j));
-						intermede->Ajouter(new TrajetCompose(aAjouter));
-						//aAjouter->Retirer(correspondent->getTrajet(j));
-						aAjouter->Retirer(1);
-
-					}
-					intermede->Retirer(i);
-				}
-			}
-			//sinon poubelle
-
-			}
+ListeTrajets rechercheAvancee(char * dep, char * arrivee,
+		ListeTrajets * catalogue) //retour par valeur pour �viter perte de r�sultat
+								  // /!\ constructeur de copie
+		{
+//	/*char * depart;
+//	strcpy(depart,dep);
+//	char * arrivee;
+//	strcpy(arrivee,arr);*/
+//
+//	ListeTrajets * intermede = new ListeTrajets;
+//	ListeTrajets result = new ListeTrajets;
+//
+//	//ajout des trajets qui partent du bon endroit
+//	for(int i = 0; i < catalogue->Taille(); i++)
+//	{
+//		if(strcmp(catalogue->getTrajet(i)->Depart(), dep){
+//			intermede->Ajouter(new Trajet(catalogue->getTrajet(i)));
+//		}
+//
+//	}
+//
+//	//recherche des matchs et des resultats valides
+//	while(intermede->Taille() > 0)
+//	{
+//		for(int i = 0; i < intermede->Taille(); i++)
+//			{
+//
+//			//regarder si arrivee matche demande si oui => result
+//			if( strcmp(arr, (intermede->getTrajet(i))->Arrivee() ) == 0)
+//			{
+//				result.Ajouter(intermede->getTrajet(i));
+//				intermede->Retirer(i);
+//			}
+//
+//			//sinon regarder si arrivee matche qqch
+//			//et cr�er liste de tout ce qui matche pour ce trajet
+//			//=> ajouter � sa place tous ceux qui le contiennent augment�
+//			else
+//			{
+//				ListeTrajets * correspondent = new ListeTrajets;
+//				for(int j = 0; j < catalogue->Taille(); j++)
+//				{
+//					if( strcmp( (catalogue.getTrajet(j))->Depart() , (intermede->getTrajet(i))->Arrivee() ) == 0)
+//					{
+//						correspondent->Ajouter(catalogue.getTrajet(j));
+//					}
+//				}
+//
+//				if(correspondent->Taille()==0){
+//					intermede->Retirer(i);
+//				}
+//				else
+//				{
+//					ListeTrajets aAjouter = new ListeTrajets;
+//					aAjouter->Ajouter(intermede.getTrajet(i));
+//					for(int j = 0; j < correspondent->Taille(); j++)
+//					{
+//						aAjouter->Ajouter(correspondent->getTrajet(j));
+//						intermede->Ajouter(new TrajetCompose(aAjouter));
+//						//aAjouter->Retirer(correspondent->getTrajet(j));
+//						aAjouter->Retirer(1);
+//
+//					}
+//					intermede->Retirer(i);
+//				}
+//			}
+//			//sinon poubelle
+//
+//			}
 	//2options here :
-	result->Afficher();
+	//result.Afficher();
 	//return result;
-	}
+//	}
 
 }
-
 
 int main()
 // Algorithme :

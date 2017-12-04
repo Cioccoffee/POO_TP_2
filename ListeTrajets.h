@@ -17,16 +17,14 @@
 
 //------------------------------------------------------------------ Types
 
+//structure représentant un élément de la liste
+// valeur : contient le trajet inseré dans la liste
+// suivant : pointeur vers l'élément suivant de la liste, null si c'est le dernier élément
+
 struct CelluleTrajet {
 	Trajet * valeur;
-	char * nomTrajet;
-	const char * depart;
-	const char * arrivee;
 	CelluleTrajet *suivant;
 };
-
-//TYPEDEF IF NECESSARY
-//typedef int Tab[];
 
 //------------------------------------------------------------------------
 // Rôle de la classe <ListeTrajets>
@@ -85,28 +83,13 @@ public:
 	//
 	//
 
-	Trajet getTrajet(unsigned int i);
+	const Trajet * getTrajet(unsigned int i);
 	// Mode d'emploi :
 	// param i : l'indice du trajet auquel on veut accéder
 	// retourne le trajet qui se trouve à l'indice i de la liste
 	// Contrat :
 	//
 	//
-
-	const char * DepartTrajet(unsigned int i);
-	// Mode d'emploi :
-	// param i : l'indice du trajet pour lequel on veut avoir la ville de depart
-	// retourne un pointeur vers la ville de départ du trajet d'indice i
-
-	const char * ArriveeTrajet(unsigned int i);
-	// Mode d'emploi :
-	// param i : l'indice du trajet pour lequel on veut avoir la ville d'arrivée
-	// retourne un pointeur vers la ville d'arrivée du trajet d'indice i
-
-	char * NomTrajet(unsigned int i);
-	// Mode d'emploi :
-	// param i : l'indice du trajet pour lequel on veut avoir le nom
-	// retourne un pointeur vers le nom du trajet d'indice i
 
 	int Retirer(unsigned int i);
 	// Mode d'emploi :
