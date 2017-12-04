@@ -86,13 +86,24 @@ TrajetSimple::TrajetSimple(const TrajetSimple & t)
 	//cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
 
+	villeDepart = t->Depart() ;
+	villeArrivee = t->Arrivee();
+	moyenTransport = t->Transport();
+
+} //----- Fin de TrajetSimple
+
+TrajetSimple::TrajetSimple(const TrajetSimple t)
+// Algorithme :
+{
+#ifdef MAP
+	//cout << "Appel au constructeur de <TrajetSimple>" << endl;
+#endif
+
 	villeDepart = t.villeDepart ;
 	villeArrivee = t.villeArrivee;
 	moyenTransport = t.moyenTransport;
 
-} //----- Fin de TrajetSimple
-
-
+}
 
 TrajetSimple::~TrajetSimple()
 // Algorithme :
