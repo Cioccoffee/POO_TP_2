@@ -99,7 +99,7 @@ Trajet * ListeTrajets::getTrajet(unsigned int i)
 		}
 		else {
 			CelluleTrajet *elCourant = tete;
-			while ((elCourant->suivant != NULL) && (j<i)) {
+			while ((j<i)&&(elCourant->suivant != NULL)) {
 				//(elCourant->valeur)->Afficher();
 				elCourant = elCourant->suivant;
 				j++;
@@ -181,7 +181,8 @@ ListeTrajets::ListeTrajets()
 
 
 	tete = new CelluleTrajet;
-	dernierElement = tete;
+	//tete = NULL;
+	dernierElement = NULL;
 	tete->suivant = dernierElement;
 
 	taille = 0;
