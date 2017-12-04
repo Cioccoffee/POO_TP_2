@@ -253,7 +253,8 @@ static void Menu(ListeTrajets & catalogue) {
 			cout << "Quelle est votre destination ?" << endl;
 			cin >> arrivee;
 
-			RechercheSimple(catalogue, depart, arrivee);
+			//RechercheSimple(catalogue, depart, arrivee);
+			rechercheAvancée(catalogue, depart, arrivee);
 			//recherche(depart,arrivee,catalogue); doit renvoyer liste => valeur
 
 			break;
