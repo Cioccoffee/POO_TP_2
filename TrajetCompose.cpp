@@ -48,9 +48,9 @@ void TrajetCompose::Afficher() const
 
 		//Afichage trajet
 		if(i!=0) cout << " - ";
-		cout<< "de " << actuel->Depart() << " a " << actuel->Arrivee() << " en " << actuel->Transport()<<endl;
+		cout<< "de " << actuel->Depart() << " a " << actuel->Arrivee() << " - " << actuel->Transport()<<endl;
 
-		precedent = actuel;
+		//precedent = actuel;
 		if (actuelle->suivant != NULL) actuelle = actuelle->suivant;
 
 	}
@@ -82,6 +82,12 @@ const char * TrajetCompose::Arrivee() const
 
 } //----- Fin de M�thode
 
+const char * TrajetCompose::Transport() const
+// Algorithme :
+//
+{
+	return "";
+} //----- Fin de M�thode
 
 ListeTrajets * TrajetCompose::Trajets()  const
 // Algorithme :
