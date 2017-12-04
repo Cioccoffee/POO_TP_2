@@ -51,6 +51,12 @@ public:
 	// Contrat :
 	//
 
+	TrajetCompose(const TrajetCompose  t);
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+
 	TrajetCompose(ListeTrajets * lt);
 	// Mode d'emploi :
 	//
