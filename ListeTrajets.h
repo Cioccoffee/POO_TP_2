@@ -83,7 +83,7 @@ public:
 	//
 	//
 
-	const Trajet * getTrajet(unsigned int i);
+	Trajet * getTrajet(unsigned int i);
 	// Mode d'emploi :
 	// param i : l'indice du trajet auquel on veut accéder
 	// retourne le trajet qui se trouve à l'indice i de la liste

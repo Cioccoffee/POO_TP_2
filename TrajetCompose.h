@@ -24,6 +24,7 @@
 // Rôle de la classe <TrajetCompose>
 // classe déscendante de la classe Trajet
 // sert à la construction des trajets composés de plusieurs trajets simples
+//
 //------------------------------------------------------------------------
 
 class TrajetCompose: public Trajet {

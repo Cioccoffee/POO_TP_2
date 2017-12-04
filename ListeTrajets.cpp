@@ -44,12 +44,14 @@ void ListeTrajets::Afficher() const
 } //----- Fin de Méthode
 
 void ListeTrajets::Ajouter(Trajet *val) {
-	if (taille == 0) {
+	if (taille == 0) 
+	{
 		tete->valeur = val;
 		tete->suivant = NULL;
 		dernierElement = tete;
 
-	} else {
+	} else 
+	{
 		CelluleTrajet *nouvelElement = new CelluleTrajet;
 		nouvelElement->valeur = val;
 		nouvelElement->suivant = NULL;
@@ -70,11 +72,13 @@ CelluleTrajet * ListeTrajets::Queue() const {
 	return dernierElement;
 } //----- Fin de Queue
 
-unsigned int ListeTrajets::Taille() {
+unsigned int ListeTrajets::Taille() 
+{
 	return taille;
 } //----- Fin de Taille
 
-const Trajet * ListeTrajets::getTrajet(unsigned int i) {
+Trajet * ListeTrajets::getTrajet(unsigned int i)
+{
 	unsigned int j = 0;
 
 	if (taille == 0 || i > taille) {

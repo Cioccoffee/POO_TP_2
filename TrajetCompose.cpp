@@ -23,11 +23,6 @@ using namespace std;
 //----------------------------------------------------- M�thodes publiques
 //
 
-// Trajet::M�thode ( )
-// Algorithme :
-//
-//{
-//} //----- Fin de M�thode
 
 void TrajetCompose::Afficher() const
 // Algorithme :
@@ -41,18 +36,17 @@ void TrajetCompose::Afficher() const
 	Trajet * actuel = actuelle->valeur;
 	Trajet * precedent = actuel;
 
-	for (i = 0; i < trajets->Taille(); i++) {
+	for (i = 0; i < trajets->Taille(); i++) 
+	{
 		actuel = actuelle->valeur;
 
 		//Afichage trajet
 		if (i != 0)
 			cout << " - ";
-		cout << "de " << actuel->Depart() << " a " << actuel->Arrivee()
-				<< " en " << actuel->Transport() << endl;
+		cout << "de " << actuel->Depart() << " a " << actuel->Arrivee()<< " en " << actuel->Transport() << endl;
 
 		precedent = actuel;
-		if (actuelle->suivant != NULL)
-			actuelle = actuelle->suivant;
+		if (actuelle->suivant != NULL) actuelle = actuelle->suivant;
 
 	}
 } //----- Fin de M�thode
