@@ -90,11 +90,6 @@ static void test()
 {
 }
 
-//static void Catalogue() {
-//	ListeTrajets *catalogue;
-//	catalogue->Afficher();
-//}
-
 static void RechercheSimple(ListeTrajets & catalogue, const char * dep,
 		const char * arr) {
 // Algorithme :
@@ -118,42 +113,6 @@ static void RechercheSimple(ListeTrajets & catalogue, const char * dep,
 
 }
 
-static void testListe()
-// Mode d'emploi :
-//
-// Contrat :
-//
-// Algorithme :
-//
-{
-
-	TrajetSimple *ts1 = new TrajetSimple("A", "B", "MT");
-	Trajet * ts2 = new TrajetSimple("B", "C", "MT2");
-
-	TrajetSimple *ts3 = new TrajetSimple("P", "D", "MT3");
-
-	ListeTrajets * lt2 = new ListeTrajets;
-	lt2->Ajouter(ts1);
-	lt2->Ajouter(ts2);
-	TrajetCompose * tc1 = new TrajetCompose(lt2);
-
-	ListeTrajets * lt1 = new ListeTrajets;
-	lt1->Ajouter(ts3);
-	lt1->Ajouter(tc1);
-
-	//cout << ts2->Depart()<<endl;
-
-	//cout << lt1->DepartTrajet(1)<<endl;
-
-	RechercheSimple(*lt1, "P", "D");
-
-	delete ts1;
-	delete ts2;
-	delete lt1;
-	delete lt2;
-
-}
-
 
 static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * dep, char * arr) //retour par valeur pour �viter perte de r�sultat
 								  // /!\ constructeur de copie
@@ -166,37 +125,42 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 	ListeTrajets * intermede = new ListeTrajets;
 	ListeTrajets * result = new ListeTrajets;
 
-	cout << "in recherche avancee"<<endl;
-	cout << catalogue.Taille() <<endl;
+	//cout << "in recherche avancee"<<endl;
+	//cout << catalogue.Taille() <<endl;
 
 	//ajout des trajets qui partent du bon endroit
 	for(unsigned int i = 0; i < catalogue.Taille(); i++)
 	{
-		if(strcmp((catalogue.getTrajet(i))->Depart(), "ty"/*dep*/)==0){
-			intermede->Ajouter(/*new Trajet(*/catalogue.getTrajet(i)/*)*/);
-			cout<<"dans le if"<< endl;
+		if(strcmp((catalogue.getTrajet(i))->Depart(), dep)==0){
+			intermede->Ajouter(catalogue.getTrajet(i));
+			//cout<<"dans le if"<< endl;
 		}
-		cout << "i =" << i <<endl;
+		//cout << "i =" << i <<endl;
 
 	}
 
-	cout << "selected ok for departure" <<endl;
-	intermede->Afficher();
+	//cout << "selected ok for departure" <<endl;
 
 	//recherche des matchs et des resultats valides
+
+	int taille = intermede->Taille();
+
 	while(intermede->Taille() > 0)
 	{
 		cout <<"in intermede's while"<<endl;
+		//intermede->Afficher();
+
 
 		for(unsigned int i = 0; i < intermede->Taille(); i++)
 			{
 
+			//intermede->Afficher();
 			//regarder si arrivee matche demande si oui => result
 			if( strcmp(arr, (intermede->getTrajet(i))->Arrivee() ) == 0)
 			{
 				result->Ajouter(intermede->getTrajet(i));
 				intermede->Retirer(i);
-				cout<<"good destination withdrawn";
+				cout<<"good destination withdrawn"<<endl;
 			}
 
 			//sinon regarder si arrivee matche qqch
@@ -204,6 +168,7 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 			//=> ajouter � sa place tous ceux qui le contiennent augment�
 			else
 			{
+
 				ListeTrajets * correspondent = new ListeTrajets;
 				for(unsigned int j = 0; j < catalogue.Taille(); j++)
 				{
@@ -223,8 +188,10 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 					for(unsigned int j = 0; j < correspondent->Taille(); j++)
 					{
 						aAjouter->Ajouter(correspondent->getTrajet(j));
-						intermede->Ajouter(new TrajetCompose(aAjouter));
+						TrajetCompose * t = new TrajetCompose(aAjouter);
+						intermede->Ajouter(t);
 						//aAjouter->Retirer(correspondent->getTrajet(j));
+						//aAjouter->Afficher();
 						aAjouter->Retirer(1);
 
 					}
@@ -235,9 +202,53 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 
 			}
 	//2options here :
+	cout<<"---------"<<endl;
 	result->Afficher();
+	cout<<"--------"<<endl;
 	//return result;
 	}
+
+	for (unsigned int i = 0; i<result->Taille(); i++){
+		result->Afficher();
+	}
+
+}
+
+static void testListe()
+// Mode d'emploi :
+//
+// Contrat :
+//
+// Algorithme :
+//
+{
+
+	TrajetSimple *ts1 = new TrajetSimple("ty", "B", "MT");
+	Trajet * ts2 = new TrajetSimple("B", "C", "MT2");
+
+	TrajetSimple *ts3 = new TrajetSimple("ty", "C", "MT3");
+	TrajetSimple *ts4 = new TrajetSimple("C", "K", "MT4");
+
+	ListeTrajets * lt2 = new ListeTrajets;
+	lt2->Ajouter(ts1);
+	lt2->Ajouter(ts2);
+	TrajetCompose * tc1 = new TrajetCompose(lt2);
+
+	ListeTrajets * lt1 = new ListeTrajets;
+	lt1->Ajouter(ts3);
+	lt1->Ajouter(tc1);
+	lt1->Ajouter(ts4);
+
+	//cout << ts2->Depart()<<endl;
+
+	//cout << lt1->DepartTrajet(1)<<endl;
+
+	rechercheAvancee(*lt1, "ty", "K");
+
+//	delete ts1;
+//	delete ts2;
+//	delete lt1;
+//	delete lt2;
 
 }
 
@@ -342,6 +353,7 @@ static void Menu(ListeTrajets & catalogue) {
 
 			//RechercheSimple(catalogue, depart, arrivee);
 			rechercheAvancee(catalogue, depart, arrivee);
+
 			//recherche(depart,arrivee,catalogue); doit renvoyer liste => valeur
 
 			break;
@@ -373,8 +385,8 @@ int main()
 //testListe();
 //testTC();
 
-	Menu(*catalogue);
-//	testListe();
+//	Menu(*catalogue);
+	testListe();
 
 	return 0;
 }
