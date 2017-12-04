@@ -159,6 +159,8 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 			cout << "in for to see if corresponds"<<endl;
 			//intermede->Afficher();
 			//regarder si arrivee matche demande si oui => result
+			cout << "can we get the current trajet ?"<<endl;
+			(intermede->getTrajet(i))->Afficher();
 			if( strcmp(arr, (intermede->getTrajet(i))->Arrivee() ) == 0)
 			{
 				cout<<"in if"<<endl;
