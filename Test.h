@@ -24,7 +24,6 @@
 #include "Trajet.h"
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
-#include "Catalogue.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -77,7 +76,7 @@ static void RechercheSimple(ListeTrajets & catalogue,const char * dep,const char
 // Contrat :
 //
 
-
+static ListeTrajets rechercheAvancee(ListeTrajets * catalogue, char * dep, char * arr);
 int main();
 // Mode d'emploi :
 // création du catalogue et appel des méthodes décrites ci-dessus
