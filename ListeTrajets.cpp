@@ -84,6 +84,18 @@ Trajet * ListeTrajets::getTrajet(unsigned int i)
 	if (taille == 0 || i > taille) {
 		return NULL;
 
+	if(taille ==0 || i>taille) {
+			return NULL;
+		}
+		else {
+			CelluleTrajet *elCourant = tete;
+			while ((j<i)&&(elCourant->suivant != NULL)) {
+				//(elCourant->valeur)->Afficher();
+				elCourant = elCourant->suivant;
+				j++;
+			}
+
+
 	} else {
 		CelluleTrajet *elCourant = tete;
 		while ((elCourant->suivant != NULL) && (j < i)) {
@@ -124,7 +136,8 @@ ListeTrajets::ListeTrajets()
 #endif
 
 	tete = new CelluleTrajet;
-	dernierElement = tete;
+	//tete = NULL;
+	dernierElement = NULL;
 	tete->suivant = dernierElement;
 
 	taille = 0;
