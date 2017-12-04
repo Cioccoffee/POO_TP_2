@@ -166,18 +166,27 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 	ListeTrajets * intermede = new ListeTrajets;
 	ListeTrajets * result = new ListeTrajets;
 
+	cout << "in recherche avancee"<<endl;
+	cout << catalogue.Taille() <<endl;
+
 	//ajout des trajets qui partent du bon endroit
 	for(unsigned int i = 0; i < catalogue.Taille(); i++)
 	{
 		if(strcmp(catalogue.getTrajet(i)->Depart(), dep)){
 			intermede->Ajouter(new Trajet(catalogue.getTrajet(i)));
 		}
+		cout << "i =" << i <<endl;
 
 	}
+
+	cout << "selected ok for departure" <<endl;
+	intermede->Afficher();
 
 	//recherche des matchs et des resultats valides
 	while(intermede->Taille() > 0)
 	{
+		cout <<"in intermede's while"<<endl;
+
 		for(unsigned int i = 0; i < intermede->Taille(); i++)
 			{
 
@@ -186,6 +195,7 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 			{
 				result->Ajouter(intermede->getTrajet(i));
 				intermede->Retirer(i);
+				cout<<"good destination withdrawn";
 			}
 
 			//sinon regarder si arrivee matche qqch
