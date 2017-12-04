@@ -89,7 +89,7 @@ unsigned int ListeTrajets:: Taille ()
 	return taille;
 } //----- Fin de Méthode
 
-const Trajet * ListeTrajets::getTrajet(unsigned int i)
+Trajet * ListeTrajets::getTrajet(unsigned int i)
 {
 
 	unsigned int j = 0;
