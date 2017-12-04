@@ -172,8 +172,9 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 	//ajout des trajets qui partent du bon endroit
 	for(unsigned int i = 0; i < catalogue.Taille(); i++)
 	{
-		if(strcmp(catalogue.getTrajet(i)->Depart(), dep)){
-			intermede->Ajouter(new Trajet(catalogue.getTrajet(i)));
+		if(strcmp((catalogue.getTrajet(i))->Depart(), "ty"/*dep*/)==0){
+			intermede->Ajouter(/*new Trajet(*/catalogue.getTrajet(i)/*)*/);
+			cout<<"dans le if"<< endl;
 		}
 		cout << "i =" << i <<endl;
 
