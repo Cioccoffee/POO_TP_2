@@ -18,26 +18,20 @@
 
 //------------------------------------------------------------------ Types
 
-
 //TYPEDEF IF NECESSARY
 
 //------------------------------------------------------------------------
 // Rôle de la classe <TrajetCompose>
 // classe déscendante de la classe Trajet
+// sert à la construction des trajets composés de plusieurs trajets simples
 //
 //------------------------------------------------------------------------
 
-class TrajetCompose : public Trajet
-{
+class TrajetCompose: public Trajet {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	// type Méthode ( liste des paramètres );
-	// Mode d'emploi :
-	//
-	// Contrat :
-	//
 
 	TrajetCompose();
 	// Mode d'emploi :
@@ -47,38 +41,49 @@ public:
 
 	TrajetCompose(const TrajetCompose & t);
 	// Mode d'emploi :
-	//
+	// constructeur de copie
+	// param : référence d'un objet de type TrajetCompose
 	// Contrat :
 	//
 
 	TrajetCompose(ListeTrajets * lt);
 	// Mode d'emploi :
-	//
+	// constructeur qui copie la liste en parametre dans la liste en attribut
+	// param : pointeur vers un objet de type ListeTrajets contenant des trajets
 	// Contrat :
 	//
 
 	virtual void Afficher() const;
+	// Mode d'emploi :
+	// affichage du trajet composé avec les villes de départ et d'arrivée associées
+	// Contrat :
+	//
+	//
 
 	void Ajouter(const Trajet * t);
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+	//
 
 	const char * Depart() const;
 	// Mode d'emploi :
-	//
+	// méthode qui retourne la ville de départ
 	// Contrat :
 	//
-	//
+	///
 
 	const char * Arrivee() const;
 	// Mode d'emploi :
-	//
+	// méthode qui retourne la ville d'arrivée
 	// Contrat :
 	//
 	//
 
-
 	ListeTrajets * Trajets() const;
 	// Mode d'emploi :
-	//
+	// méthode qui retourne le moyen de transport
 	// Contrat :
 	//
 	//
@@ -89,7 +94,6 @@ public:
 	// Contrat :
 	//
 
-
 //------------------------------------------------------------------ PRIVE
 
 protected:
@@ -97,8 +101,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 
-	ListeTrajets * trajets;
-
+	ListeTrajets * trajets; //liste des trajets simples ou composées
 
 };
 

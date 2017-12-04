@@ -22,17 +22,13 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 //
 
-// ListeTrajets::Méthode ( )
+void ListeTrajets::Afficher() const
 // Algorithme :
 // parcours de chaque élément de la liste et son affichage
-
-void ListeTrajets:: Afficher () const
-// Algorithme :
 {
-	if(taille ==0) {
-		cout << "Liste vide"<<endl;
-	}
-	else {
+	if (taille == 0) {
+		cout << "Liste vide" << endl;
+	} else {
 		CelluleTrajet *elCourant = tete;
 		while (elCourant->suivant != NULL) {
 			(elCourant->valeur)->Afficher();
@@ -46,17 +42,13 @@ void ListeTrajets:: Afficher () const
 
 } //----- Fin de Méthode
 
-void ListeTrajets:: Ajouter (Trajet *val)
-// Algorithme :
-{
-	if (taille == 0)
-	{
+void ListeTrajets::Ajouter(Trajet *val) {
+	if (taille == 0) {
 		tete->valeur = val;
 		tete->suivant = NULL;
 		dernierElement = tete;
 
-	}else
-	{
+	} else {
 		CelluleTrajet *nouvelElement = new CelluleTrajet;
 		nouvelElement->valeur = val;
 		nouvelElement->suivant = NULL;
@@ -67,118 +59,91 @@ void ListeTrajets:: Ajouter (Trajet *val)
 
 	taille++;
 
-} //----- Fin de Méthode
+} //----- Fin de Ajouter
 
-CelluleTrajet * ListeTrajets::Tete() const
-// Algorithme :
-//
-{
+CelluleTrajet * ListeTrajets::Tete() const {
 	return tete;
 } //----- Fin de Tete
 
-CelluleTrajet * ListeTrajets::Queue() const
-// Algorithme :
-//
-{
+CelluleTrajet * ListeTrajets::Queue() const {
 	return dernierElement;
-} //----- Fin de Element
+} //----- Fin de Queue
 
-unsigned int ListeTrajets:: Taille ()
-// Algorithme :
-{
+unsigned int ListeTrajets::Taille() {
 	return taille;
-} //----- Fin de Méthode
+} //----- Fin de Taille
 
-Trajet * ListeTrajets::getTrajet(unsigned int i)
-{
-
+Trajet * ListeTrajets::getTrajet(unsigned int i) {
 	unsigned int j = 0;
 
-	if(taille ==0 || i>taille) {
-			return NULL;
-		}
-		else {
-			CelluleTrajet *elCourant = tete;
-			while ((j<i)&&(elCourant->suivant != NULL)) {
-				//(elCourant->valeur)->Afficher();
-				elCourant = elCourant->suivant;
-				j++;
-			}
-
-			//Dernier element dont le suivant est null
+	if (taille == 0 || i > taille) {
+		return NULL;
+	} else {
+		CelluleTrajet *elCourant = tete;
+		while ((j < i) && (elCourant->suivant != NULL)) {
 			//(elCourant->valeur)->Afficher();
-			return elCourant->valeur;
+			elCourant = elCourant->suivant;
+			j++;
 		}
-}
 
-//const char * ListeTrajets::DepartTrajet(unsigned int i)
-//{
-//	CelluleTrajet * courant = tete;
-//		for(unsigned int j = 0; j < i && j < taille; j++)
-//		{
-//			courant = courant->suivant;
-//		}
-//
-//
-//		return courant->depart;
-//}
-//
-//const char * ListeTrajets::ArriveeTrajet(unsigned int i)
-//{
-//	CelluleTrajet * courant = tete;
-//		for(unsigned int j = 0; j < i && j < taille; j++)
-//		{
-//			courant = courant->suivant;
-//		}
-//
-//
-//		return courant->arrivee;
-//}
-//
-//char * ListeTrajets::NomTrajet(unsigned int i)
-//{
-//	CelluleTrajet * courant = tete;
-//		for(unsigned int j = 0; j < i && j < taille; j++)
-//		{
-//			courant = courant->suivant;
-//		}
-//
-//
-//		return courant->nomTrajet;
-//}
+		//Dernier element dont le suivant est null
+		return elCourant->valeur;
+	}
+}
 
 int ListeTrajets::Retirer(unsigned int i)
 // Algorithme :
-{
-	if(i ==0)
-	{
-		tete = tete->suivant;
-	}
-	else
-	{
-		CelluleTrajet * precedent = new CelluleTrajet;
-		precedent = tete;
-		for(unsigned int j = 0; j < i-1; j++)
 		{
-			precedent = precedent->suivant;
+
+	//condition existence du trajet
+	if (taille == 0 || i > taille)
+		return NULL;
+
+	if (i == 0) {
+		if (tete->suivant != NULL){
+			tete = tete->suivant;
+			taille--;
 		}
-		CelluleTrajet * aRetirer = precedent->suivant;
-		//on remplace aRetirer par son suivant dans la liste
-		precedent->suivant = aRetirer->suivant;
-		if(i == taille) dernierElement = precedent->suivant; //nouvelle queue
+		else
+			tete->valeur = NULL;
+	} else {
+
+		CelluleTrajet * precedent = tete;
+		for (unsigned int j = 0; j < i - 1; j++) {
+			if (precedent->suivant != NULL)
+				precedent = precedent->suivant;
+		}
+
+		CelluleTrajet * aRetirer;
+
+		if (precedent->suivant != NULL) {
+			aRetirer = precedent->suivant;
+
+			//on remplace aRetirer par son suivant dans la liste
+			if (precedent->suivant != NULL)
+			{
+				precedent->suivant = aRetirer->suivant;
+				taille--;
+			}
+
+			else if (i == taille)
+			{
+				dernierElement = precedent->suivant; //nouvelle queue
+				taille--;
+			}
+
+		}
 	}
+
 	return 0;
-} //----- Fin de Méthode
-
-
+} //----- Fin de Retirer
 
 ListeTrajets::ListeTrajets()
 // Algorithme :
-		{
+{
 #ifdef MAP
 	//cout << "Appel au constructeur de <ListeTrajets>" << endl;
 #endif
-
 
 	tete = new CelluleTrajet;
 	//tete = NULL;
@@ -189,10 +154,7 @@ ListeTrajets::ListeTrajets()
 
 } //----- Fin de ListeTrajets
 
-
-
-ListeTrajets::ListeTrajets(const ListeTrajets &uneListe)
-{
+ListeTrajets::ListeTrajets(const ListeTrajets &uneListe) {
 //	ListeTrajets resultat = new ListeTrajets;
 //
 //	if(uneListe.taille > 0) {
@@ -228,7 +190,7 @@ ListeTrajets::~ListeTrajets()
 	CelluleTrajet *elSupprime = tete;
 	CelluleTrajet *elSupprimeSuiv;
 
-	while (elSupprime->suivant != dernierElement)  {
+	while (elSupprime->suivant != dernierElement) {
 		elSupprimeSuiv = elSupprime->suivant;
 		delete elSupprime;
 		CelluleTrajet *elSupprime = elSupprimeSuiv;
@@ -242,5 +204,4 @@ ListeTrajets::~ListeTrajets()
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-
 
