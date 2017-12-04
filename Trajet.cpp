@@ -90,19 +90,6 @@ Trajet::Trajet(Trajet * t)
 
 } //----- Fin de Trajet
 
-Trajet::Trajet(const Trajet t)
-{
-
-
-
-#ifdef MAP
-	//cout << "Appel au constructeur de <Trajet>" << endl;
-#endif
-
-
-} //----- Fin de Trajet
-
-
 Trajet::~Trajet()
 // Algorithme :
 {
