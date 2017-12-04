@@ -22,21 +22,18 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 //
 
-
-void Trajet:: Afficher () const
+void Trajet::Afficher() const
 // Algorithme :
 {
-	cout<<"afficher mere"<<endl;
 } //----- Fin de Méthode
 
 const char * Trajet::Depart() const
- // Algorithme :
- //
- {
-	cout <<"je suis ds mere"<<endl;
+// Algorithme :
+//
+{
 	return villeDepart;
 
-  } //----- Fin de Méthode
+} //----- Fin de Méthode
 
 const char * Trajet::Arrivee() const
 // Algorithme :
@@ -53,24 +50,15 @@ const char * Trajet::Transport() const
 	return moyenTransport;
 } //----- Fin de M�thode
 
-//------------------------------------------------- Surcharge d'opérateurs
-//Xxx & Xxx::operator = ( const Xxx & unXxx )
-// Algorithme :
-//
-//{
-//} //----- Fin de operator =
-
 //-------------------------------------------- Constructeurs - destructeur
 
 Trajet::Trajet()
 // Algorithme :
 {
 
-
 #ifdef MAP
 	//cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
-
 
 //	villeDepart = "dgs";
 //	villeArrivee ="fsseds";
@@ -80,13 +68,11 @@ Trajet::Trajet()
 
 Trajet::Trajet(Trajet * t)
 // Algorithme :
-{
-
+		{
 
 #ifdef MAP
 	//cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
-
 
 } //----- Fin de Trajet
 
@@ -102,5 +88,4 @@ Trajet::~Trajet()
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-
 

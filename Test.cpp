@@ -25,17 +25,6 @@ using namespace std;
 
 //------------------------------------------------------ Fonctions privées
 
-static void testConstructeur()
-// Mode d'emploi :
-//
-// Contrat :
-//
-// Algorithme :
-//
-{
-
-} //----- fin de testConstructeur
-
 static void testTS()
 // Mode d'emploi :
 //
@@ -106,21 +95,21 @@ static void test()
 //	catalogue->Afficher();
 //}
 
-//A FINIR
 static void RechercheSimple(ListeTrajets & catalogue, const char * dep,
 		const char * arr) {
+// Algorithme :
+// cherche dans le catalogue les trajets qui ont la ville de départ = param2 et ville d'arrivée = param3
 
 	bool trouve = false;
 
 	for (unsigned int i = 0; i < catalogue.Taille(); i++) {
 
-		const char * depart = catalogue.DepartTrajet(i);
-		const char * arrivee = catalogue.ArriveeTrajet(i);
+		const char * depart = catalogue.getTrajet(i)->Depart();
+		const char * arrivee = catalogue.getTrajet(i)->Arrivee();
 
 		if (strcmp(depart, dep) == 0 && strcmp(arrivee, arr) == 0) {
 			trouve = true;
-			cout << "Trajet " << i << endl;
-			catalogue.getTrajet(i).Afficher();
+			catalogue.getTrajet(i)->Afficher();
 		}
 	}
 
@@ -158,17 +147,20 @@ static void testListe()
 
 	RechercheSimple(*lt1, "P", "D");
 
+	delete ts1;
+	delete ts2;
+	delete lt1;
+	delete lt2;
+
 }
 
 static void Menu(ListeTrajets & catalogue) {
-	cout << "Veuillez choisir une option: " << endl;
+	cout << "Veuillez choisir l'option: " << endl;
 	cout << "1. Ajouter Trajet Simple " << endl;
 	cout << "2. Ajouter Trajet Compose " << endl;
 	cout << "3. Afficher le catalogue des trajets " << endl;
 	cout << "4. Rechercher un parcours " << endl;
 	cout << "5. Sortir" << endl;
-
-//Catalogue *c = new Catalogue;
 
 	int action;
 	cin >> action;
@@ -181,7 +173,6 @@ static void Menu(ListeTrajets & catalogue) {
 			char * depart = new char[20];
 			char * arrivee = new char[20];
 			char * transport = new char[20];
-			;
 			cout << "Ville de d�part ?" << endl;
 			cin >> depart;
 			cout << "Ville d'ariv�e ?" << endl;
@@ -190,6 +181,7 @@ static void Menu(ListeTrajets & catalogue) {
 			cin >> transport;
 
 			catalogue.Ajouter(new TrajetSimple(depart, arrivee, transport));
+
 			break;
 		}
 
@@ -235,7 +227,6 @@ static void Menu(ListeTrajets & catalogue) {
 				strcpy(arriveePrecedent, arrivee);
 				lt->Ajouter(new TrajetSimple(depart, arrivee, transport));
 
-
 				i++;
 			}
 			TrajetCompose * tc = new TrajetCompose(lt);
@@ -263,7 +254,6 @@ static void Menu(ListeTrajets & catalogue) {
 			cin >> arrivee;
 
 			RechercheSimple(catalogue, depart, arrivee);
-			//rechercheAvancee(catalogue, depart, arrivee);
 			//recherche(depart,arrivee,catalogue); doit renvoyer liste => valeur
 
 			break;
@@ -274,7 +264,7 @@ static void Menu(ListeTrajets & catalogue) {
 			break;
 		}
 
-		cout << "Veuillez choisir une option: " << endl;
+		cout << "Choisissez l'option: " << endl;
 		cout << "1. Ajouter Trajet Simple " << endl;
 		cout << "2. Ajouter Trajet Compose " << endl;
 		cout << "3. Afficher le catalogue des trajets " << endl;
@@ -285,9 +275,10 @@ static void Menu(ListeTrajets & catalogue) {
 
 }
 
-ListeTrajets rechercheAvancee(ListeTrajets * catalogue, char * dep, char * arrivee) //retour par valeur pour �viter perte de r�sultat
-							  // /!\ constructeur de copie
-	{
+ListeTrajets rechercheAvancee(char * dep, char * arrivee,
+		ListeTrajets * catalogue) //retour par valeur pour �viter perte de r�sultat
+								  // /!\ constructeur de copie
+		{
 //	/*char * depart;
 //	strcpy(depart,dep);
 //	char * arrivee;
@@ -359,7 +350,6 @@ ListeTrajets rechercheAvancee(ListeTrajets * catalogue, char * dep, char * arriv
 //	}
 
 }
-
 
 int main()
 // Algorithme :

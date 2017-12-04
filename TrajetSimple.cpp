@@ -22,12 +22,6 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 //
 
-// TrajetSimple::Méthode ( )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
 void TrajetSimple:: Afficher () const
 // Algorithme :
 {
@@ -51,15 +45,8 @@ const char * TrajetSimple::Transport() const
 //
 {
 	return moyenTransport;
-} //----- Fin de M�thode
+} //----- Fin de Méthode
 
-
-//------------------------------------------------- Surcharge d'opérateurs
-//Xxx & Xxx::operator = ( const Xxx & unXxx )
-// Algorithme :
-//
-//{
-//} //----- Fin de operator =
 
 //-------------------------------------------- Constructeurs - destructeur
 
@@ -73,14 +60,10 @@ TrajetSimple::TrajetSimple(const char * depart, const char * arrivee, const char
 	villeDepart = depart;
 	villeArrivee = arrivee;
 	moyenTransport = transport;
-//	departMere = depart;
-//	arriveeMere = arrivee;
-//	transportMere = transport;
 
 } //----- Fin de TrajetSimple
 
 TrajetSimple::TrajetSimple(const TrajetSimple & t)
-// Algorithme :
 {
 #ifdef MAP
 	//cout << "Appel au constructeur de <TrajetSimple>" << endl;
@@ -91,7 +74,6 @@ TrajetSimple::TrajetSimple(const TrajetSimple & t)
 	moyenTransport = t.moyenTransport;
 
 } //----- Fin de TrajetSimple
-
 
 
 TrajetSimple::~TrajetSimple()

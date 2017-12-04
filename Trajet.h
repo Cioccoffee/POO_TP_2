@@ -10,7 +10,6 @@
 #if ! defined ( Trajet_H )
 #define Trajet_H
 
-
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes
@@ -22,8 +21,8 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Trajet>
-//
-//
+// classe mére de TrajetSimple et TrajetCompose
+// définit le comportement général des ses classes filles
 //------------------------------------------------------------------------
 
 class Trajet {
@@ -31,11 +30,6 @@ class Trajet {
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	// type Méthode ( liste des paramètres );
-	// Mode d'emploi :
-	//
-	// Contrat :
-	//
 
 	Trajet();
 	// Mode d'emploi :
@@ -58,21 +52,21 @@ public:
 
 	virtual const char * Depart() const;
 	// Mode d'emploi :
-	//
+	// méthode qui retourne la ville de départ
 	// Contrat :
 	//
 	//
 
 	virtual const char * Arrivee() const;
 	// Mode d'emploi :
-	//
+	// méthode qui retourne la ville d'arrivée
 	// Contrat :
 	//
 	//
 
 	virtual const char * Transport() const;
 	// Mode d'emploi :
-	//
+	// méthode qui retourne le moyen de transport
 	// Contrat :
 	//
 	//
@@ -92,7 +86,6 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-
 
 };
 
