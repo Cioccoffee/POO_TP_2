@@ -192,8 +192,8 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 
 
 	cout << "---------" << endl;
-			result->Afficher();
-			cout << "--------" << endl;
+	result->Afficher();
+	cout << "--------" << endl;
 }
 
 
@@ -397,8 +397,6 @@ static void Menu(ListeTrajets & catalogue) {
 			//RechercheSimple(catalogue, depart, arrivee);
 			rechercheAvancee(catalogue, depart, arrivee);
 
-			//recherche(depart,arrivee,catalogue); doit renvoyer liste => valeur
-
 			break;
 		}
 
@@ -457,8 +455,8 @@ int main()
 
 	ListeTrajets * catalogue = new ListeTrajets;
 
-//testListe();
-//testTC();
+	//testListe();
+	//testTC();
 
 
 	Menu(*catalogue);
