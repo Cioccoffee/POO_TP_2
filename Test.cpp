@@ -152,20 +152,24 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 		cout <<"in intermede's while"<<endl;
 		//intermede->Afficher();
 
-
+		bool retrait = false;
 		for(unsigned int i = 0; i < intermede->Taille(); i++)
 			{
 
-			cout << "in for to see if corresponds"<<endl;
-			//intermede->Afficher();
+			if(retrait) i = 0;
+			retrait = false;
+			cout << "in for to see if corresponds --- i = "<<i<<endl;
+			cout << "size intermede = "<<intermede->Taille()<<endl;
+			intermede->Afficher();
 			//regarder si arrivee matche demande si oui => result
 			cout << "can we get the current trajet ?"<<endl;
-			(intermede->getTrajet(i))->Afficher();
+			(intermede->getTrajet(i))/*->Afficher()*/;
 			if( strcmp(arr, (intermede->getTrajet(i))->Arrivee() ) == 0)
 			{
 				cout<<"in if"<<endl;
 				result->Ajouter(intermede->getTrajet(i));
 				intermede->Retirer(i);
+				retrait = true;
 				cout<<"good destination withdrawn"<<endl;
 			}
 
@@ -189,7 +193,7 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 
 				if(correspondent->Taille()==0){
 					intermede->Retirer(i);
-					i =0; //on repart du début puisqu'on a changé le nombre d'éléments
+					retrait = true; //on repart du début puisqu'on a changé le nombre d'éléments
 				}
 				else
 				{
@@ -206,15 +210,16 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 						aAjouter->Afficher();
 						cout << "trajet trouvé"<<endl;
 						t->Afficher();
-						//aAjouter->Retirer(correspondent->getTrajet(j));
-						//aAjouter->Afficher();
+						cout << "intermede avec l'ajout"<<endl;
+						intermede->Afficher();
 
 						aAjouter->Retirer(1);
 
 					}
 					intermede->Retirer(i);
-					i =0; //on repart du début puisqu'on a changé le nombre d'éléments
+					retrait = true; //on repart du début puisqu'on a changé le nombre d'éléments
 				}
+				//delete correspondent;
 			}
 			//sinon poubelle
 
@@ -227,9 +232,11 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 	}
 
 	for (unsigned int i = 0; i<result->Taille(); i++){
-		result->Afficher();
+		(result->getTrajet(i))->Afficher();
 	}
 
+	//delete intermede;
+	//delete result;
 }
 
 static void testListe()
@@ -265,10 +272,13 @@ static void testListe()
 
 	rechercheAvancee(*lt1, "ty", "K");
 
-//	delete ts1;
-//	delete ts2;
-//	delete lt1;
-//	delete lt2;
+	delete ts1;
+	delete ts2;
+	delete ts3;
+	delete ts4;
+	delete tc1;
+	//delete lt1;
+	//delete lt2;
 
 }
 
