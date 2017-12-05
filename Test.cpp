@@ -493,8 +493,8 @@ int main()
 //testTC();
 
 
-	Menu(*catalogue);
-	//testListe();
+	//Menu(*catalogue);
+	testListe();
 	//delete catalogue;
 	//testMemoire(*catalogue);
 	delete catalogue;
