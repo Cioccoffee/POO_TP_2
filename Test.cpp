@@ -113,9 +113,9 @@ static void RechercheSimple(ListeTrajets & catalogue, const char * dep,
 
 }
 
-
-static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * dep, char * arr) //retour par valeur pour �viter perte de r�sultat
-								  // /!\ constructeur de copie
+static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
+		char * dep, char * arr) //retour par valeur pour �viter perte de r�sultat
+		// /!\ constructeur de copie
 		{
 //	/*char * depart;
 //	strcpy(depart,dep);
@@ -129,9 +129,8 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 	//cout << catalogue.Taille() <<endl;
 
 	//ajout des trajets qui partent du bon endroit
-	for(unsigned int i = 0; i < catalogue.Taille(); i++)
-	{
-		if(strcmp((catalogue.getTrajet(i))->Depart(), dep)==0){
+	for (unsigned int i = 0; i < catalogue.Taille(); i++) {
+		if (strcmp((catalogue.getTrajet(i))->Depart(), dep) == 0) {
 			intermede->Ajouter(catalogue.getTrajet(i));
 			//cout<<"dans le if"<< endl;
 		}
@@ -141,104 +140,112 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 
 	//cout << "selected ok for departure" <<endl;
 
-	cout << "selectionnés car depart ok = "<<endl;
+	//cout << "selectionnés car depart ok = " << endl;
 	intermede->Afficher();
 	//recherche des matchs et des resultats valides
 
-	int taille = intermede->Taille();
+	//int taille = intermede->Taille();
 
-	while(intermede->Taille() > 0)
-	{
-		cout <<"in intermede's while"<<endl;
+	while (intermede->Taille() > 0) {
+		/*cout << "in intermede's while" << endl;
+		cout <<"+++++++++++++++++++++++++++++++++++++++"<<endl;
+		cout <<"+++++++++++++++++++++++++++++++++++++++" <<endl;
+		cout <<"WARNING WARNING WHILE WARNING WARNING" <<endl;
+		cout <<"+++++++++++++++++++++++++++++++++++++++" <<endl;
+		cout <<"+++++++++++++++++++++++++++++++++++++++"<<endl;*/
 		//intermede->Afficher();
 
 		bool retrait = false;
-		for(unsigned int i = 0; i < intermede->Taille(); i++)
-			{
+		for (unsigned int i = 0; i < intermede->Taille(); i++) {
 
-			if(retrait) i = 0;
+			if (retrait)
+				i = 0;
 			retrait = false;
-			cout << "in for to see if corresponds --- i = "<<i<<endl;
-			cout << "size intermede = "<<intermede->Taille()<<endl;
+			//cout << "in for to see if corresponds --- i = " << i << endl;
+			//cout << "size intermede = " << intermede->Taille() << endl;
 			intermede->Afficher();
 			//regarder si arrivee matche demande si oui => result
-			cout << "can we get the current trajet ?"<<endl;
+			//cout << "can we get the current trajet ?" << endl;
+
 			(intermede->getTrajet(i))/*->Afficher()*/;
-			if( strcmp(arr, (intermede->getTrajet(i))->Arrivee() ) == 0)
-			{
-				cout<<"in if"<<endl;
+			if (strcmp(arr, (intermede->getTrajet(i))->Arrivee()) == 0) {
+				//cout << "in if" << endl;
 				result->Ajouter(intermede->getTrajet(i));
 				intermede->Retirer(i);
 				retrait = true;
-				cout<<"good destination withdrawn"<<endl;
+				//cout << "good destination withdrawn" << endl;
 			}
 
 			//sinon regarder si arrivee matche qqch
 			//et cr�er liste de tout ce qui matche pour ce trajet
 			//=> ajouter � sa place tous ceux qui le contiennent augment�
-			else
-			{
-				cout << "in else" <<endl;
+			else {
+				//cout << "in else" << endl;
 
 				ListeTrajets * correspondent = new ListeTrajets;
-				for(unsigned int j = 0; j < catalogue.Taille(); j++)
-				{
-					if( strcmp( (catalogue.getTrajet(j))->Depart() , (intermede->getTrajet(i))->Arrivee() ) == 0)
-					{
+				for (unsigned int j = 0; j < catalogue.Taille(); j++) {
+					if (strcmp((catalogue.getTrajet(j))->Depart(),
+							(intermede->getTrajet(i))->Arrivee()) == 0) {
 						correspondent->Ajouter(catalogue.getTrajet(j));
 					}
 				}
 
-				cout << "taille de correspondent = "<<correspondent->Taille()<<endl;
+				//cout << "taille de correspondent = " << correspondent->Taille()<< endl;
 
-				if(correspondent->Taille()==0){
+				if (correspondent->Taille() == 0) {
 					intermede->Retirer(i);
 					retrait = true; //on repart du début puisqu'on a changé le nombre d'éléments
-				}
-				else
-				{
-					cout <<"+++++ correspondent = ++++"<<endl;
+				} else {
+					//cout << "+++++ correspondent = ++++" << endl;
 					correspondent->Afficher();
-					ListeTrajets * aAjouter = new ListeTrajets;
-					aAjouter->Ajouter(intermede->getTrajet(i));
-					for(unsigned int j = 0; j < correspondent->Taille(); j++)
-					{
+
+					for (unsigned int j = 0; j < correspondent->Taille(); j++) {
+
+						ListeTrajets * aAjouter = new ListeTrajets;
+						aAjouter->Ajouter(intermede->getTrajet(i));
 						aAjouter->Ajouter(correspondent->getTrajet(j));
 						TrajetCompose * t = new TrajetCompose(aAjouter);
 						intermede->Ajouter(t);
-						cout<<"+++ aAjouter +++" <<endl;
+						/*
+						cout << "+++ aAjouter +++" << endl;
 						aAjouter->Afficher();
-						cout << "trajet trouvé"<<endl;
+						cout << "trajet trouvé" << endl;
 						t->Afficher();
-						cout << "intermede avec l'ajout"<<endl;
+						cout << "intermede avec l'ajout" << endl;
 						intermede->Afficher();
-
-						aAjouter->Retirer(1);
+						*/
+						//aAjouter->Retirer(1);
 
 					}
+					//cout << "trajet a retirer"<<endl;
+					(intermede->getTrajet(i))->Afficher();
 					intermede->Retirer(i);
 					retrait = true; //on repart du début puisqu'on a changé le nombre d'éléments
+					//cout << "etat d'intermede" << endl;
+					intermede->Afficher();
 				}
 				//delete correspondent;
 			}
 			//sinon poubelle
 
-			}
+		}
 
-	cout<<"---------"<<endl;
-	result->Afficher();
-	cout<<"--------"<<endl;
-	//return result;
+
+		//return result;
 	}
 
-	for (unsigned int i = 0; i<result->Taille(); i++){
+	/*for (unsigned int i = 0; i < result->Taille(); i++) {
 		(result->getTrajet(i))->Afficher();
-		cout << "arrivée de"<<i<<" = "<< (result->getTrajet(i))->Arrivee()<<endl;
-		cout << "trajets de"<<i<<" = "<< endl;
+		cout << "arrivée de" << i << " = " << (result->getTrajet(i))->Arrivee()
+				<< endl;
+		cout << "trajets de" << i << " = " << endl;
 		//((result->getTrajet(i))->Trajets())->Afficher();
 
-	}
+	}*/
 
+	cout << "---------" << endl;
+			result->Afficher();
+			cout << "--------" << endl;
 	//delete intermede;
 	//delete result;
 }
@@ -257,6 +264,8 @@ static void testListe()
 
 	TrajetSimple *ts3 = new TrajetSimple("ty", "C", "MT3");
 	TrajetSimple *ts4 = new TrajetSimple("C", "K", "MT4");
+	TrajetSimple *ts5 = new TrajetSimple("C", "E", "MT5");
+	TrajetSimple *ts6 = new TrajetSimple("E", "K", "MT6");
 
 	ListeTrajets * lt2 = new ListeTrajets;
 	lt2->Ajouter(ts1);
@@ -267,6 +276,8 @@ static void testListe()
 	lt1->Ajouter(ts3);
 	lt1->Ajouter(tc1);
 	lt1->Ajouter(ts4);
+	lt1->Ajouter(ts5);
+	lt1->Ajouter(ts6);
 
 	//cout << ts2->Depart()<<endl;
 
@@ -284,6 +295,52 @@ static void testListe()
 	//delete lt1;
 	//delete lt2;
 
+}
+
+static void testRetirer() {
+
+	TrajetSimple *ts1 = new TrajetSimple("A", "B", "MT");
+	Trajet * ts2 = new TrajetSimple("B", "C", "MT2");
+
+	ListeTrajets * lt2 = new ListeTrajets;
+	lt2->Ajouter(ts1);
+	lt2->Ajouter(ts2);
+	TrajetCompose * tc1 = new TrajetCompose(lt2);
+
+	Trajet *ts3 = new TrajetSimple("A", "C", "MT3");
+	TrajetSimple *ts4 = new TrajetSimple("C", "K", "MT4");
+
+	ListeTrajets * lt1 = new ListeTrajets;
+	lt1->Ajouter(ts3);
+	lt1->Ajouter(tc1);
+	lt1->Ajouter(ts4);
+
+	/*ListeTrajets * lt3 = new ListeTrajets;
+	lt3->Ajouter(ts3);
+	cout << "++++lt3 au début"<<endl;
+	lt3->Afficher();
+	cout<<"++++retirer à i =0"<<endl;
+	lt3->Retirer(0);
+	lt3->Afficher();
+	cout << "--taille--"<<lt3->Taille()<<endl;*/
+	//=> marche q liste de taille 1
+
+	//=> suppression en 0 ok, no matter the size is
+	cout << "++++lt1 au début"<<endl;
+	lt1->Afficher();
+	cout<<"++++retirer à i =0"<<endl;
+	lt1->Retirer(0);
+	lt1->Afficher();
+	cout << "--taille--"<<lt1->Taille()<<endl;
+	cout<<"++++retirer à i =1"<<endl;
+	lt1->Retirer(1);
+	lt1->Afficher();
+	cout << "--taille--"<<lt1->Taille()<<endl;
+	delete ts1;
+	delete ts2;
+	delete ts3;
+	delete ts4;
+	delete tc1;
 }
 
 static void Menu(ListeTrajets & catalogue) {
@@ -409,7 +466,6 @@ static void Menu(ListeTrajets & catalogue) {
 
 }
 
-
 int main()
 // Algorithme :
 {
@@ -421,6 +477,7 @@ int main()
 
 //	Menu(*catalogue);
 	testListe();
+	//testRetirer();
 
 	return 0;
 }

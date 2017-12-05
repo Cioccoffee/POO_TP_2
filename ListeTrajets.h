@@ -91,7 +91,7 @@ public:
 	//
 	//
 
-	int Retirer(unsigned int i);
+	void Retirer(unsigned int i);
 	// Mode d'emploi :
 	// param i : l'indice du trajet pour lequel on veut avoir le nom
 	// rétire le trajet se trouvant à la position i dans la liste
