@@ -12,6 +12,7 @@
 using namespace std;
 #include <iostream>
 
+
 //------------------------------------------------------ Include personnel
 #include "ListeTrajets.h"
 
@@ -45,8 +46,8 @@ void ListeTrajets::Afficher() const
 void ListeTrajets::Ajouter(Trajet *val) {
 	if (taille == 0) {
 		tete->valeur = val;
-		tete->suivant = NULL;
 		dernierElement = tete;
+		tete->suivant = dernierElement;
 
 	} else {
 		CelluleTrajet *nouvelElement = new CelluleTrajet;
@@ -147,7 +148,8 @@ ListeTrajets::ListeTrajets()
 
 	tete = new CelluleTrajet;
 	//tete = NULL;
-	dernierElement = NULL;
+	//dernierElement = NULL;
+	//dernierElement = new CelluleTrajet;
 	tete->suivant = dernierElement;
 
 	taille = 0;
@@ -188,18 +190,30 @@ ListeTrajets::~ListeTrajets()
 #endif
 
 	CelluleTrajet *elSupprime = tete;
-	CelluleTrajet *elSupprimeSuiv;
+	CelluleTrajet *elSupprimeSuiv=elSupprime;
+
+	if(tete->suivant== dernierElement) cout<<"defdsfs"<<endl;
+
+	//pb dans Ajouter --> revoir
+
+	tete->valeur->Afficher();
 
 	while (elSupprime->suivant != dernierElement) {
 		elSupprimeSuiv = elSupprime->suivant;
+		delete elSupprime->valeur;
 		delete elSupprime;
-		CelluleTrajet *elSupprime = elSupprimeSuiv;
+		elSupprime = elSupprimeSuiv;
+		cout<<"dest"<<endl;
+
 	}
 
+	/*delete elSupprimeSuiv;
+	delete elSupprime;*/
+
+	delete tete->valeur;
 	delete tete;
-	delete elSupprime;
-	delete elSupprimeSuiv;
-	delete dernierElement;
+	//delete dernierElement;
+
 
 } //----- Fin de ~ListeTrajets
 

@@ -113,9 +113,9 @@ static void RechercheSimple(ListeTrajets & catalogue, const char * dep,
 
 }
 
-
-static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * dep, char * arr) //retour par valeur pour �viter perte de r�sultat
-								  // /!\ constructeur de copie
+static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
+		char * dep, char * arr) //retour par valeur pour �viter perte de r�sultat
+		// /!\ constructeur de copie
 		{
 //	/*char * depart;
 //	strcpy(depart,dep);
@@ -129,9 +129,8 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 	//cout << catalogue.Taille() <<endl;
 
 	//ajout des trajets qui partent du bon endroit
-	for(unsigned int i = 0; i < catalogue.Taille(); i++)
-	{
-		if(strcmp((catalogue.getTrajet(i))->Depart(), dep)==0){
+	for (unsigned int i = 0; i < catalogue.Taille(); i++) {
+		if (strcmp((catalogue.getTrajet(i))->Depart(), dep) == 0) {
 			intermede->Ajouter(catalogue.getTrajet(i));
 			//cout<<"dans le if"<< endl;
 		}
@@ -141,76 +140,70 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 
 	//cout << "selected ok for departure" <<endl;
 
-	cout << "selectionnés car depart ok = "<<endl;
+	cout << "selectionnés car depart ok = " << endl;
 	intermede->Afficher();
 	//recherche des matchs et des resultats valides
 
 	int taille = intermede->Taille();
 
-	while(intermede->Taille() > 0)
-	{
-		cout <<"in intermede's while"<<endl;
+	while (intermede->Taille() > 0) {
+		cout << "in intermede's while" << endl;
 		//intermede->Afficher();
 
 		bool retrait = false;
-		for(unsigned int i = 0; i < intermede->Taille(); i++)
-			{
+		for (unsigned int i = 0; i < intermede->Taille(); i++) {
 
-			if(retrait) i = 0;
+			if (retrait)
+				i = 0;
 			retrait = false;
-			cout << "in for to see if corresponds --- i = "<<i<<endl;
-			cout << "size intermede = "<<intermede->Taille()<<endl;
+			cout << "in for to see if corresponds --- i = " << i << endl;
+			cout << "size intermede = " << intermede->Taille() << endl;
 			intermede->Afficher();
 			//regarder si arrivee matche demande si oui => result
-			cout << "can we get the current trajet ?"<<endl;
+			cout << "can we get the current trajet ?" << endl;
 			(intermede->getTrajet(i))/*->Afficher()*/;
-			if( strcmp(arr, (intermede->getTrajet(i))->Arrivee() ) == 0)
-			{
-				cout<<"in if"<<endl;
+			if (strcmp(arr, (intermede->getTrajet(i))->Arrivee()) == 0) {
+				cout << "in if" << endl;
 				result->Ajouter(intermede->getTrajet(i));
 				intermede->Retirer(i);
 				retrait = true;
-				cout<<"good destination withdrawn"<<endl;
+				cout << "good destination withdrawn" << endl;
 			}
 
 			//sinon regarder si arrivee matche qqch
 			//et cr�er liste de tout ce qui matche pour ce trajet
 			//=> ajouter � sa place tous ceux qui le contiennent augment�
-			else
-			{
-				cout << "in else" <<endl;
+			else {
+				cout << "in else" << endl;
 
 				ListeTrajets * correspondent = new ListeTrajets;
-				for(unsigned int j = 0; j < catalogue.Taille(); j++)
-				{
-					if( strcmp( (catalogue.getTrajet(j))->Depart() , (intermede->getTrajet(i))->Arrivee() ) == 0)
-					{
+				for (unsigned int j = 0; j < catalogue.Taille(); j++) {
+					if (strcmp((catalogue.getTrajet(j))->Depart(),
+							(intermede->getTrajet(i))->Arrivee()) == 0) {
 						correspondent->Ajouter(catalogue.getTrajet(j));
 					}
 				}
 
-				cout << "taille de correspondent = "<<correspondent->Taille()<<endl;
+				cout << "taille de correspondent = " << correspondent->Taille()
+						<< endl;
 
-				if(correspondent->Taille()==0){
+				if (correspondent->Taille() == 0) {
 					intermede->Retirer(i);
 					retrait = true; //on repart du début puisqu'on a changé le nombre d'éléments
-				}
-				else
-				{
-					cout <<"+++++ correspondent = ++++"<<endl;
+				} else {
+					cout << "+++++ correspondent = ++++" << endl;
 					correspondent->Afficher();
 					ListeTrajets * aAjouter = new ListeTrajets;
 					aAjouter->Ajouter(intermede->getTrajet(i));
-					for(unsigned int j = 0; j < correspondent->Taille(); j++)
-					{
+					for (unsigned int j = 0; j < correspondent->Taille(); j++) {
 						aAjouter->Ajouter(correspondent->getTrajet(j));
 						TrajetCompose * t = new TrajetCompose(aAjouter);
 						intermede->Ajouter(t);
-						cout<<"+++ aAjouter +++" <<endl;
+						cout << "+++ aAjouter +++" << endl;
 						aAjouter->Afficher();
-						cout << "trajet trouvé"<<endl;
+						cout << "trajet trouvé" << endl;
 						t->Afficher();
-						cout << "intermede avec l'ajout"<<endl;
+						cout << "intermede avec l'ajout" << endl;
 						intermede->Afficher();
 
 						aAjouter->Retirer(1);
@@ -223,18 +216,19 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 			}
 			//sinon poubelle
 
-			}
+		}
 
-	cout<<"---------"<<endl;
-	result->Afficher();
-	cout<<"--------"<<endl;
-	//return result;
+		cout << "---------" << endl;
+		result->Afficher();
+		cout << "--------" << endl;
+		//return result;
 	}
 
-	for (unsigned int i = 0; i<result->Taille(); i++){
+	for (unsigned int i = 0; i < result->Taille(); i++) {
 		(result->getTrajet(i))->Afficher();
-		cout << "arrivée de"<<i<<" = "<< (result->getTrajet(i))->Arrivee()<<endl;
-		cout << "trajets de"<<i<<" = "<< endl;
+		cout << "arrivée de" << i << " = " << (result->getTrajet(i))->Arrivee()
+				<< endl;
+		cout << "trajets de" << i << " = " << endl;
 		//((result->getTrajet(i))->Trajets())->Afficher();
 
 	}
@@ -302,9 +296,14 @@ static void Menu(ListeTrajets & catalogue) {
 		switch (action) {
 		//TS
 		case 1: {
-			char * depart = new char[20];
-			char * arrivee = new char[20];
-			char * transport = new char[20];
+			/*	char * depart = new char[20];
+			 char * arrivee = new char[20];
+			 char * transport = new char[20];*/
+
+			char depart[1024];
+			char arrivee[1024];
+			char transport[1024];
+
 			cout << "Ville de d�part ?" << endl;
 			cin >> depart;
 			cout << "Ville d'ariv�e ?" << endl;
@@ -329,18 +328,23 @@ static void Menu(ListeTrajets & catalogue) {
 			int n;
 			cin >> n;
 
-			char * arriveePrecedent = new char[20];
+			char arriveePrecedent[1024]; //= new char[20];
+			//arriveePrecedent = "no dest";
 			strcpy(arriveePrecedent, "no dest");
 
 			while (i < n) {
 				//while(arrivee d'avant != depart de maintenant) => sinon on peut le remplir pour lui
 				cout << "Saisie du trajet num " << i + 1 << endl;
-				char * depart = new char[20];
-				char * arrivee = new char[20];
-				char * transport = new char[20];
+				/*char * depart = new char[20];*/
+				//char * arrivee = new char[20];
+				//char * transport = new char[20];
+				char depart[1024];
+				char arrivee[1024];
+				char transport[1024];
 
 				cout << "Ville de depart ?" << endl;
 				cin >> depart;
+
 				cout << "Ville d'arivee ?" << endl;
 				cin >> arrivee;
 
@@ -363,8 +367,6 @@ static void Menu(ListeTrajets & catalogue) {
 			}
 			TrajetCompose * tc = new TrajetCompose(lt);
 
-			cout << "Ville arr : " << tc->Arrivee() << endl;
-
 			catalogue.Ajouter(tc);
 			break;
 		}
@@ -378,8 +380,8 @@ static void Menu(ListeTrajets & catalogue) {
 			//search
 		case 4: {
 			//appel m�thode de recherche
-			char * depart = new char[20];
-			char * arrivee = new char[20];
+			char depart[1024];
+			char arrivee[1024];
 			cout << "Quelle est votre ville de d�part ?" << endl;
 			cin >> depart;
 			cout << "Quelle est votre destination ?" << endl;
@@ -409,6 +411,24 @@ static void Menu(ListeTrajets & catalogue) {
 
 }
 
+static void testMemoire(ListeTrajets &catalogue) {
+
+	char depart[1024];
+	char arrivee[1024];
+	char transport[1024];
+
+	cout << "Ville de d�part ?" << endl;
+	cin >> depart;
+	cout << "Ville d'ariv�e ?" << endl;
+	cin >> arrivee;
+	cout << "Moyen de transport ?" << endl;
+	cin >> transport;
+
+	catalogue.Ajouter(new TrajetSimple(depart, arrivee, transport));
+	catalogue.Ajouter(new TrajetSimple(depart, arrivee, transport));
+
+
+}
 
 int main()
 // Algorithme :
@@ -419,8 +439,10 @@ int main()
 //testListe();
 //testTC();
 
-//	Menu(*catalogue);
-	testListe();
-
+	//Menu(*catalogue);
+//	testListe();
+	//delete catalogue;
+	testMemoire(*catalogue);
+	delete catalogue;
 	return 0;
 }

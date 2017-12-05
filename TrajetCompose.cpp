@@ -145,6 +145,7 @@ TrajetCompose::~TrajetCompose()
 #ifdef MAP
 	//cout << "Appel au destructeur de <Trajet>" << endl;
 #endif
+	delete trajets;
 
 } //----- Fin de ~Trajet
 
