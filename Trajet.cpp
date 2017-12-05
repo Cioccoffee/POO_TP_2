@@ -31,7 +31,7 @@ const char * Trajet::Depart() const
 // Algorithme :
 //
 {
-	return villeDepart;
+	return (char *)('0');
 
 } //----- Fin de Méthode
 
@@ -39,7 +39,7 @@ const char * Trajet::Arrivee() const
 // Algorithme :
 //
 {
-	return villeArrivee;
+	return (char *)('0');
 
 } //----- Fin de Méthode
 
@@ -47,7 +47,7 @@ const char * Trajet::Transport() const
 // Algorithme :
 //
 {
-	return moyenTransport;
+	return (char *)('0');
 } //----- Fin de M�thode
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -60,9 +60,6 @@ Trajet::Trajet()
 	//cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
 
-//	villeDepart = "dgs";
-//	villeArrivee ="fsseds";
-//	moyenTransport ="fseds";
 
 } //----- Fin de Trajet
 

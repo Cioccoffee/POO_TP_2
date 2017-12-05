@@ -79,9 +79,7 @@ public:
 //------------------------------------------------------------------ PRIVE
 
 protected:
-	const char * villeDepart;
-	const char * villeArrivee;
-	const char * moyenTransport;
+
 
 //----------------------------------------------------- Méthodes protégées
 
