@@ -11,7 +11,7 @@
 #define Trajet_H
 
 //--------------------------------------------------- Interfaces utilisées
-
+//#include "ListeTrajets.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -70,6 +70,8 @@ public:
 	// Contrat :
 	//
 	//
+	//virtual ListeTrajets * Trajets()  const;
+
 	virtual ~Trajet();
 	// Mode d'emploi :
 	//

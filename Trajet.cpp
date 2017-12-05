@@ -14,6 +14,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
+//#include ""
 
 //------------------------------------------------------------- Constantes
 
@@ -52,6 +53,14 @@ const char * Trajet::Transport() const
 {
 	return moyenTransport;
 } //----- Fin de M�thode
+
+/*virtual ListeTrajets * Trajet::Trajets()  const
+// Algorithme :
+//
+{
+	ListeTrajets * lt;
+	return lt;
+} //----- Fin de M�thode*/
 
 //------------------------------------------------- Surcharge d'opérateurs
 //Xxx & Xxx::operator = ( const Xxx & unXxx )

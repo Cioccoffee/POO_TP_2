@@ -233,6 +233,10 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 
 	for (unsigned int i = 0; i<result->Taille(); i++){
 		(result->getTrajet(i))->Afficher();
+		cout << "arrivée de"<<i<<" = "<< (result->getTrajet(i))->Arrivee()<<endl;
+		cout << "trajets de"<<i<<" = "<< endl;
+		//((result->getTrajet(i))->Trajets())->Afficher();
+
 	}
 
 	//delete intermede;
