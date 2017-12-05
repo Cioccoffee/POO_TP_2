@@ -349,13 +349,11 @@ static void Menu(ListeTrajets & catalogue) {
 				cout << "Ville de depart ?" << endl;
 				cin >> depart;
 
-				cout << "Ville d'arivee ?" << endl;
+				cout << "Ville d'arrivee ?" << endl;
 				cin >> arrivee;
 
-				while ((strcmp(depart, arriveePrecedent) != 0) && (i != 0)) {
-					cout
-							<< "Veuillez ressaisir les villes de depart et d'arrivee de votre trajet"
-							<< endl;
+				while ((strcmp(depart, arrivee) == 0) || ((strcmp(depart, arriveePrecedent) != 0) && (i != 0))) {
+					cout<< "Veuillez ressaisir les villes de depart et d'arrivee de votre trajet"<< endl;
 					cout << "Ville de depart ?" << endl;
 					cin >> depart;
 					cout << "Ville d'arivee ?" << endl;
