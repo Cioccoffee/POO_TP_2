@@ -203,15 +203,8 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 						aAjouter->Ajouter(correspondent->getTrajet(j));
 						TrajetCompose * t = new TrajetCompose(aAjouter);
 						intermede->Ajouter(t);
-						/*
-						cout << "+++ aAjouter +++" << endl;
-						aAjouter->Afficher();
-						cout << "trajet trouvé" << endl;
-						t->Afficher();
-						cout << "intermede avec l'ajout" << endl;
-						intermede->Afficher();
-						*/
-						//aAjouter->Retirer(1);
+
+						//delete aAjouter;
 
 					}
 					//cout << "trajet a retirer"<<endl;
@@ -223,22 +216,10 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 				}
 				//delete correspondent;
 			}
-			//sinon poubelle
-
 		}
 
-
-		//return result;
 	}
 
-	/*for (unsigned int i = 0; i < result->Taille(); i++) {
-		(result->getTrajet(i))->Afficher();
-		cout << "arrivée de" << i << " = " << (result->getTrajet(i))->Arrivee()
-				<< endl;
-		cout << "trajets de" << i << " = " << endl;
-		//((result->getTrajet(i))->Trajets())->Afficher();
-
-	}*/
 
 	cout << "---------" << endl;
 			result->Afficher();
@@ -246,6 +227,7 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 	//delete intermede;
 	//delete result;
 }
+
 
 static void testListe()
 // Mode d'emploi :
@@ -284,11 +266,11 @@ static void testListe()
 
 	rechercheAvancee(*lt1, "ty", "K");
 
-	delete ts1;
+	/*delete ts1;
 	delete ts2;
 	delete ts3;
 	delete ts4;
-	delete tc1;
+	delete tc1;*/
 	//delete lt1;
 	//delete lt2;
 
@@ -356,9 +338,11 @@ static void Menu(ListeTrajets & catalogue) {
 		switch (action) {
 		//TS
 		case 1: {
-			char * depart = new char[20];
-			char * arrivee = new char[20];
-			char * transport = new char[20];
+			
+			char depart[1024];
+			char arrivee[1024];
+			char transport[1024];
+
 			cout << "Ville de d�part ?" << endl;
 			cin >> depart;
 			cout << "Ville d'ariv�e ?" << endl;
@@ -383,18 +367,20 @@ static void Menu(ListeTrajets & catalogue) {
 			int n;
 			cin >> n;
 
-			char * arriveePrecedent = new char[20];
+			char arriveePrecedent[1024]; 			
 			strcpy(arriveePrecedent, "no dest");
 
 			while (i < n) {
 				//while(arrivee d'avant != depart de maintenant) => sinon on peut le remplir pour lui
 				cout << "Saisie du trajet num " << i + 1 << endl;
-				char * depart = new char[20];
-				char * arrivee = new char[20];
-				char * transport = new char[20];
+	
+				char depart[1024];
+				char arrivee[1024];
+				char transport[1024];
 
 				cout << "Ville de depart ?" << endl;
 				cin >> depart;
+
 				cout << "Ville d'arivee ?" << endl;
 				cin >> arrivee;
 
@@ -417,9 +403,10 @@ static void Menu(ListeTrajets & catalogue) {
 			}
 			TrajetCompose * tc = new TrajetCompose(lt);
 
-			cout << "Ville arr : " << tc->Arrivee() << endl;
-
 			catalogue.Ajouter(tc);
+
+			//delete lt;
+
 			break;
 		}
 
@@ -432,15 +419,15 @@ static void Menu(ListeTrajets & catalogue) {
 			//search
 		case 4: {
 			//appel m�thode de recherche
-			char * depart = new char[20];
-			char * arrivee = new char[20];
+			char depart[1024];
+			char arrivee[1024];
 			cout << "Quelle est votre ville de d�part ?" << endl;
 			cin >> depart;
 			cout << "Quelle est votre destination ?" << endl;
 			cin >> arrivee;
 
-			//RechercheSimple(catalogue, depart, arrivee);
-			rechercheAvancee(catalogue, depart, arrivee);
+			RechercheSimple(catalogue, depart, arrivee);
+			//rechercheAvancee(catalogue, depart, arrivee);
 
 			//recherche(depart,arrivee,catalogue); doit renvoyer liste => valeur
 
@@ -463,6 +450,39 @@ static void Menu(ListeTrajets & catalogue) {
 
 }
 
+static void testMemoire(ListeTrajets &catalogue) {
+
+
+	catalogue.Ajouter(new TrajetSimple("d", "a", "t"));
+	catalogue.Ajouter(new TrajetSimple("d", "a", "t"));
+
+	TrajetSimple *ts1 = new TrajetSimple("ty", "B", "MT");
+	Trajet * ts2 = new TrajetSimple("B", "C", "MT2");
+
+	TrajetSimple *ts3 = new TrajetSimple("ty", "C", "MT3");
+	TrajetSimple *ts4 = new TrajetSimple("C", "K", "MT4");
+	TrajetSimple *ts5 = new TrajetSimple("C", "E", "MT5");
+	TrajetSimple *ts6 = new TrajetSimple("E", "K", "MT6");
+
+	ListeTrajets * lt2 = new ListeTrajets;
+	lt2->Ajouter(ts1);
+	lt2->Ajouter(ts2);
+	TrajetCompose * tc1 = new TrajetCompose(lt2);
+
+	ListeTrajets * lt1 = new ListeTrajets;
+
+	lt1->Ajouter(tc1);
+	lt1->Ajouter(ts3);
+	lt1->Ajouter(ts4);
+	lt1->Ajouter(ts5);
+	lt1->Ajouter(ts6);
+
+	delete lt2;
+	delete lt1;
+
+}
+
+
 int main()
 // Algorithme :
 {
@@ -472,9 +492,15 @@ int main()
 //testListe();
 //testTC();
 
-//	Menu(*catalogue);
-	testListe();
-	//testRetirer();
+
+	Menu(*catalogue);
+	//testListe();
+	//delete catalogue;
+	//testMemoire(*catalogue);
+	delete catalogue;
+
+
+
 
 	return 0;
 }

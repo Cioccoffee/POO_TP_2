@@ -34,7 +34,11 @@ void TrajetCompose::Afficher() const
 // Algorithme :
 {
 
+<<<<<<< HEAD
 	//cout<<"TC"<<endl;
+=======
+	
+>>>>>>> branch 'master' of https://github.com/Cioccoffee/POO_TP_2.git
 	unsigned int i = 0;
 	CelluleTrajet * actuelle = trajets->Tete();
 	//cout << "Trajet ";
@@ -46,6 +50,11 @@ void TrajetCompose::Afficher() const
 		actuel = actuelle->valeur;
 
 		//Afichage trajet
+<<<<<<< HEAD
+=======
+		if(i!=0) cout << " - ";
+		actuel->Afficher();
+>>>>>>> branch 'master' of https://github.com/Cioccoffee/POO_TP_2.git
 
 		if(i!=0) cout << " - ";
 		actuel->Afficher();
@@ -122,7 +131,7 @@ TrajetCompose::TrajetCompose(const TrajetCompose & t)
 	//cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
 
-trajets = t.trajets;
+	trajets = t.trajets;
 
 
 } //----- Fin de Trajet
@@ -146,6 +155,7 @@ TrajetCompose::~TrajetCompose()
 #ifdef MAP
 	//cout << "Appel au destructeur de <Trajet>" << endl;
 #endif
+	//delete trajets;
 
 } //----- Fin de ~Trajet
 

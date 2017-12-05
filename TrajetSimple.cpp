@@ -11,6 +11,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <cstring>
 
 //------------------------------------------------------ Include personnel
 #include "TrajetSimple.h"
@@ -28,21 +29,23 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-void TrajetSimple:: Afficher () const
+void TrajetSimple::Afficher() const
 // Algorithme :
 {
 	//cout << "TS"<<endl;
+	
 	cout << "Trajet ";
-	cout << "de " << villeDepart << " à " << villeArrivee << " en " << moyenTransport << endl;
+	cout << "de " << villeDepart << " à " << villeArrivee << " en "
+			<< moyenTransport << endl;
 } //----- Fin de Méthode
 
-const char * TrajetSimple:: Depart() const
+const char * TrajetSimple::Depart() const
 // Algorithme :
 {
 	return villeDepart;
 } //----- Fin de Méthode
 
-const char * TrajetSimple:: Arrivee() const
+const char * TrajetSimple::Arrivee() const
 // Algorithme :
 {
 	return villeArrivee;
@@ -55,7 +58,6 @@ const char * TrajetSimple::Transport() const
 	return moyenTransport;
 } //----- Fin de M�thode
 
-
 //------------------------------------------------- Surcharge d'opérateurs
 //Xxx & Xxx::operator = ( const Xxx & unXxx )
 // Algorithme :
@@ -65,40 +67,55 @@ const char * TrajetSimple::Transport() const
 
 //-------------------------------------------- Constructeurs - destructeur
 
-TrajetSimple::TrajetSimple(const char * depart, const char * arrivee, const char * transport)
+TrajetSimple::TrajetSimple(const char * depart, const char * arrivee,
+		const char * transport)
 // Algorithme :
-{
+		{
 #ifdef MAP
 	//cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
 
-	villeDepart = depart;
-	villeArrivee = arrivee;
-	moyenTransport = transport;
+	villeDepart = new char[strlen(depart) + 1];
+	strcpy(villeDepart, depart);
+
+	villeArrivee = new char[strlen(arrivee) + 1];
+	strcpy(villeArrivee, arrivee);
+
+	moyenTransport = new char[strlen(transport) + 1];
+	strcpy(moyenTransport, transport);
+
+	/*	villeArrivee = arrivee;
+	 moyenTransport = transport;*/
 //	departMere = depart;
 //	arriveeMere = arrivee;
 //	transportMere = transport;
-
 } //----- Fin de TrajetSimple
 
 TrajetSimple::TrajetSimple(const TrajetSimple & t)
 // Algorithme :
-{
+		{
 #ifdef MAP
 	//cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
 
-	villeDepart = t.Depart() ;
-	villeArrivee = t.Arrivee();
-	moyenTransport = t.Transport();
+	villeDepart = new char[strlen(t.villeDepart) + 1];
+	strcpy(villeDepart, t.villeDepart);
+
+	villeArrivee = new char[strlen(t.villeArrivee) + 1];
+	strcpy(villeArrivee, t.villeArrivee);
+
+	moyenTransport = new char[strlen(t.moyenTransport) + 1];
+	strcpy(moyenTransport, t.moyenTransport);
 
 } //----- Fin de TrajetSimple
-
-
 
 TrajetSimple::~TrajetSimple()
 // Algorithme :
 {
+	delete[] villeDepart;
+	delete[] villeArrivee;
+	delete[] moyenTransport;
+
 #ifdef MAP
 	//cout << "Appel au destructeur de <TrajetSimple>" << endl;
 #endif
@@ -108,5 +125,4 @@ TrajetSimple::~TrajetSimple()
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-
 

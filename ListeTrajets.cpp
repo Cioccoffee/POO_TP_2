@@ -12,6 +12,7 @@
 using namespace std;
 #include <iostream>
 
+
 //------------------------------------------------------ Include personnel
 #include "ListeTrajets.h"
 
@@ -43,10 +44,19 @@ void ListeTrajets::Afficher() const
 } //----- Fin de Méthode
 
 void ListeTrajets::Ajouter(Trajet *val) {
+//	Trajet * trajet = new Trajet();
+//	trajet = val;
+
 	if (taille == 0) {
+
+
 		tete->valeur = val;
+
+
+		//////////
 		tete->suivant = NULL;
 		dernierElement = tete;
+		///////
 
 	} else {
 		CelluleTrajet *nouvelElement = new CelluleTrajet;
@@ -55,7 +65,10 @@ void ListeTrajets::Ajouter(Trajet *val) {
 
 		dernierElement->suivant = nouvelElement;
 		dernierElement = nouvelElement;
+
 	}
+
+	//if(tete->suivant == dernierElement) cout<<"pizda masii"<<endl;
 
 	taille++;
 
@@ -98,34 +111,21 @@ void ListeTrajets::Retirer(unsigned int i)
 	//condition existence du trajet
 	if (taille == 0 || i > taille)
 	{
-		//plz sweetie CHANGE THIS !!!!!
 	}
-		//return NULL;
 
 	else if (i == 0) {
-		//cout<<"are we in ?"<<endl;
 		if (taille != 1){
-			//cout << "suivant de tete = " << endl;
-			//((tete->suivant)->valeur) ->Afficher();
 			tete = tete->suivant;
-			//cout << "nouvelle tete = " << endl;
-			//(tete->valeur)->Afficher();
-			//taille--;
 		}
 		else{
 			tete->valeur = NULL;
-			//cout <<"we acually did the tete->valeur = NULL;"<<endl;
 		}
 
 	} else {
-
-		//cout <<"we are in the else actually"<<endl;
-
 		CelluleTrajet * precedent = tete;
 		for (unsigned int j = 0; (j < i - 1 ) && (precedent->suivant != NULL); j++) {
 			//if (precedent->suivant != NULL)
 				precedent = precedent->suivant;
-				//cout <<"on parcourt"<<endl;
 		}
 
 		CelluleTrajet * aRetirer;
@@ -133,21 +133,14 @@ void ListeTrajets::Retirer(unsigned int i)
 		if (precedent->suivant != NULL) {
 			aRetirer = precedent->suivant;
 
-			//cout <<"celui a retirer n'est pas nul"<<endl;
-
-			//on remplace aRetirer par son suivant dans la liste
 			if (aRetirer != dernierElement)
 			{
-				//cout <<"on remplace un element qui est pas le dernier"<<endl;
 				precedent->suivant = aRetirer->suivant;
-				//taille--;
 			}
 			else if (i == (taille-1))
 			{
-				//cout << "on remplace le dernier element"<<endl;
 				dernierElement = precedent;
 				precedent->suivant = NULL;//nouvelle queue
-				//taille--;
 			}
 
 		}
@@ -164,8 +157,7 @@ ListeTrajets::ListeTrajets()
 #endif
 
 	tete = new CelluleTrajet;
-	//tete = NULL;
-	dernierElement = NULL;
+	tete->valeur = NULL;
 	tete->suivant = dernierElement;
 
 	taille = 0;
@@ -206,18 +198,19 @@ ListeTrajets::~ListeTrajets()
 #endif
 
 	CelluleTrajet *elSupprime = tete;
-	CelluleTrajet *elSupprimeSuiv;
+	CelluleTrajet *elSupprimeSuiv=elSupprime;
 
-	while (elSupprime->suivant != dernierElement) {
+	while (elSupprime->suivant != NULL) {
 		elSupprimeSuiv = elSupprime->suivant;
+		delete elSupprime->valeur;
 		delete elSupprime;
-		CelluleTrajet *elSupprime = elSupprimeSuiv;
-	}
+		elSupprime = elSupprimeSuiv;
 
-	delete tete;
+	}
+	delete elSupprime->valeur;
 	delete elSupprime;
-	delete elSupprimeSuiv;
-	delete dernierElement;
+
+
 
 } //----- Fin de ~ListeTrajets
 

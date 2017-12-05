@@ -93,9 +93,11 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 
-//	const char * villeDepart;
-//	const char * villeArrivee;
-//	const char * moyenTransport;
+
+	char * villeDepart;
+	char * villeArrivee;
+	char * moyenTransport;
+
 
 
 };
