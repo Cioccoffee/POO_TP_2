@@ -141,6 +141,8 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 
 	//cout << "selected ok for departure" <<endl;
 
+	cout << "selectionnés car depart ok = "<<endl;
+	intermede->Afficher();
 	//recherche des matchs et des resultats valides
 
 	int taille = intermede->Taille();
@@ -150,16 +152,24 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 		cout <<"in intermede's while"<<endl;
 		//intermede->Afficher();
 
-
+		bool retrait = false;
 		for(unsigned int i = 0; i < intermede->Taille(); i++)
 			{
 
-			//intermede->Afficher();
+			if(retrait) i = 0;
+			retrait = false;
+			cout << "in for to see if corresponds --- i = "<<i<<endl;
+			cout << "size intermede = "<<intermede->Taille()<<endl;
+			intermede->Afficher();
 			//regarder si arrivee matche demande si oui => result
+			cout << "can we get the current trajet ?"<<endl;
+			(intermede->getTrajet(i))/*->Afficher()*/;
 			if( strcmp(arr, (intermede->getTrajet(i))->Arrivee() ) == 0)
 			{
+				cout<<"in if"<<endl;
 				result->Ajouter(intermede->getTrajet(i));
 				intermede->Retirer(i);
+				retrait = true;
 				cout<<"good destination withdrawn"<<endl;
 			}
 
@@ -168,6 +178,7 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 			//=> ajouter � sa place tous ceux qui le contiennent augment�
 			else
 			{
+				cout << "in else" <<endl;
 
 				ListeTrajets * correspondent = new ListeTrajets;
 				for(unsigned int j = 0; j < catalogue.Taille(); j++)
@@ -178,11 +189,16 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 					}
 				}
 
+				cout << "taille de correspondent = "<<correspondent->Taille()<<endl;
+
 				if(correspondent->Taille()==0){
 					intermede->Retirer(i);
+					retrait = true; //on repart du début puisqu'on a changé le nombre d'éléments
 				}
 				else
 				{
+					cout <<"+++++ correspondent = ++++"<<endl;
+					correspondent->Afficher();
 					ListeTrajets * aAjouter = new ListeTrajets;
 					aAjouter->Ajouter(intermede->getTrajet(i));
 					for(unsigned int j = 0; j < correspondent->Taille(); j++)
@@ -190,18 +206,25 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 						aAjouter->Ajouter(correspondent->getTrajet(j));
 						TrajetCompose * t = new TrajetCompose(aAjouter);
 						intermede->Ajouter(t);
-						//aAjouter->Retirer(correspondent->getTrajet(j));
-						//aAjouter->Afficher();
+						cout<<"+++ aAjouter +++" <<endl;
+						aAjouter->Afficher();
+						cout << "trajet trouvé"<<endl;
+						t->Afficher();
+						cout << "intermede avec l'ajout"<<endl;
+						intermede->Afficher();
+
 						aAjouter->Retirer(1);
 
 					}
 					intermede->Retirer(i);
+					retrait = true; //on repart du début puisqu'on a changé le nombre d'éléments
 				}
+				//delete correspondent;
 			}
 			//sinon poubelle
 
 			}
-	//2options here :
+
 	cout<<"---------"<<endl;
 	result->Afficher();
 	cout<<"--------"<<endl;
@@ -209,9 +232,15 @@ static void /*ListeTrajets */ rechercheAvancee(ListeTrajets & catalogue, char * 
 	}
 
 	for (unsigned int i = 0; i<result->Taille(); i++){
-		result->Afficher();
+		(result->getTrajet(i))->Afficher();
+		cout << "arrivée de"<<i<<" = "<< (result->getTrajet(i))->Arrivee()<<endl;
+		cout << "trajets de"<<i<<" = "<< endl;
+		//((result->getTrajet(i))->Trajets())->Afficher();
+
 	}
 
+	//delete intermede;
+	//delete result;
 }
 
 static void testListe()
@@ -243,12 +272,17 @@ static void testListe()
 
 	//cout << lt1->DepartTrajet(1)<<endl;
 
+	lt1->Afficher();
+
 	rechercheAvancee(*lt1, "ty", "K");
 
-//	delete ts1;
-//	delete ts2;
-//	delete lt1;
-//	delete lt2;
+	delete ts1;
+	delete ts2;
+	delete ts3;
+	delete ts4;
+	delete tc1;
+	//delete lt1;
+	//delete lt2;
 
 }
 
@@ -385,8 +419,8 @@ int main()
 //testListe();
 //testTC();
 
-	Menu(*catalogue);
-	//testListe();
+//	Menu(*catalogue);
+	testListe();
 
 	return 0;
 }

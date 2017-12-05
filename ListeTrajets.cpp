@@ -93,7 +93,7 @@ Trajet * ListeTrajets::getTrajet(unsigned int i) {
 
 int ListeTrajets::Retirer(unsigned int i)
 // Algorithme :
-		{
+	{
 
 	//condition existence du trajet
 	if (taille == 0 || i > taille)
@@ -102,7 +102,7 @@ int ListeTrajets::Retirer(unsigned int i)
 	if (i == 0) {
 		if (tete->suivant != NULL){
 			tete = tete->suivant;
-			taille--;
+			//taille--;
 		}
 		else
 			tete->valeur = NULL;
@@ -123,18 +123,18 @@ int ListeTrajets::Retirer(unsigned int i)
 			if (precedent->suivant != NULL)
 			{
 				precedent->suivant = aRetirer->suivant;
-				taille--;
+				//taille--;
 			}
 
 			else if (i == taille)
 			{
 				dernierElement = precedent->suivant; //nouvelle queue
-				taille--;
+				//taille--;
 			}
 
 		}
 	}
-
+	taille--;
 	return 0;
 } //----- Fin de Retirer
 
@@ -155,29 +155,29 @@ ListeTrajets::ListeTrajets()
 } //----- Fin de ListeTrajets
 
 ListeTrajets::ListeTrajets(const ListeTrajets &uneListe) {
-//	ListeTrajets resultat = new ListeTrajets;
-//
-//	if(uneListe.taille > 0) {
-//
-//
-//		resultat.tete = uneListe->Tete();
-//
-//		CelluleTrajet * courant = resultat.tete;
-//		CelluleTrajet * courantACopier = uneListe->tete;
-//
-//		while(courantACopier != uneListe->dernierElement) {
-//
-//			courant->valeur = courantACopier->valeur ;
-//			courant->suivant = courantACopier->suivant;
-//
-//			courant = courant->suivant;
-//			courantACopier = courantACopier->suivant;
-//
-//		}
-//
-//		dernierElement = new CelluleTrajet;
-//		resultat.dernierElement = uneListe->Queue();
-//	}
+	ListeTrajets * resultat = new ListeTrajets;
+
+	if(uneListe.taille > 0) {
+
+
+		resultat->tete = uneListe.Tete();
+
+		CelluleTrajet * courant = resultat->tete;
+		CelluleTrajet * courantACopier = uneListe.tete;
+
+		while(courantACopier != uneListe.dernierElement) {
+
+			courant->valeur = courantACopier->valeur ;
+			courant->suivant = courantACopier->suivant;
+
+			courant = courant->suivant;
+			courantACopier = courantACopier->suivant;
+
+		}
+
+		dernierElement = new CelluleTrajet;
+		resultat->dernierElement = uneListe.Queue();
+	}
 }
 
 ListeTrajets::~ListeTrajets()
@@ -196,7 +196,9 @@ ListeTrajets::~ListeTrajets()
 		CelluleTrajet *elSupprime = elSupprimeSuiv;
 	}
 
+	delete tete;
 	delete elSupprime;
+	delete elSupprimeSuiv;
 	delete dernierElement;
 
 } //----- Fin de ~ListeTrajets

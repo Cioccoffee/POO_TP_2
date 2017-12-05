@@ -14,6 +14,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
+//#include ""
 
 //------------------------------------------------------------- Constantes
 
@@ -22,24 +23,27 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 //
 
-void Trajet::Afficher() const
+
+void Trajet:: Afficher () const
 // Algorithme :
 {
+	cout<<"afficher mere"<<endl;
 } //----- Fin de Méthode
 
 const char * Trajet::Depart() const
-// Algorithme :
-//
-{
-	return (char *)('0');
+ // Algorithme :
+ //
+ {
+	cout <<"je suis ds mere"<<endl;
+	return villeDepart;
 
-} //----- Fin de Méthode
+  } //----- Fin de Méthode
 
 const char * Trajet::Arrivee() const
 // Algorithme :
 //
 {
-	return (char *)('0');
+	return villeArrivee;
 
 } //----- Fin de Méthode
 
@@ -47,8 +51,23 @@ const char * Trajet::Transport() const
 // Algorithme :
 //
 {
-	return (char *)('0');
+	return moyenTransport;
 } //----- Fin de M�thode
+
+/*virtual ListeTrajets * Trajet::Trajets()  const
+// Algorithme :
+//
+{
+	ListeTrajets * lt;
+	return lt;
+} //----- Fin de M�thode*/
+
+//------------------------------------------------- Surcharge d'opérateurs
+//Xxx & Xxx::operator = ( const Xxx & unXxx )
+// Algorithme :
+//
+//{
+//} //----- Fin de operator =
 
 //-------------------------------------------- Constructeurs - destructeur
 
@@ -56,20 +75,27 @@ Trajet::Trajet()
 // Algorithme :
 {
 
+
 #ifdef MAP
 	//cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
 
+
+//	villeDepart = "dgs";
+//	villeArrivee ="fsseds";
+//	moyenTransport ="fseds";
 
 } //----- Fin de Trajet
 
 Trajet::Trajet(Trajet * t)
 // Algorithme :
-		{
+{
+
 
 #ifdef MAP
 	//cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
+
 
 } //----- Fin de Trajet
 
@@ -85,4 +111,5 @@ Trajet::~Trajet()
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
+
 

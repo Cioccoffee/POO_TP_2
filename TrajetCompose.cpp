@@ -1,10 +1,10 @@
 /*************************************************************************
- Trajet  -  description
- -------------------
- d�but                : $DATE$
- copyright            : (C) $YEAR$ par $AUTHOR$
- e-mail               : $EMAIL$
- *************************************************************************/
+Trajet  -  description
+-------------------
+d�but                : $DATE$
+copyright            : (C) $YEAR$ par $AUTHOR$
+e-mail               : $EMAIL$
+*************************************************************************/
 
 //---------- R�alisation de la classe <Trajet> (fichier Trajet.cpp) ------------
 //---------------------------------------------------------------- INCLUDE
@@ -16,6 +16,7 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "TrajetCompose.h"
 
+
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
@@ -23,29 +24,31 @@ using namespace std;
 //----------------------------------------------------- M�thodes publiques
 //
 
+// Trajet::M�thode ( )
+// Algorithme :
+//
+//{
+//} //----- Fin de M�thode
 
 void TrajetCompose::Afficher() const
 // Algorithme :
 {
 
-	cout << "afficher TC" << endl;
+	cout<<"TC"<<endl;
 	unsigned int i = 0;
 	CelluleTrajet * actuelle = trajets->Tete();
 	cout << "Trajet ";
 
 	Trajet * actuel = actuelle->valeur;
-	Trajet * precedent = actuel;
 
-	for (i = 0; i < trajets->Taille(); i++) 
+	for (i = 0; i < trajets->Taille(); i++)
 	{
 		actuel = actuelle->valeur;
 
 		//Afichage trajet
-		if (i != 0)
-			cout << " - ";
-		cout << "de " << actuel->Depart() << " a " << actuel->Arrivee()<< " en " << actuel->Transport() << endl;
+		if(i!=0) cout << " - ";
+		cout<< "de " << actuel->Depart() << " a " << actuel->Arrivee() << " - " << actuel->Transport()<<endl;
 
-		precedent = actuel;
 		if (actuelle->suivant != NULL) actuelle = actuelle->suivant;
 
 	}
@@ -54,7 +57,7 @@ void TrajetCompose::Afficher() const
 void TrajetCompose::Ajouter(const Trajet * t)
 // Algorithme :
 //
-		{
+{
 
 } //----- Fin de Ajouter
 
@@ -77,21 +80,28 @@ const char * TrajetCompose::Arrivee() const
 
 } //----- Fin de M�thode
 
-ListeTrajets * TrajetCompose::Trajets() const
+const char * TrajetCompose::Transport() const
+// Algorithme :
+//
+{
+	return "";
+} //----- Fin de M�thode
+
+ListeTrajets * TrajetCompose::Trajets()  const
 // Algorithme :
 //
 {
 	return trajets;
 } //----- Fin de M�thode
 
-//------------------------------------------------- Surcharge d'op�rateurs
-//Xxx & Xxx::operator = ( const Xxx & unXxx )
-// Algorithme :
-//
-//{
-//} //----- Fin de operator =
+  //------------------------------------------------- Surcharge d'op�rateurs
+  //Xxx & Xxx::operator = ( const Xxx & unXxx )
+  // Algorithme :
+  //
+  //{
+  //} //----- Fin de operator =
 
-//-------------------------------------------- Constructeurs - destructeur
+  //-------------------------------------------- Constructeurs - destructeur
 
 TrajetCompose::TrajetCompose()
 // Algorithme :
@@ -100,27 +110,31 @@ TrajetCompose::TrajetCompose()
 	//cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
 
+	
+
 } //----- Fin de Trajet
 
 TrajetCompose::TrajetCompose(const TrajetCompose & t)
 // Algorithme :
-		{
+{
 #ifdef MAP
 	//cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
 
-	trajets = t.trajets;
+trajets = t.trajets;
+
 
 } //----- Fin de Trajet
 
 TrajetCompose::TrajetCompose(ListeTrajets * lt)
 // Algorithme :
-		{
+{
 	trajets = lt;
 
 #ifdef MAP
 	//cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
+
 
 } //----- Fin de Trajet
 
@@ -134,7 +148,8 @@ TrajetCompose::~TrajetCompose()
 
 } //----- Fin de ~Trajet
 
-//------------------------------------------------------------------ PRIVE
+  //------------------------------------------------------------------ PRIVE
 
-//----------------------------------------------------- M�thodes prot�g�es
+  //----------------------------------------------------- M�thodes prot�g�es
+
 

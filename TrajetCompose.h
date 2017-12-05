@@ -81,6 +81,13 @@ public:
 	//
 	//
 
+	const char * Transport() const;
+	// Mode d'emploi :
+	// méthode qui retourne une chaine vide pour un TrajetCompose
+	// Contrat :
+	//
+	//
+
 	ListeTrajets * Trajets() const;
 	// Mode d'emploi :
 	// méthode qui retourne le moyen de transport

@@ -39,11 +39,11 @@ public:
 	TrajetSimple(const char * depart, const char * arrivee, const char * transport);
 	// Mode d'emploi :
 	// constructeur de TrajetSimple : initialise les attributs de classe
-	// param 1 : pointeur vers une chaine de caract constante repésentant la ville de départ
-	// param 2 : pointeur vers une chaine de caract constante repésentant la ville d'arrivée
-	// param 1 : pointeur vers une chaine de caract constante repésentant le moyen de transport
+	// param 1 : pointeur vers une chaine de caract constante représentant la ville de départ
+	// param 2 : pointeur vers une chaine de caract constante représentant la ville d'arrivée
+	// param 1 : pointeur vers une chaine de caract constante représentant le moyen de transport
 	// Contrat :
-	//
+	//les paramètres ont une taille maximale égale à 20
 
 	TrajetSimple(const TrajetSimple & t);
 	// Mode d'emploi :

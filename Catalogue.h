@@ -1,93 +1,65 @@
 /*************************************************************************
- Trajet  -  description
+ Catalogue  -  description
  -------------------
  début                : 18 oct. 2017
  copyright            : (C) $YEAR$ par Caraiman and Gallé
  e-mail               : ocaraiman
  *************************************************************************/
 
-//---------- Interface de la classe <Trajet> (fichier Xxx.h) ----------------
-#if ! defined ( Trajet_H )
-#define Trajet_H
+//---------- Interface de la classe <Catalogue> (fichier Xxx.h) ----------------
+#if ! defined ( Catalogue_H )
+#define Catalogue_H
 
 //--------------------------------------------------- Interfaces utilisées
-//#include "ListeTrajets.h"
+#include "Trajet.h"
+#include "ListeTrajets.h"
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
+
 //TYPEDEF IF NECESSARY
-//typedef int Tab[];
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Trajet>
-// classe mére de TrajetSimple et TrajetCompose
-// définit le comportement général des ses classes filles
+// Rôle de la classe <Catalogue>
+//
+//
 //------------------------------------------------------------------------
 
-class Trajet {
+class Catalogue : public ListeTrajets
+{
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
-
-	Trajet();
+	// type Méthode ( liste des paramètres );
 	// Mode d'emploi :
 	//
 	// Contrat :
 	//
 
-	Trajet(Trajet * t);
+	Catalogue();
 	// Mode d'emploi :
 	//
 	// Contrat :
 	//
 
-	virtual void Afficher() const;
+
+	virtual ~Catalogue();
 	// Mode d'emploi :
 	//
 	// Contrat :
-	//
 	//
 
-	virtual const char * Depart() const;
-	// Mode d'emploi :
-	// méthode qui retourne la ville de départ
-	// Contrat :
-	//
-	//
-
-	virtual const char * Arrivee() const;
-	// Mode d'emploi :
-	// méthode qui retourne la ville d'arrivée
-	// Contrat :
-	//
-	//
-
-	virtual const char * Transport() const;
-	// Mode d'emploi :
-	// méthode qui retourne le moyen de transport
-	// Contrat :
-	//
-	//
-	//virtual ListeTrajets * Trajets()  const;
-
-	virtual ~Trajet();
-	// Mode d'emploi :
-	//
-	// Contrat :
-	//
 
 //------------------------------------------------------------------ PRIVE
 
 protected:
-	const char * villeDepart;
-	const char * villeArrivee;
-	const char * moyenTransport;
-
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+
 
 };
 
