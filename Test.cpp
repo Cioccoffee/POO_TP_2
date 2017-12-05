@@ -138,6 +138,7 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 
 	}
 
+	//cout << "selected ok for departure" <<endl;
 
 	//cout << "selectionnés car depart ok = " << endl;
 	intermede->Afficher();
@@ -145,7 +146,6 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 
 	//int taille = intermede->Taille();
 
-	
 	while (intermede->Taille() > 0) {
 		/*cout << "in intermede's while" << endl;
 		cout <<"+++++++++++++++++++++++++++++++++++++++"<<endl;
@@ -161,26 +161,24 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 			if (retrait)
 				i = 0;
 			retrait = false;
-
 			//cout << "in for to see if corresponds --- i = " << i << endl;
 			//cout << "size intermede = " << intermede->Taille() << endl;
 			intermede->Afficher();
 			//regarder si arrivee matche demande si oui => result
+			//cout << "can we get the current trajet ?" << endl;
 
-
+			(intermede->getTrajet(i))/*->Afficher()*/;
 			if (strcmp(arr, (intermede->getTrajet(i))->Arrivee()) == 0) {
 				//cout << "in if" << endl;
 				result->Ajouter(intermede->getTrajet(i));
 				intermede->Retirer(i);
 				retrait = true;
-
 				//cout << "good destination withdrawn" << endl;
 			}
 
 			//sinon regarder si arrivee matche qqch
 			//et cr�er liste de tout ce qui matche pour ce trajet
 			//=> ajouter � sa place tous ceux qui le contiennent augment�
-
 			else {
 				//cout << "in else" << endl;
 
@@ -192,17 +190,14 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 					}
 				}
 
-
 				//cout << "taille de correspondent = " << correspondent->Taille()<< endl;
 
 				if (correspondent->Taille() == 0) {
 					intermede->Retirer(i);
 					retrait = true; //on repart du début puisqu'on a changé le nombre d'éléments
-
 				} else {
 					//cout << "+++++ correspondent = ++++" << endl;
 					correspondent->Afficher();
-
 
 					for (unsigned int j = 0; j < correspondent->Taille(); j++) {
 
@@ -212,15 +207,7 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 						TrajetCompose * t = new TrajetCompose(aAjouter);
 						intermede->Ajouter(t);
 
-						/*
-						cout << "+++ aAjouter +++" << endl;
-						aAjouter->Afficher();
-						cout << "trajet trouvé" << endl;
-						t->Afficher();
-						cout << "intermede avec l'ajout" << endl;
-						intermede->Afficher();
-						*/
-						//aAjouter->Retirer(1);
+						//delete aAjouter;
 
 					}
 					//cout << "trajet a retirer"<<endl;
@@ -232,21 +219,10 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 				}
 				//delete correspondent;
 			}
-			//sinon poubelle
-
 		}
 
 	}
 
-
-	/*for (unsigned int i = 0; i < result->Taille(); i++) {
-		(result->getTrajet(i))->Afficher();
-		cout << "arrivée de" << i << " = " << (result->getTrajet(i))->Arrivee()
-				<< endl;
-		cout << "trajets de" << i << " = " << endl;
-		//((result->getTrajet(i))->Trajets())->Afficher();
-
-	}*/
 
 	cout << "---------" << endl;
 			result->Afficher();
@@ -254,6 +230,7 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 	//delete intermede;
 	//delete result;
 }
+
 
 static void testListe()
 // Mode d'emploi :
@@ -292,11 +269,11 @@ static void testListe()
 
 	rechercheAvancee(*lt1, "ty", "K");
 
-	delete ts1;
+	/*delete ts1;
 	delete ts2;
 	delete ts3;
 	delete ts4;
-	delete tc1;
+	delete tc1;*/
 	//delete lt1;
 	//delete lt2;
 
@@ -430,6 +407,9 @@ static void Menu(ListeTrajets & catalogue) {
 			TrajetCompose * tc = new TrajetCompose(lt);
 
 			catalogue.Ajouter(tc);
+
+			//delete lt;
+
 			break;
 		}
 
@@ -449,8 +429,8 @@ static void Menu(ListeTrajets & catalogue) {
 			cout << "Quelle est votre destination ?" << endl;
 			cin >> arrivee;
 
-			//RechercheSimple(catalogue, depart, arrivee);
-			rechercheAvancee(catalogue, depart, arrivee);
+			RechercheSimple(catalogue, depart, arrivee);
+			//rechercheAvancee(catalogue, depart, arrivee);
 
 			//recherche(depart,arrivee,catalogue); doit renvoyer liste => valeur
 
@@ -475,20 +455,33 @@ static void Menu(ListeTrajets & catalogue) {
 
 static void testMemoire(ListeTrajets &catalogue) {
 
-	char depart[1024];
-	char arrivee[1024];
-	char transport[1024];
 
-	cout << "Ville de d�part ?" << endl;
-	cin >> depart;
-	cout << "Ville d'ariv�e ?" << endl;
-	cin >> arrivee;
-	cout << "Moyen de transport ?" << endl;
-	cin >> transport;
+	catalogue.Ajouter(new TrajetSimple("d", "a", "t"));
+	catalogue.Ajouter(new TrajetSimple("d", "a", "t"));
 
-	catalogue.Ajouter(new TrajetSimple(depart, arrivee, transport));
-	catalogue.Ajouter(new TrajetSimple(depart, arrivee, transport));
+	TrajetSimple *ts1 = new TrajetSimple("ty", "B", "MT");
+	Trajet * ts2 = new TrajetSimple("B", "C", "MT2");
 
+	TrajetSimple *ts3 = new TrajetSimple("ty", "C", "MT3");
+	TrajetSimple *ts4 = new TrajetSimple("C", "K", "MT4");
+	TrajetSimple *ts5 = new TrajetSimple("C", "E", "MT5");
+	TrajetSimple *ts6 = new TrajetSimple("E", "K", "MT6");
+
+	ListeTrajets * lt2 = new ListeTrajets;
+	lt2->Ajouter(ts1);
+	lt2->Ajouter(ts2);
+	TrajetCompose * tc1 = new TrajetCompose(lt2);
+
+	ListeTrajets * lt1 = new ListeTrajets;
+
+	lt1->Ajouter(tc1);
+	lt1->Ajouter(ts3);
+	lt1->Ajouter(ts4);
+	lt1->Ajouter(ts5);
+	lt1->Ajouter(ts6);
+
+	delete lt2;
+	delete lt1;
 
 }
 
@@ -503,15 +496,13 @@ int main()
 //testTC();
 
 
-	//Menu(*catalogue);
-//	testListe();
+	Menu(*catalogue);
+	//testListe();
 	//delete catalogue;
-	testMemoire(*catalogue);
+	//testMemoire(*catalogue);
 	delete catalogue;
 
-//	Menu(*catalogue);
-	testListe();
-	//testRetirer();
+
 
 
 	return 0;

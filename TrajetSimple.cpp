@@ -83,12 +83,11 @@ TrajetSimple::TrajetSimple(const char * depart, const char * arrivee,
 	moyenTransport = new char[strlen(transport) + 1];
 	strcpy(moyenTransport, transport);
 
-/*	villeArrivee = arrivee;
-	moyenTransport = transport;*/
+	/*	villeArrivee = arrivee;
+	 moyenTransport = transport;*/
 //	departMere = depart;
 //	arriveeMere = arrivee;
 //	transportMere = transport;
-
 } //----- Fin de TrajetSimple
 
 TrajetSimple::TrajetSimple(const TrajetSimple & t)
@@ -98,18 +97,23 @@ TrajetSimple::TrajetSimple(const TrajetSimple & t)
 	//cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
 
-	/*villeDepart = t.Depart();
-	villeArrivee = t.Arrivee();
-	moyenTransport = t.Transport();*/
+	villeDepart = new char[strlen(t.villeDepart) + 1];
+	strcpy(villeDepart, t.villeDepart);
+
+	villeArrivee = new char[strlen(t.villeArrivee) + 1];
+	strcpy(villeArrivee, t.villeArrivee);
+
+	moyenTransport = new char[strlen(t.moyenTransport) + 1];
+	strcpy(moyenTransport, t.moyenTransport);
 
 } //----- Fin de TrajetSimple
 
 TrajetSimple::~TrajetSimple()
 // Algorithme :
 {
-	delete []villeDepart;
-	delete []villeArrivee;
-	delete []moyenTransport;
+	delete[] villeDepart;
+	delete[] villeArrivee;
+	delete[] moyenTransport;
 
 #ifdef MAP
 	//cout << "Appel au destructeur de <TrajetSimple>" << endl;
