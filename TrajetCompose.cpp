@@ -108,7 +108,6 @@ TrajetCompose::TrajetCompose()
 #endif
 
 	
-
 } //----- Fin de Trajet
 
 TrajetCompose::TrajetCompose(const TrajetCompose & t)
