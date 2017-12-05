@@ -426,8 +426,8 @@ static void Menu(ListeTrajets & catalogue) {
 			cout << "Quelle est votre destination ?" << endl;
 			cin >> arrivee;
 
-			RechercheSimple(catalogue, depart, arrivee);
-			//rechercheAvancee(catalogue, depart, arrivee);
+			//RechercheSimple(catalogue, depart, arrivee);
+			rechercheAvancee(catalogue, depart, arrivee);
 
 			//recherche(depart,arrivee,catalogue); doit renvoyer liste => valeur
 
@@ -493,8 +493,8 @@ int main()
 //testTC();
 
 
-	//Menu(*catalogue);
-	testListe();
+	Menu(*catalogue);
+	//testListe();
 	//delete catalogue;
 	//testMemoire(*catalogue);
 	delete catalogue;
