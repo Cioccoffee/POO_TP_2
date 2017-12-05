@@ -473,7 +473,6 @@ static void Menu(ListeTrajets & catalogue) {
 
 }
 
-<<<<<<< HEAD
 static void testMemoire(ListeTrajets &catalogue) {
 
 	char depart[1024];
@@ -493,8 +492,7 @@ static void testMemoire(ListeTrajets &catalogue) {
 
 }
 
-=======
->>>>>>> branch 'master' of https://github.com/Cioccoffee/POO_TP_2.git
+
 int main()
 // Algorithme :
 {
@@ -504,17 +502,17 @@ int main()
 //testListe();
 //testTC();
 
-<<<<<<< HEAD
+
 	//Menu(*catalogue);
 //	testListe();
 	//delete catalogue;
 	testMemoire(*catalogue);
 	delete catalogue;
-=======
+
 //	Menu(*catalogue);
 	testListe();
 	//testRetirer();
 
->>>>>>> branch 'master' of https://github.com/Cioccoffee/POO_TP_2.git
+
 	return 0;
 }
