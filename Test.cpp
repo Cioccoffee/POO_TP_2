@@ -130,7 +130,7 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 
 	}
 
-	intermede->Afficher();
+
 	//recherche des matchs et des resultats valides
 
 	while (intermede->Taille() > 0) {
@@ -141,7 +141,7 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 			if (retrait)
 				i = 0;
 			retrait = false;
-			intermede->Afficher();
+
 			//regarder si arrivee matche demande si oui => result
 
 			if (strcmp(arr, (intermede->getTrajet(i))->Arrivee()) == 0) {
@@ -167,7 +167,7 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 					intermede->Retirer(i);
 					retrait = true; //on repart du début puisqu'on a changé le nombre d'éléments
 				} else {
-					correspondent->Afficher();
+
 
 					for (unsigned int j = 0; j < correspondent->Taille(); j++) {
 
