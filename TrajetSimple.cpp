@@ -31,7 +31,7 @@ using namespace std;
 void TrajetSimple:: Afficher () const
 // Algorithme :
 {
-	cout << "TS"<<endl;
+	//cout << "TS"<<endl;
 	cout << "Trajet ";
 	cout << "de " << villeDepart << " à " << villeArrivee << " en " << moyenTransport << endl;
 } //----- Fin de Méthode

@@ -34,10 +34,10 @@ void TrajetCompose::Afficher() const
 // Algorithme :
 {
 
-	cout<<"TC"<<endl;
+	//cout<<"TC"<<endl;
 	unsigned int i = 0;
 	CelluleTrajet * actuelle = trajets->Tete();
-	cout << "Trajet ";
+	//cout << "Trajet ";
 
 	Trajet * actuel = actuelle->valeur;
 
@@ -46,12 +46,14 @@ void TrajetCompose::Afficher() const
 		actuel = actuelle->valeur;
 
 		//Afichage trajet
-		if(i!=0) cout << " - ";
-		cout<< "de " << actuel->Depart() << " a " << actuel->Arrivee() << " - " << actuel->Transport()<<endl;
 
+		if(i!=0) cout << " - ";
+		//cout<< "de " << actuel->Depart() << " a " << actuel->Arrivee() << " - " << actuel->Transport()<<endl;
+		actuel->Afficher();
 		if (actuelle->suivant != NULL) actuelle = actuelle->suivant;
 
 	}
+
 } //----- Fin de M�thode
 
 void TrajetCompose::Ajouter(const Trajet * t)
