@@ -32,10 +32,8 @@ using namespace std;
 void TrajetSimple::Afficher() const
 // Algorithme :
 {
-	
 	cout << "Trajet ";
-	cout << "de " << villeDepart << " à " << villeArrivee << " en "
-			<< moyenTransport << endl;
+	cout << "de " << villeDepart << " à " << villeArrivee << " en "<< moyenTransport << endl;
 } //----- Fin de Méthode
 
 const char * TrajetSimple::Depart() const
@@ -83,11 +81,6 @@ TrajetSimple::TrajetSimple(const char * depart, const char * arrivee,
 	moyenTransport = new char[strlen(transport) + 1];
 	strcpy(moyenTransport, transport);
 
-	/*	villeArrivee = arrivee;
-	 moyenTransport = transport;*/
-//	departMere = depart;
-//	arriveeMere = arrivee;
-//	transportMere = transport;
 } //----- Fin de TrajetSimple
 
 TrajetSimple::TrajetSimple(const TrajetSimple & t)
