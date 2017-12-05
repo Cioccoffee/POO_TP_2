@@ -122,7 +122,6 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 	ListeTrajets * intermede = new ListeTrajets;
 	ListeTrajets * result = new ListeTrajets;
 
-
 	//ajout des trajets qui partent du bon endroit
 	for (unsigned int i = 0; i < catalogue.Taille(); i++) {
 		if (strcmp((catalogue.getTrajet(i))->Depart(), dep) == 0) {
@@ -131,10 +130,8 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 
 	}
 
-
 	intermede->Afficher();
 	//recherche des matchs et des resultats valides
-
 
 	while (intermede->Taille() > 0) {
 
@@ -166,7 +163,6 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 					}
 				}
 
-
 				if (correspondent->Taille() == 0) {
 					intermede->Retirer(i);
 					retrait = true; //on repart du début puisqu'on a changé le nombre d'éléments
@@ -190,12 +186,10 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 
 	}
 
-
 	cout << "---------" << endl;
 	result->Afficher();
 	cout << "--------" << endl;
 }
-
 
 static void testListe()
 // Mode d'emploi :
@@ -235,13 +229,12 @@ static void testListe()
 	rechercheAvancee(*lt1, "ty", "K");
 
 	/*delete ts1;
-	delete ts2;
-	delete ts3;
-	delete ts4;
-	delete tc1;*/
+	 delete ts2;
+	 delete ts3;
+	 delete ts4;
+	 delete tc1;*/
 	//delete lt1;
 	//delete lt2;
-
 }
 
 static void testRetirer() {
@@ -263,26 +256,25 @@ static void testRetirer() {
 	lt1->Ajouter(ts4);
 
 	/*ListeTrajets * lt3 = new ListeTrajets;
-	lt3->Ajouter(ts3);
-	cout << "++++lt3 au début"<<endl;
-	lt3->Afficher();
-	cout<<"++++retirer à i =0"<<endl;
-	lt3->Retirer(0);
-	lt3->Afficher();
-	cout << "--taille--"<<lt3->Taille()<<endl;*/
+	 lt3->Ajouter(ts3);
+	 cout << "++++lt3 au début"<<endl;
+	 lt3->Afficher();
+	 cout<<"++++retirer à i =0"<<endl;
+	 lt3->Retirer(0);
+	 lt3->Afficher();
+	 cout << "--taille--"<<lt3->Taille()<<endl;*/
 	//=> marche q liste de taille 1
-
 	//=> suppression en 0 ok, no matter the size is
-	cout << "++++lt1 au début"<<endl;
+	cout << "++++lt1 au début" << endl;
 	lt1->Afficher();
-	cout<<"++++retirer à i =0"<<endl;
+	cout << "++++retirer à i =0" << endl;
 	lt1->Retirer(0);
 	lt1->Afficher();
-	cout << "--taille--"<<lt1->Taille()<<endl;
-	cout<<"++++retirer à i =1"<<endl;
+	cout << "--taille--" << lt1->Taille() << endl;
+	cout << "++++retirer à i =1" << endl;
 	lt1->Retirer(1);
 	lt1->Afficher();
-	cout << "--taille--"<<lt1->Taille()<<endl;
+	cout << "--taille--" << lt1->Taille() << endl;
 	delete ts1;
 	delete ts2;
 	delete ts3;
@@ -306,15 +298,22 @@ static void Menu(ListeTrajets & catalogue) {
 		switch (action) {
 		//TS
 		case 1: {
-			
+
 			char depart[1024];
 			char arrivee[1024];
 			char transport[1024];
 
-			cout << "Ville de d�part ?" << endl;
+			cout << "Ville de depart ?" << endl;
 			cin >> depart;
-			cout << "Ville d'ariv�e ?" << endl;
+			cout << "Ville d'arrivee ?" << endl;
 			cin >> arrivee;
+			while (strcmp(depart, arrivee) == 0) {
+				cout<< "Veuillez ressaisir les villes de depart et d'arrivee de votre trajet"<< endl;
+				cout << "Ville de depart ?" << endl;
+				cin >> depart;
+				cout << "Ville d'arivee ?" << endl;
+				cin >> arrivee;
+			}
 			cout << "Moyen de transport ?" << endl;
 			cin >> transport;
 
@@ -335,13 +334,13 @@ static void Menu(ListeTrajets & catalogue) {
 			int n;
 			cin >> n;
 
-			char arriveePrecedent[1024]; 			
+			char arriveePrecedent[1024];
 			strcpy(arriveePrecedent, "no dest");
 
 			while (i < n) {
 				//while(arrivee d'avant != depart de maintenant) => sinon on peut le remplir pour lui
 				cout << "Saisie du trajet num " << i + 1 << endl;
-	
+
 				char depart[1024];
 				char arrivee[1024];
 				char transport[1024];
@@ -352,8 +351,11 @@ static void Menu(ListeTrajets & catalogue) {
 				cout << "Ville d'arrivee ?" << endl;
 				cin >> arrivee;
 
-				while ((strcmp(depart, arrivee) == 0) || ((strcmp(depart, arriveePrecedent) != 0) && (i != 0))) {
-					cout<< "Veuillez ressaisir les villes de depart et d'arrivee de votre trajet"<< endl;
+				while ((strcmp(depart, arrivee) == 0)
+						|| ((strcmp(depart, arriveePrecedent) != 0) && (i != 0))) {
+					cout
+							<< "Veuillez ressaisir les villes de depart et d'arrivee de votre trajet"
+							<< endl;
 					cout << "Ville de depart ?" << endl;
 					cin >> depart;
 					cout << "Ville d'arivee ?" << endl;
@@ -416,7 +418,6 @@ static void Menu(ListeTrajets & catalogue) {
 
 static void testMemoire(ListeTrajets &catalogue) {
 
-
 	catalogue.Ajouter(new TrajetSimple("d", "a", "t"));
 	catalogue.Ajouter(new TrajetSimple("d", "a", "t"));
 
@@ -446,7 +447,6 @@ static void testMemoire(ListeTrajets &catalogue) {
 
 }
 
-
 int main()
 // Algorithme :
 {
@@ -456,15 +456,11 @@ int main()
 	//testListe();
 	//testTC();
 
-
 	Menu(*catalogue);
 	//testListe();
 	//delete catalogue;
 	//testMemoire(*catalogue);
 	delete catalogue;
-
-
-
 
 	return 0;
 }
