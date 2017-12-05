@@ -51,13 +51,6 @@ void TrajetCompose::Afficher() const
 
 } //----- Fin de M�thode
 
-void TrajetCompose::Ajouter(const Trajet * t)
-// Algorithme :
-//
-{
-
-} //----- Fin de Ajouter
-
 const char * TrajetCompose::Depart() const
 // Algorithme :
 //
