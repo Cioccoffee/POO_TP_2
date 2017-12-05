@@ -64,13 +64,6 @@ public:
 	//
 	//
 
-	virtual const char * Transport() const;
-	// Mode d'emploi :
-	// méthode qui retourne le moyen de transport
-	// Contrat :
-	//
-	//
-	//virtual ListeTrajets * Trajets()  const;
 
 	virtual ~Trajet();
 	// Mode d'emploi :

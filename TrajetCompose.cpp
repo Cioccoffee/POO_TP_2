@@ -70,12 +70,6 @@ const char * TrajetCompose::Arrivee() const
 
 } //----- Fin de M�thode
 
-const char * TrajetCompose::Transport() const
-// Algorithme :
-//
-{
-	return "";
-} //----- Fin de M�thode
 
 ListeTrajets * TrajetCompose::Trajets()  const
 // Algorithme :
