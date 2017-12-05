@@ -117,10 +117,7 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 		char * dep, char * arr) //retour par valeur pour �viter perte de r�sultat
 		// /!\ constructeur de copie
 		{
-//	/*char * depart;
-//	strcpy(depart,dep);
-//	char * arrivee;
-//	strcpy(arrivee,arr);*/
+//
 //
 	ListeTrajets * intermede = new ListeTrajets;
 	ListeTrajets * result = new ListeTrajets;
