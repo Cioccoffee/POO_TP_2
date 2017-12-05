@@ -122,35 +122,21 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 	ListeTrajets * intermede = new ListeTrajets;
 	ListeTrajets * result = new ListeTrajets;
 
-	//cout << "in recherche avancee"<<endl;
-	//cout << catalogue.Taille() <<endl;
 
 	//ajout des trajets qui partent du bon endroit
 	for (unsigned int i = 0; i < catalogue.Taille(); i++) {
 		if (strcmp((catalogue.getTrajet(i))->Depart(), dep) == 0) {
 			intermede->Ajouter(catalogue.getTrajet(i));
-			//cout<<"dans le if"<< endl;
 		}
-		//cout << "i =" << i <<endl;
 
 	}
 
-	//cout << "selected ok for departure" <<endl;
 
-	//cout << "selectionnés car depart ok = " << endl;
 	intermede->Afficher();
 	//recherche des matchs et des resultats valides
 
-	//int taille = intermede->Taille();
 
 	while (intermede->Taille() > 0) {
-		/*cout << "in intermede's while" << endl;
-		cout <<"+++++++++++++++++++++++++++++++++++++++"<<endl;
-		cout <<"+++++++++++++++++++++++++++++++++++++++" <<endl;
-		cout <<"WARNING WARNING WHILE WARNING WARNING" <<endl;
-		cout <<"+++++++++++++++++++++++++++++++++++++++" <<endl;
-		cout <<"+++++++++++++++++++++++++++++++++++++++"<<endl;*/
-		//intermede->Afficher();
 
 		bool retrait = false;
 		for (unsigned int i = 0; i < intermede->Taille(); i++) {
@@ -158,26 +144,19 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 			if (retrait)
 				i = 0;
 			retrait = false;
-			//cout << "in for to see if corresponds --- i = " << i << endl;
-			//cout << "size intermede = " << intermede->Taille() << endl;
 			intermede->Afficher();
 			//regarder si arrivee matche demande si oui => result
-			//cout << "can we get the current trajet ?" << endl;
 
-			(intermede->getTrajet(i))/*->Afficher()*/;
 			if (strcmp(arr, (intermede->getTrajet(i))->Arrivee()) == 0) {
-				//cout << "in if" << endl;
 				result->Ajouter(intermede->getTrajet(i));
 				intermede->Retirer(i);
 				retrait = true;
-				//cout << "good destination withdrawn" << endl;
 			}
 
 			//sinon regarder si arrivee matche qqch
 			//et cr�er liste de tout ce qui matche pour ce trajet
 			//=> ajouter � sa place tous ceux qui le contiennent augment�
 			else {
-				//cout << "in else" << endl;
 
 				ListeTrajets * correspondent = new ListeTrajets;
 				for (unsigned int j = 0; j < catalogue.Taille(); j++) {
@@ -187,13 +166,11 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 					}
 				}
 
-				//cout << "taille de correspondent = " << correspondent->Taille()<< endl;
 
 				if (correspondent->Taille() == 0) {
 					intermede->Retirer(i);
 					retrait = true; //on repart du début puisqu'on a changé le nombre d'éléments
 				} else {
-					//cout << "+++++ correspondent = ++++" << endl;
 					correspondent->Afficher();
 
 					for (unsigned int j = 0; j < correspondent->Taille(); j++) {
@@ -204,17 +181,10 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 						TrajetCompose * t = new TrajetCompose(aAjouter);
 						intermede->Ajouter(t);
 
-						//delete aAjouter;
-
 					}
-					//cout << "trajet a retirer"<<endl;
-					(intermede->getTrajet(i))->Afficher();
 					intermede->Retirer(i);
 					retrait = true; //on repart du début puisqu'on a changé le nombre d'éléments
-					//cout << "etat d'intermede" << endl;
-					intermede->Afficher();
 				}
-				//delete correspondent;
 			}
 		}
 
@@ -224,8 +194,6 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 	cout << "---------" << endl;
 			result->Afficher();
 			cout << "--------" << endl;
-	//delete intermede;
-	//delete result;
 }
 
 
