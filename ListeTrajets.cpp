@@ -92,27 +92,41 @@ Trajet * ListeTrajets::getTrajet(unsigned int i) {
 	}
 }
 
-int ListeTrajets::Retirer(unsigned int i)
+void ListeTrajets::Retirer(unsigned int i)
 // Algorithme :
 	{
 
 	//condition existence du trajet
 	if (taille == 0 || i > taille)
-		return NULL;
+	{
+		//plz sweetie CHANGE THIS !!!!!
+	}
+		//return NULL;
 
-	if (i == 0) {
-		if (tete->suivant != NULL){
+	else if (i == 0) {
+		//cout<<"are we in ?"<<endl;
+		if (taille != 1){
+			//cout << "suivant de tete = " << endl;
+			//((tete->suivant)->valeur) ->Afficher();
 			tete = tete->suivant;
+			//cout << "nouvelle tete = " << endl;
+			//(tete->valeur)->Afficher();
 			//taille--;
 		}
-		else
+		else{
 			tete->valeur = NULL;
+			//cout <<"we acually did the tete->valeur = NULL;"<<endl;
+		}
+
 	} else {
 
+		//cout <<"we are in the else actually"<<endl;
+
 		CelluleTrajet * precedent = tete;
-		for (unsigned int j = 0; j < i - 1; j++) {
-			if (precedent->suivant != NULL)
+		for (unsigned int j = 0; (j < i - 1 ) && (precedent->suivant != NULL); j++) {
+			//if (precedent->suivant != NULL)
 				precedent = precedent->suivant;
+				//cout <<"on parcourt"<<endl;
 		}
 
 		CelluleTrajet * aRetirer;
@@ -120,23 +134,27 @@ int ListeTrajets::Retirer(unsigned int i)
 		if (precedent->suivant != NULL) {
 			aRetirer = precedent->suivant;
 
+			//cout <<"celui a retirer n'est pas nul"<<endl;
+
 			//on remplace aRetirer par son suivant dans la liste
-			if (precedent->suivant != NULL)
+			if (aRetirer != dernierElement)
 			{
+				//cout <<"on remplace un element qui est pas le dernier"<<endl;
 				precedent->suivant = aRetirer->suivant;
 				//taille--;
 			}
-
-			else if (i == taille)
+			else if (i == (taille-1))
 			{
-				dernierElement = precedent->suivant; //nouvelle queue
+				//cout << "on remplace le dernier element"<<endl;
+				dernierElement = precedent;
+				precedent->suivant = NULL;//nouvelle queue
 				//taille--;
 			}
 
 		}
 	}
 	taille--;
-	return 0;
+
 } //----- Fin de Retirer
 
 ListeTrajets::ListeTrajets()
