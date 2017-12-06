@@ -185,7 +185,8 @@ static void /*ListeTrajets */rechercheAvancee(ListeTrajets & catalogue,
 		}
 
 	}
-
+	cout << "---------" << endl;
+	cout << "Trajets possibles :"<<endl;
 	cout << "---------" << endl;
 	result->Afficher();
 	cout << "--------" << endl;
@@ -311,7 +312,7 @@ static void Menu(ListeTrajets & catalogue) {
 				cout<< "Veuillez ressaisir les villes de depart et d'arrivee de votre trajet"<< endl;
 				cout << "Ville de depart ?" << endl;
 				cin >> depart;
-				cout << "Ville d'arivee ?" << endl;
+				cout << "Ville d'arrivee ?" << endl;
 				cin >> arrivee;
 			}
 			cout << "Moyen de transport ?" << endl;
@@ -358,7 +359,7 @@ static void Menu(ListeTrajets & catalogue) {
 							<< endl;
 					cout << "Ville de depart ?" << endl;
 					cin >> depart;
-					cout << "Ville d'arivee ?" << endl;
+					cout << "Ville d'arrivee ?" << endl;
 					cin >> arrivee;
 				}
 				cout << "Moyen de transport ?" << endl;
