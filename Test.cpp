@@ -284,7 +284,7 @@ static void testRetirer() {
 }
 
 static void Menu(ListeTrajets & catalogue) {
-	cout << "Veuillez choisir l'option: " << endl;
+	cout << "Veuillez choisir une option: " << endl;
 	cout << "1. Ajouter Trajet Simple " << endl;
 	cout << "2. Ajouter Trajet Compose " << endl;
 	cout << "3. Afficher le catalogue des trajets " << endl;
@@ -406,7 +406,7 @@ static void Menu(ListeTrajets & catalogue) {
 			break;
 		}
 
-		cout << "Choisissez l'option: " << endl;
+		cout << "Choisissez une option: " << endl;
 		cout << "1. Ajouter Trajet Simple " << endl;
 		cout << "2. Ajouter Trajet Compose " << endl;
 		cout << "3. Afficher le catalogue des trajets " << endl;
