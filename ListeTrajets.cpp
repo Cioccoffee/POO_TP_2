@@ -12,7 +12,6 @@
 using namespace std;
 #include <iostream>
 
-
 //------------------------------------------------------ Include personnel
 #include "ListeTrajets.h"
 
@@ -49,9 +48,8 @@ void ListeTrajets::Ajouter(Trajet *val) {
 
 	if (taille == 0) {
 
-
+		//tete->valeur=new Trajet;
 		tete->valeur = val;
-
 
 		//////////
 		tete->suivant = NULL;
@@ -60,6 +58,7 @@ void ListeTrajets::Ajouter(Trajet *val) {
 
 	} else {
 		CelluleTrajet *nouvelElement = new CelluleTrajet;
+		//nouvelElement->valeur = new Trajet;
 		nouvelElement->valeur = val;
 		nouvelElement->suivant = NULL;
 
@@ -106,26 +105,25 @@ Trajet * ListeTrajets::getTrajet(unsigned int i) {
 
 void ListeTrajets::Retirer(unsigned int i)
 // Algorithme :
-	{
+		{
 
 	//condition existence du trajet
-	if (taille == 0 || i > taille)
-	{
+	if (taille == 0 || i > taille) {
 	}
 
 	else if (i == 0) {
-		if (taille != 1){
+		if (taille != 1) {
 			tete = tete->suivant;
-		}
-		else{
+		} else {
 			tete->valeur = NULL;
 		}
 
 	} else {
 		CelluleTrajet * precedent = tete;
-		for (unsigned int j = 0; (j < i - 1 ) && (precedent->suivant != NULL); j++) {
+		for (unsigned int j = 0; (j < i - 1) && (precedent->suivant != NULL);
+				j++) {
 			//if (precedent->suivant != NULL)
-				precedent = precedent->suivant;
+			precedent = precedent->suivant;
 		}
 
 		CelluleTrajet * aRetirer;
@@ -133,14 +131,11 @@ void ListeTrajets::Retirer(unsigned int i)
 		if (precedent->suivant != NULL) {
 			aRetirer = precedent->suivant;
 
-			if (aRetirer != dernierElement)
-			{
+			if (aRetirer != dernierElement) {
 				precedent->suivant = aRetirer->suivant;
-			}
-			else if (i == (taille-1))
-			{
+			} else if (i == (taille - 1)) {
 				dernierElement = precedent;
-				precedent->suivant = NULL;//nouvelle queue
+				precedent->suivant = NULL; //nouvelle queue
 			}
 
 		}
@@ -165,29 +160,58 @@ ListeTrajets::ListeTrajets()
 } //----- Fin de ListeTrajets
 
 ListeTrajets::ListeTrajets(const ListeTrajets &uneListe) {
-	ListeTrajets * resultat = new ListeTrajets;
+	//ListeTrajets * resultat = new ListeTrajets;
+	/*taille=0;
 
-	if(uneListe.taille > 0) {
+	if (uneListe.taille > 0) {
 
+		//tete = new CelluleTrajet;
+		//tete->valeur = NULL;
+		//tete->suivant = dernierElement;
+		//taille = 0;
 
-		resultat->tete = uneListe.Tete();
+		//tete = uneListe.Tete();
 
-		CelluleTrajet * courant = resultat->tete;
+		CelluleTrajet * courant;
 		CelluleTrajet * courantACopier = uneListe.tete;
 
-		while(courantACopier != uneListe.dernierElement) {
 
-			courant->valeur = courantACopier->valeur ;
-			courant->suivant = courantACopier->suivant;
+		if (uneListe.taille == 1) {
+			tete = new CelluleTrajet;
+			tete->valeur = new Trajet;
+			tete->valeur = courantACopier->valeur;
+			tete->suivant = NULL;
+			dernierElement = tete;
+			taille++;
+		} else {
+			while (courantACopier->suivant != NULL) {
+				if (taille == 0) {
+					tete = new CelluleTrajet;
+					tete->valeur = new Trajet;
+					tete->valeur = courantACopier->valeur;
+					tete->suivant = courantACopier->suivant;
+					taille++;
+				} else {
+					courant = new CelluleTrajet;
+					courant->valeur = new Trajet;
 
-			courant = courant->suivant;
-			courantACopier = courantACopier->suivant;
+					courant->valeur = courantACopier->valeur;
+					courant->suivant = courantACopier->suivant;
+					taille++;
+				}
+				//courant = courant->suivant;
+				courantACopier = courantACopier->suivant;
 
+			}
+
+			dernierElement = new CelluleTrajet;
+			dernierElement->valeur = courantACopier->valeur;
+			dernierElement->suivant = NULL;
+
+			//dernierElement->suivant->Afficher();
+			taille++;
 		}
-
-		dernierElement = new CelluleTrajet;
-		resultat->dernierElement = uneListe.Queue();
-	}
+	}*/
 }
 
 ListeTrajets::~ListeTrajets()
@@ -197,11 +221,14 @@ ListeTrajets::~ListeTrajets()
 	//cout << "Appel au destructeur de <ListeTrajets>" << endl;
 #endif
 
+//	dernierElement->valeur->Afficher();
+//	tete->valeur->Afficher();
 	CelluleTrajet *elSupprime = tete;
-	CelluleTrajet *elSupprimeSuiv=elSupprime;
+	CelluleTrajet *elSupprimeSuiv = elSupprime;
 
 	while (elSupprime->suivant != NULL) {
 		elSupprimeSuiv = elSupprime->suivant;
+
 		delete elSupprime->valeur;
 		delete elSupprime;
 		elSupprime = elSupprimeSuiv;
@@ -209,8 +236,6 @@ ListeTrajets::~ListeTrajets()
 	}
 	delete elSupprime->valeur;
 	delete elSupprime;
-
-
 
 } //----- Fin de ~ListeTrajets
 

@@ -10,6 +10,7 @@
 #if ! defined ( ListeTrajets_H )
 #define ListeTrajets_H
 #include "Trajet.h"
+#include "TrajetSimple.h"
 
 //--------------------------------------------------- Interfaces utilisées
 

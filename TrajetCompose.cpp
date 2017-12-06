@@ -129,7 +129,8 @@ TrajetCompose::TrajetCompose(const TrajetCompose & t)
 TrajetCompose::TrajetCompose(ListeTrajets * lt)
 // Algorithme :
 {
-	trajets = lt;
+	trajets = new ListeTrajets(*lt);
+	//trajets =lt;
 
 #ifdef MAP
 	//cout << "Appel au constructeur de <Trajet>" << endl;
@@ -142,6 +143,7 @@ TrajetCompose::~TrajetCompose()
 // Algorithme :
 {
 
+	delete trajets;
 #ifdef MAP
 	//cout << "Appel au destructeur de <Trajet>" << endl;
 #endif

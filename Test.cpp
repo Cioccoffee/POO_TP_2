@@ -456,11 +456,11 @@ static void Menu(ListeTrajets & catalogue) {
 static void testMemoire(ListeTrajets &catalogue) {
 
 
-	catalogue.Ajouter(new TrajetSimple("d", "a", "t"));
-	catalogue.Ajouter(new TrajetSimple("d", "a", "t"));
+	/*catalogue.Ajouter(new TrajetSimple("d", "a", "t"));
+	catalogue.Ajouter(new TrajetSimple("d", "a", "t"));*/
 
-	TrajetSimple *ts1 = new TrajetSimple("ty", "B", "MT");
-	Trajet * ts2 = new TrajetSimple("B", "C", "MT2");
+	/*TrajetSimple *ts1 = new TrajetSimple("ty", "B", "MT");
+	Trajet * ts2 = new TrajetSimple("B", "C", "MT2");*/
 
 	TrajetSimple *ts3 = new TrajetSimple("ty", "C", "MT3");
 	TrajetSimple *ts4 = new TrajetSimple("C", "K", "MT4");
@@ -471,17 +471,26 @@ static void testMemoire(ListeTrajets &catalogue) {
 	lt2->Ajouter(ts1);
 	lt2->Ajouter(ts2);
 	TrajetCompose * tc1 = new TrajetCompose(lt2);
+	//tc1->Afficher();
 
 	ListeTrajets * lt1 = new ListeTrajets;
 
 	lt1->Ajouter(tc1);
+	//lt1->Afficher();
+
+
 	lt1->Ajouter(ts3);
+	lt1->Afficher();
 	lt1->Ajouter(ts4);
 	lt1->Ajouter(ts5);
 	lt1->Ajouter(ts6);
 
-	delete lt2;
+
+	//delete lt2;
+
+
 	delete lt1;
+
 
 }
 
