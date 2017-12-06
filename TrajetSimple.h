@@ -43,7 +43,7 @@ public:
 	// param 2 : pointeur vers une chaine de caract constante représentant la ville d'arrivée
 	// param 1 : pointeur vers une chaine de caract constante représentant le moyen de transport
 	// Contrat :
-	//les paramètres ont une taille maximale égale à 20
+	//les paramètres ont une taille maximale égale à 1024 à cause de l'ajout par le menu (dans Test.cpp)
 
 	TrajetSimple(const TrajetSimple & t);
 	// Mode d'emploi :

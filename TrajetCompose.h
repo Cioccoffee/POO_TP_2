@@ -60,13 +60,6 @@ public:
 	//
 	//
 
-	void Ajouter(const Trajet * t);
-	// Mode d'emploi :
-	//
-	// Contrat :
-	//
-	//
-
 	const char * Depart() const;
 	// Mode d'emploi :
 	// méthode qui retourne la ville de départ
@@ -77,13 +70,6 @@ public:
 	const char * Arrivee() const;
 	// Mode d'emploi :
 	// méthode qui retourne la ville d'arrivée
-	// Contrat :
-	//
-	//
-
-	const char * Transport() const;
-	// Mode d'emploi :
-	// méthode qui retourne une chaine vide pour un TrajetCompose
 	// Contrat :
 	//
 	//
