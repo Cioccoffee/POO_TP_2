@@ -160,58 +160,7 @@ ListeTrajets::ListeTrajets()
 } //----- Fin de ListeTrajets
 
 ListeTrajets::ListeTrajets(const ListeTrajets &uneListe) {
-	//ListeTrajets * resultat = new ListeTrajets;
-	/*taille=0;
 
-	if (uneListe.taille > 0) {
-
-		//tete = new CelluleTrajet;
-		//tete->valeur = NULL;
-		//tete->suivant = dernierElement;
-		//taille = 0;
-
-		//tete = uneListe.Tete();
-
-		CelluleTrajet * courant;
-		CelluleTrajet * courantACopier = uneListe.tete;
-
-
-		if (uneListe.taille == 1) {
-			tete = new CelluleTrajet;
-			tete->valeur = new Trajet;
-			tete->valeur = courantACopier->valeur;
-			tete->suivant = NULL;
-			dernierElement = tete;
-			taille++;
-		} else {
-			while (courantACopier->suivant != NULL) {
-				if (taille == 0) {
-					tete = new CelluleTrajet;
-					tete->valeur = new Trajet;
-					tete->valeur = courantACopier->valeur;
-					tete->suivant = courantACopier->suivant;
-					taille++;
-				} else {
-					courant = new CelluleTrajet;
-					courant->valeur = new Trajet;
-
-					courant->valeur = courantACopier->valeur;
-					courant->suivant = courantACopier->suivant;
-					taille++;
-				}
-				//courant = courant->suivant;
-				courantACopier = courantACopier->suivant;
-
-			}
-
-			dernierElement = new CelluleTrajet;
-			dernierElement->valeur = courantACopier->valeur;
-			dernierElement->suivant = NULL;
-
-			//dernierElement->suivant->Afficher();
-			taille++;
-		}
-	}*/
 }
 
 ListeTrajets::~ListeTrajets()
